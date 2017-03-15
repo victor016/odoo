@@ -231,7 +231,11 @@ class IrAttachment(models.Model):
         if values.get('mimetype'):
             mimetype = values['mimetype']
         if not mimetype and values.get('datas_fname'):
-            mimetype = mimetypes.guess_type(values['datas_fname'])[0]
+            #mimetype text/javascript When is web.assets_backend.js and web.assets_common.js
+            if values['datas_fname'][len(values['datas_fname'])-2:] == 'js':
+                mimetype='text/javascript'
+            else:
+                mimetype = mimetypes.guess_type(values['datas_fname'])[0]
         if not mimetype and values.get('url'):
             mimetype = mimetypes.guess_type(values['url'])[0]
         if values.get('datas') and (not mimetype or mimetype == 'application/octet-stream'):
