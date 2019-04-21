@@ -300,6 +300,14 @@ odoo.define_section('eval.types', ['web.pyeval'], function (test, mock) {
             py.eval("(datetime.date(2015,2,5)+relativedelta(days=-6,weekday=0)).strftime('%Y-%m-%d')",
                     pyeval.context()),
             '2015-02-02');
+        strictEqual(
+            py.eval("(datetime.date(2018, 2, 1) + relativedelta(years=7, months=42, days=42)).strftime('%Y-%m-%d')",
+                    pyeval.context()),
+            '2028-09-12');
+        strictEqual(
+            py.eval("(datetime.date(2018, 2, 1) + relativedelta(years=-7, months=-42, days=-42)).strftime('%Y-%m-%d')",
+                    pyeval.context()),
+            '2007-06-20');
     });
 
     test('datetime.tojson', function (assert, pyeval) {
@@ -534,7 +542,7 @@ odoo.define_section('eval.edc.nonliterals', ['web.pyeval', 'web.session'], funct
         var result = pyeval.sync_eval_domains_and_contexts({
             domains: [
                 [['type', '=', 'contract']],
-                { "__domains": [["|"], [["state", "in", ["open", "draft"]]], [["state", "=", "pending"]]],
+                { "__domains": [["|"], [["state", "in", ["open", "draft"]]], [["type", "=", "contract"], ["state", "=", "pending"]]],
                   "__eval_context": null,
                   "__ref": "compound_domain"
                 },
@@ -550,7 +558,8 @@ odoo.define_section('eval.edc.nonliterals', ['web.pyeval', 'web.session'], funct
         assert.deepEqual(result.domain, [
             ["type", "=", "contract"],
             "|", ["state", "in", ["open", "draft"]],
-                 ["state", "=", "pending"],
+                "&", ["type", "=", "contract"],
+                     ["state", "=", "pending"],
             "|",
                 "&", ["date", "!=", false],
                      ["date", "<=", today],

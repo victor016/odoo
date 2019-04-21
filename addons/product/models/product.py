@@ -32,10 +32,13 @@ class ProductCategory(models.Model):
         help="The number of products under this category (Does not consider the children categories)")
 
     def _compute_product_count(self):
-        read_group_res = self.env['product.template'].read_group([('categ_id', 'in', self.ids)], ['categ_id'], ['categ_id'])
+        read_group_res = self.env['product.template'].read_group([('categ_id', 'child_of', self.ids)], ['categ_id'], ['categ_id'])
         group_data = dict((data['categ_id'][0], data['categ_id_count']) for data in read_group_res)
         for categ in self:
-            categ.product_count = group_data.get(categ.id, 0)
+            product_count = 0
+            for sub_categ_id in categ.search([('id', 'child_of', categ.id)]).ids:
+                product_count += group_data.get(sub_categ_id, 0)
+            categ.product_count = product_count
 
     @api.constrains('parent_id')
     def _check_category_recursion(self):
@@ -94,7 +97,8 @@ class ProductPriceHistory(models.Model):
     def _get_default_company_id(self):
         return self._context.get('force_company', self.env.user.company_id.id)
 
-    company_id = fields.Many2one('res.company', default=_get_default_company_id, required=True)
+    company_id = fields.Many2one('res.company', string='Company',
+        default=_get_default_company_id, required=True)
     product_id = fields.Many2one('product.product', 'Product', ondelete='cascade', required=True)
     datetime = fields.Datetime('Date', default=fields.Datetime.now)
     cost = fields.Float('Cost', digits=dp.get_precision('Product Price'))
@@ -105,7 +109,7 @@ class ProductProduct(models.Model):
     _description = "Product"
     _inherits = {'product.template': 'product_tmpl_id'}
     _inherit = ['mail.thread']
-    _order = 'default_code, id'
+    _order = 'default_code, name, id'
 
     price = fields.Float(
         'Price', compute='_compute_product_price',
@@ -237,6 +241,7 @@ class ProductProduct(models.Model):
         for supplier_info in self.seller_ids:
             if supplier_info.name.id == self._context.get('partner_id'):
                 self.code = supplier_info.product_code or self.default_code
+                break
         else:
             self.code = self.default_code
 
@@ -244,7 +249,8 @@ class ProductProduct(models.Model):
     def _compute_partner_ref(self):
         for supplier_info in self.seller_ids:
             if supplier_info.name.id == self._context.get('partner_id'):
-                product_name = supplier_info.product_name or self.default_code
+                product_name = supplier_info.product_name or self.default_code or self.name
+                break
         else:
             product_name = self.name
         self.partner_ref = '%s%s' % (self.code and '[%s] ' % self.code or '', product_name)
@@ -302,7 +308,8 @@ class ProductProduct(models.Model):
             for value in product.attribute_value_ids:
                 if value.attribute_id in attributes:
                     raise ValidationError(_('Error! It is not allowed to choose more than one value for a given attribute.'))
-                attributes |= value.attribute_id
+                if value.attribute_id.create_variant:
+                    attributes |= value.attribute_id
         return True
 
     @api.onchange('uom_id', 'uom_po_id')
@@ -313,7 +320,9 @@ class ProductProduct(models.Model):
     @api.model
     def create(self, vals):
         product = super(ProductProduct, self.with_context(create_product_product=True)).create(vals)
-        product._set_standard_price(vals.get('standard_price', 0.0))
+        # When a unique variant is created from tmpl then the standard price is set by _set_standard_price
+        if not (self.env.context.get('create_from_tmpl') and len(product.product_tmpl_id.product_variant_ids) == 1):
+            product._set_standard_price(vals.get('standard_price') or 0.0)
         return product
 
     @api.multi
@@ -386,6 +395,24 @@ class ProductProduct(models.Model):
         self.check_access_rule("read")
 
         result = []
+
+        # Prefetch the fields used by the `name_get`, so `browse` doesn't fetch other fields
+        # Use `load=False` to not call `name_get` for the `product_tmpl_id`
+        self.sudo().read(['name', 'default_code', 'product_tmpl_id', 'attribute_value_ids', 'attribute_line_ids'], load=False)
+
+        product_template_ids = self.sudo().mapped('product_tmpl_id').ids
+
+        if partner_ids:
+            supplier_info = self.env['product.supplierinfo'].sudo().search([
+                ('product_tmpl_id', 'in', product_template_ids),
+                ('name', 'in', partner_ids),
+            ])
+            # Prefetch the fields used by the `name_get`, so `browse` doesn't fetch other fields
+            # Use `load=False` to not call `name_get` for the `product_tmpl_id` and `product_id`
+            supplier_info.sudo().read(['product_tmpl_id', 'product_id', 'product_name', 'product_code'], load=False)
+            supplier_info_by_template = {}
+            for r in supplier_info:
+                supplier_info_by_template.setdefault(r.product_tmpl_id, []).append(r)
         for product in self.sudo():
             # display only the attributes with multiple possible values on the template
             variable_attributes = product.attribute_line_ids.filtered(lambda l: len(l.value_ids) > 1).mapped('attribute_id')
@@ -394,9 +421,10 @@ class ProductProduct(models.Model):
             name = variant and "%s (%s)" % (product.name, variant) or product.name
             sellers = []
             if partner_ids:
-                sellers = [x for x in product.seller_ids if (x.name.id in partner_ids) and (x.product_id == product)]
+                product_supplier_info = supplier_info_by_template.get(product.product_tmpl_id, [])
+                sellers = [x for x in product_supplier_info if x.product_id and x.product_id == product]
                 if not sellers:
-                    sellers = [x for x in product.seller_ids if (x.name.id in partner_ids) and not x.product_id]
+                    sellers = [x for x in product_supplier_info if not x.product_id]
             if sellers:
                 for s in sellers:
                     seller_variant = s.product_name and (
@@ -441,7 +469,12 @@ class ProductProduct(models.Model):
                     limit2 = (limit - len(products)) if limit else False
                     products += self.search(args + [('name', operator, name), ('id', 'not in', products.ids)], limit=limit2)
             elif not products and operator in expression.NEGATIVE_TERM_OPERATORS:
-                products = self.search(args + ['&', ('default_code', operator, name), ('name', operator, name)], limit=limit)
+                domain = expression.OR([
+                    ['&', ('default_code', operator, name), ('name', operator, name)],
+                    ['&', ('default_code', '=', False), ('name', operator, name)],
+                ])
+                domain = expression.AND([args, domain])
+                products = self.search(domain, limit=limit)
             if not products and operator in positive_operators:
                 ptrn = re.compile('(\[(.*?)\])')
                 res = ptrn.search(name)
@@ -483,7 +516,10 @@ class ProductProduct(models.Model):
         if date is None:
             date = fields.Date.today()
         res = self.env['product.supplierinfo']
-        for seller in self.seller_ids:
+        sellers = self.seller_ids
+        if self.env.context.get('force_company'):
+            sellers = sellers.filtered(lambda s: not s.company_id or s.company_id.id == self.env.context['force_company'])
+        for seller in sellers:
             # Set quantity in UoM of seller
             quantity_uom_seller = quantity
             if quantity_uom_seller and uom_id and uom_id != seller.product_uom:
@@ -558,7 +594,7 @@ class ProductProduct(models.Model):
         history = self.env['product.price.history'].search([
             ('company_id', '=', company_id),
             ('product_id', 'in', self.ids),
-            ('datetime', '<=', date or fields.Datetime.now())], limit=1)
+            ('datetime', '<=', date or fields.Datetime.now())], order='datetime desc,id desc', limit=1)
         return history.cost or 0.0
 
     def _need_procurement(self):

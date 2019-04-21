@@ -143,7 +143,7 @@ class FleetVehicle(models.Model):
 
     def _get_default_state(self):
         state = self.env.ref('fleet.vehicle_state_active', raise_if_not_found=False)
-        return state and state.id or False
+        return state if state and state.id else False
 
     name = fields.Char(compute="_compute_vehicle_name", store=True)
     active = fields.Boolean(default=True)
@@ -213,11 +213,11 @@ class FleetVehicle(models.Model):
         LogContract = self.env['fleet.vehicle.log.contract']
         Cost = self.env['fleet.vehicle.cost']
         for record in self:
-            record.odometer_count = Odometer.search_count([('vehicle_id', '=', self.id)])
-            record.fuel_logs_count = LogFuel.search_count([('vehicle_id', '=', self.id)])
-            record.service_count = LogService.search_count([('vehicle_id', '=', self.id)])
-            record.contract_count = LogContract.search_count([('vehicle_id', '=', self.id)])
-            record.cost_count = Cost.search_count([('vehicle_id', '=', self.id), ('parent_id', '=', False)])
+            record.odometer_count = Odometer.search_count([('vehicle_id', '=', record.id)])
+            record.fuel_logs_count = LogFuel.search_count([('vehicle_id', '=', record.id)])
+            record.service_count = LogService.search_count([('vehicle_id', '=', record.id)])
+            record.contract_count = LogContract.search_count([('vehicle_id', '=', record.id)])
+            record.cost_count = Cost.search_count([('vehicle_id', '=', record.id), ('parent_id', '=', False)])
 
     @api.depends('log_contracts')
     def _compute_contract_reminder(self):

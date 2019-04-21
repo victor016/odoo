@@ -3,20 +3,21 @@
 # * website
 # 
 # Translators:
-# Martin Trigaux <mat@odoo.com>, 2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
-# Vida Potočnik <vida.potocnik@mentis.si>, 2016
-# Borut Jures <inactive+borut@transifex.com>, 2016
+# Borut Jures, 2016
 # Dejan Sraka <dejan.sraka@picolabs.si>, 2016
+# Vida Potočnik <vida.potocnik@mentis.si>, 2016
 # jl2035 <jaka.luthar@gmail.com>, 2016
+# Martin Trigaux, 2016
 # Simon Gorše <simon@gorse.org>, 2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-14 15:53+0000\n"
-"PO-Revision-Date: 2016-11-14 15:53+0000\n"
-"Last-Translator: Simon Gorše <simon@gorse.org>, 2016\n"
+"POT-Creation-Date: 2017-06-23 13:27+0000\n"
+"PO-Revision-Date: 2016-09-07 09:31+0000\n"
+"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>, 2019\n"
 "Language-Team: Slovenian (https://www.transifex.com/odoo/teams/41243/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -661,7 +662,7 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
 msgid "<strong>Next actions:</strong>"
-msgstr ""
+msgstr "<strong>Naslednji ukrepi:</strong>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -676,7 +677,7 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
 msgid "<strong>Publish events</strong>"
-msgstr ""
+msgstr "<strong>Objavi dogodke</strong>"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -1214,7 +1215,7 @@ msgstr ""
 
 #. module: website
 #: model:ir.model.fields,field_description:website.field_website_config_settings_compress_html
-msgid "Compress rendered HTML for a better Google PageSpeed result"
+msgid "Compress rendered HTML"
 msgstr ""
 
 #. module: website
@@ -1242,7 +1243,7 @@ msgstr "Potrditev"
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
 msgid "Congratulations, you're done!"
-msgstr ""
+msgstr "Čestitamo, opravljeno je!"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.footer_default
@@ -2045,7 +2046,7 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
 msgid "Install new languages"
-msgstr ""
+msgstr "Namesti nove jezike"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.show_website_info
@@ -2433,7 +2434,7 @@ msgstr "V Redu"
 #: code:addons/website/static/src/xml/website.backend.xml:5
 #, python-format
 msgid "On Website"
-msgstr ""
+msgstr "na spletni strani"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -2701,7 +2702,7 @@ msgstr "Promoviraj stran na spletu"
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
 msgid "Promote your catalog of services"
-msgstr ""
+msgstr "Promovirajte svoj katalog storitev"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -3120,7 +3121,6 @@ msgstr "V kontrolniku spletne strani se je pojavila naslednja napaka"
 
 #. module: website
 #: model:ir.model.fields,help:website.field_blog_post_website_url
-#: model:ir.model.fields,help:website.field_delivery_carrier_website_url
 #: model:ir.model.fields,help:website.field_event_event_website_url
 #: model:ir.model.fields,help:website.field_event_track_website_url
 #: model:ir.model.fields,help:website.field_hr_employee_website_url
@@ -3375,7 +3375,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:website.publish_short
 #, python-format
 msgid "Unpublished"
-msgstr ""
+msgstr "Neobjavljeno"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
@@ -3619,7 +3619,6 @@ msgstr ""
 
 #. module: website
 #: model:ir.model.fields,field_description:website.field_blog_post_website_url
-#: model:ir.model.fields,field_description:website.field_delivery_carrier_website_url
 #: model:ir.model.fields,field_description:website.field_event_event_website_url
 #: model:ir.model.fields,field_description:website.field_event_track_website_url
 #: model:ir.model.fields,field_description:website.field_hr_employee_website_url
@@ -3928,7 +3927,7 @@ msgstr ""
 #. module: website
 #: model:ir.ui.view,arch_db:website.website_planner
 msgid "Your Objectives"
-msgstr ""
+msgstr "Vaši cilji"
 
 #. module: website
 #: model:ir.ui.view,arch_db:website.s_title

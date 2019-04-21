@@ -63,7 +63,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_cancel(self):
-        self.order_line.mapped('procurement_ids').cancel()
+        self.mapped('order_line').mapped('procurement_ids').cancel()
         return super(SaleOrder, self).action_cancel()
 
     @api.multi
@@ -72,7 +72,6 @@ class SaleOrder(models.Model):
         invoice_vals['incoterms_id'] = self.incoterm.id or False
         return invoice_vals
 
-    @api.model
     def _prepare_procurement_group(self):
         res = super(SaleOrder, self)._prepare_procurement_group()
         res.update({'move_type': self.picking_policy, 'partner_id': self.partner_shipping_id.id})
@@ -113,8 +112,6 @@ class SaleOrderLine(models.Model):
         for line in self:
             if line.product_id.type not in ('consu', 'product'):
                 super(SaleOrderLine, line)._compute_qty_delivered_updateable()
-            else:
-                line.qty_delivered_updateable = False
 
     @api.onchange('product_id')
     def _onchange_product_id_set_customer_lead(self):
@@ -184,8 +181,10 @@ class SaleOrderLine(models.Model):
         qty = 0.0
         for move in self.procurement_ids.mapped('move_ids').filtered(lambda r: r.state == 'done' and not r.scrapped):
             if move.location_dest_id.usage == "customer":
-                qty += move.product_uom._compute_quantity(move.product_uom_qty, self.product_uom)
-            elif move.location_dest_id.usage == "internal" and move.to_refund_so:
+                # FORWARD-PORT NOTICE: "to_refund_so" to rename to "to_refund" in v11
+                if not move.origin_returned_move_id or (move.origin_returned_move_id and move.to_refund_so):
+                    qty += move.product_uom._compute_quantity(move.product_uom_qty, self.product_uom)
+            elif move.location_dest_id.usage != "customer" and move.to_refund_so:
                 qty -= move.product_uom._compute_quantity(move.product_uom_qty, self.product_uom)
         return qty
 

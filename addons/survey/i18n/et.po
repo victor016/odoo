@@ -1,22 +1,27 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * survey
-#
+# 
 # Translators:
-# Arma Gedonsky <armagedonsky@hot.ee>, 2016
-# Rivo Zängov <eraser@eraser.ee>, 2016
+# Martin Trigaux, 2017
+# Arma Gedonsky <armagedonsky@hot.ee>, 2017
+# Rivo Zängov <eraser@eraser.ee>, 2017
+# Wanradt Koell <wanradt@gmail.com>, 2017
+# Egon Raamat <egon@avalah.ee>, 2017
+# Eneli Õigus <enelioigus@gmail.com>, 2017
+# Marek Pontus, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-10 08:44+0000\n"
-"PO-Revision-Date: 2016-03-12 20:27+0000\n"
-"Last-Translator: Arma Gedonsky <armagedonsky@hot.ee>\n"
-"Language-Team: Estonian (http://www.transifex.com/odoo/odoo-9/language/et/)\n"
-"Language: et\n"
+"PO-Revision-Date: 2016-10-10 08:44+0000\n"
+"Last-Translator: Marek Pontus, 2018\n"
+"Language-Team: Estonian (https://www.transifex.com/odoo/teams/41243/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
+"Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: survey
@@ -26,9 +31,7 @@ msgid ""
 "                \n"
 "<p>Hello,</p>\n"
 "<p>We are conducting a survey, and your response would be appreciated.</p>\n"
-"<p><a style=\"margin-left: 85px; padding:5px 10px; border-radius: 3px; "
-"background-color:#875A7B; text-align:center; text-decoration:none; color:"
-"#F7FBFD;\" href=\"__URL__\">Please, click here to start survey</a></p>\n"
+"<p><a style=\"margin-left: 85px; padding:5px 10px; border-radius: 3px; background-color:#875A7B; text-align:center; text-decoration:none; color:#F7FBFD;\" href=\"__URL__\">Please, click here to start survey</a></p>\n"
 "<p>Thanks for your participation!</p>\n"
 "                \n"
 "            "
@@ -48,17 +51,17 @@ msgstr "%s (koopia)"
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.page
 msgid "&amp;times;"
-msgstr ""
+msgstr "&amp;korda;"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result
 msgid "<b>Question </b>"
-msgstr ""
+msgstr "<b>Küsimus </b>"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid "<i class=\"fa fa-2x\">123..</i>"
-msgstr ""
+msgstr "<i class=\"fa fa-2x\">123..</i>"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_matrix
@@ -66,31 +69,33 @@ msgid ""
 "<i class=\"fa fa-bar-chart\"/>\n"
 "                    Graph"
 msgstr ""
+"<i class=\"fa fa-bar-chart\"/>\n"
+"                    Graafik"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_choice
 msgid "<i class=\"fa fa-bar-chart-o\"/> Graph"
-msgstr ""
+msgstr "<i class=\"fa fa-bar-chart-o\"/> Graafik"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_choice
 msgid "<i class=\"fa fa-bar-chart-o\"/> Pie Chart"
-msgstr ""
+msgstr "<i class=\"fa fa-bar-chart-o\"/> Ringdiagramm"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid "<i class=\"fa fa-check-square-o fa-lg\"/> answer"
-msgstr ""
+msgstr "<i class=\"fa fa-check-square-o fa-lg\"/> vastus"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid "<i class=\"fa fa-circle-o  fa-lg\"/> answer"
-msgstr ""
+msgstr "<i class=\"fa fa-circle-o  fa-lg\"/> vastus"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid "<i class=\"fa fa-dot-circle-o fa-lg\"/> answer"
-msgstr ""
+msgstr "<i class=\"fa fa-dot-circle-o fa-lg\"/> vastus"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_number
@@ -98,6 +103,8 @@ msgid ""
 "<i class=\"fa fa-list-alt\"/>\n"
 "                    All Data"
 msgstr ""
+"<i class=\"fa fa-list-alt\"/>\n"
+"                    Kõik andmed"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_matrix
@@ -105,11 +112,13 @@ msgid ""
 "<i class=\"fa fa-list-alt\"/>\n"
 "                    Data"
 msgstr ""
+"<i class=\"fa fa-list-alt\"/>\n"
+"                    Andmed"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_choice
 msgid "<i class=\"fa fa-list-alt\"/> Data"
-msgstr ""
+msgstr "<i class=\"fa fa-list-alt\"/> Andmed"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_number
@@ -121,60 +130,59 @@ msgstr ""
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid "<i class=\"fa fa-square-o fa-lg\"/> answer"
-msgstr ""
+msgstr "<i class=\"fa fa-square-o fa-lg\"/> vastus"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result
 msgid "<i class=\"fa fa-times\"/> Clear All Filters"
-msgstr ""
+msgstr "<i class=\"fa fa-times\"/> Tühjenda kõik filtrid"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result
 msgid "<span class=\"fa fa-filter\"/>  Filters"
-msgstr ""
+msgstr "<span class=\"fa fa-filter\"/>  Filtrid"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result
 msgid ""
-"<span class=\"label label-default only_left_radius filter-all\">All surveys</"
-"span><span class=\"label label-primary only_right_radius filter-finished"
-"\">Finished surveys</span>"
+"<span class=\"label label-default only_left_radius filter-all\">All "
+"surveys</span><span class=\"label label-primary only_right_radius filter-"
+"finished\">Finished surveys</span>"
 msgstr ""
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_number
 msgid "<span class=\"label label-default only_left_radius\">Average </span>"
-msgstr ""
+msgstr "<span class=\"label label-default only_left_radius\">Keskmine </span>"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_number
 msgid "<span class=\"label label-default only_left_radius\">Maximum </span>"
-msgstr ""
+msgstr "<span class=\"label label-default only_left_radius\">Maksimaalne </span>"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_number
 msgid "<span class=\"label label-default only_left_radius\">Minimum </span>"
-msgstr ""
+msgstr "<span class=\"label label-default only_left_radius\">Minimaalne </span>"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_number
 msgid "<span class=\"label label-default only_left_radius\">Sum </span>"
-msgstr ""
+msgstr "<span class=\"label label-default only_left_radius\">Kokku </span>"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result
 msgid ""
-"<span class=\"label label-primary only_left_radius filter-all\">All surveys</"
-"span><span class=\"label label-default only_right_radius filter-finished"
-"\">Finished surveys</span>"
+"<span class=\"label label-primary only_left_radius filter-all\">All "
+"surveys</span><span class=\"label label-default only_right_radius filter-"
+"finished\">Finished surveys</span>"
 msgstr ""
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.no_result
 msgid ""
 "<span>\n"
-"                            <i style=\"font-size:1.8em\" class=\"fa fa-users "
-"pull-right\"/>\n"
+"                            <i style=\"font-size:1.8em\" class=\"fa fa-users pull-right\"/>\n"
 "                        </span>\n"
 "                        Sorry, No one answered this survey yet"
 msgstr ""
@@ -182,7 +190,7 @@ msgstr ""
 #. module: survey
 #: sql_constraint:survey.question:0
 msgid "A length must be positive!"
-msgstr ""
+msgstr "Pikkus peab olema positiivne number!"
 
 #. module: survey
 #: model:ir.model.fields,help:survey.field_survey_survey_description
@@ -225,7 +233,7 @@ msgstr ""
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey_active
 msgid "Active"
-msgstr ""
+msgstr "Aktiivne"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_email_compose_message
@@ -291,7 +299,7 @@ msgstr "Vastused"
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_survey_view_search
 msgid "Archived"
-msgstr ""
+msgstr "Arhiveeritud"
 
 #. module: survey
 #: model:survey.question,question:survey.feedback_1_1
@@ -313,7 +321,7 @@ msgstr ""
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.back
 msgid "Back to Survey"
-msgstr ""
+msgstr "Tagasi küsitluse juurde"
 
 #. module: survey
 #: model:survey.label,value:survey.choice_1_2_4
@@ -328,12 +336,12 @@ msgstr "Loobu"
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid "Choices"
-msgstr ""
+msgstr "Valikud"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.simple_choice
 msgid "Choose..."
-msgstr ""
+msgstr "Vali..."
 
 #. module: survey
 #: model:ir.actions.server,name:survey.survey_action_server_clean_test_answers
@@ -344,12 +352,12 @@ msgstr ""
 #: code:addons/survey/models/survey.py:112
 #, python-format
 msgid "Click here to start survey"
-msgstr ""
+msgstr "Kliki siia, et küsitlust alustada"
 
 #. module: survey
 #: model:ir.actions.act_window,help:survey.action_survey_form
 msgid "Click to add a survey."
-msgstr ""
+msgstr "Küsitluse lisamiseks kliki siia."
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.page
@@ -366,7 +374,7 @@ msgstr "Suletud"
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey_color
 msgid "Color Index"
-msgstr ""
+msgstr "Värvi index"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_comments
@@ -417,7 +425,8 @@ msgstr ""
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_email_compose_message
-msgid "Copy and paste the HTML code below to add this web link to any webpage."
+msgid ""
+"Copy and paste the HTML code below to add this web link to any webpage."
 msgstr ""
 
 #. module: survey
@@ -487,8 +496,8 @@ msgstr "Tähtaeg"
 #. module: survey
 #: model:ir.model.fields,help:survey.field_survey_mail_compose_message_date_deadline
 msgid ""
-"Deadline to which the invitation to respond for this survey is valid. If the "
-"field is empty,        the invitation is still valid."
+"Deadline to which the invitation to respond for this survey is valid. If the"
+" field is empty,        the invitation is still valid."
 msgstr ""
 
 #. module: survey
@@ -516,7 +525,7 @@ msgstr ""
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_kanban
 msgid "Design"
-msgstr ""
+msgstr "Disain"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_form
@@ -579,7 +588,7 @@ msgstr "Mustand"
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_user_input_email
 msgid "E-mail"
-msgstr ""
+msgstr "E-post"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_form
@@ -589,7 +598,7 @@ msgstr ""
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_kanban
 msgid "Edit Survey"
-msgstr ""
+msgstr "Muuda küsitlust"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_user_input_search
@@ -599,7 +608,7 @@ msgstr "E-post"
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey_email_template_id
 msgid "Email Template"
-msgstr ""
+msgstr "E-kirja näidis"
 
 #. module: survey
 #: model:ir.model,name:survey.model_survey_mail_compose_message
@@ -634,22 +643,22 @@ msgstr "Finantsjuhtimine"
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_stage_fold
 msgid "Folded in kanban view"
-msgstr ""
+msgstr "Volditud kanban vaates"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid "Format"
-msgstr ""
+msgstr "Formaat"
 
 #. module: survey
 #: selection:survey.user_input_line,answer_type:0
 msgid "Free Text"
-msgstr ""
+msgstr "Vaba tekst"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_user_input_line_value_free_text
 msgid "Free Text answer"
-msgstr ""
+msgstr "Vaba teksti vastus"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_page_search
@@ -667,7 +676,7 @@ msgstr ""
 #. module: survey
 #: model:survey.label,value:survey.choice_1_2_6
 msgid "Human Resources"
-msgstr ""
+msgstr "Inimressursid"
 
 #. module: survey
 #: model:survey.label,value:survey.choice_3_1_3
@@ -764,7 +773,7 @@ msgstr ""
 #: model:survey.question,comments_message:survey.feedback_4_1
 #, python-format
 msgid "If other, please specify:"
-msgstr ""
+msgstr "Kui muu, siis palun täpsustage:"
 
 #. module: survey
 #: model:survey.page,description:survey.feedback_4
@@ -779,7 +788,7 @@ msgstr "Kui Sa soovid, siis suudad"
 #. module: survey
 #: model:survey.stage,name:survey.stage_in_progress
 msgid "In progress"
-msgstr ""
+msgstr "Töös"
 
 #. module: survey
 #: code:addons/survey/wizard/survey_email_compose_message.py:66
@@ -795,12 +804,12 @@ msgstr ""
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_tree
 msgid "Invitations sent"
-msgstr ""
+msgstr "Kutsed on saadetud"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey_is_closed
 msgid "Is closed"
-msgstr ""
+msgstr "On suletud"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey_designed
@@ -908,7 +917,7 @@ msgstr ""
 #. module: survey
 #: model:res.groups,name:survey.group_survey_manager
 msgid "Manager"
-msgstr ""
+msgstr "Juhataja"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_question_constr_mandatory
@@ -924,7 +933,7 @@ msgstr "Käsitsi"
 #. module: survey
 #: selection:survey.question,type:0
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_question_matrix_subtype
@@ -934,7 +943,7 @@ msgstr ""
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result
 msgid "Matrix:"
-msgstr ""
+msgstr "Matrix:"
 
 #. module: survey
 #: sql_constraint:survey.question:0
@@ -1014,7 +1023,7 @@ msgstr "Uus"
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.page
 msgid "Next page"
-msgstr ""
+msgstr "Järgmine lehekülg"
 
 #. module: survey
 #: model:survey.label,value:survey.choice_1_1_4
@@ -1039,7 +1048,7 @@ msgstr ""
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.nopages
 msgid "Not ready"
-msgstr ""
+msgstr "Pole valmis"
 
 #. module: survey
 #: selection:survey.user_input,state:0
@@ -1075,12 +1084,12 @@ msgstr ""
 #. module: survey
 #: selection:survey.question,type:0
 msgid "Numerical Value"
-msgstr ""
+msgstr "Numbriline väärtus"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_user_input_line_value_number
 msgid "Numerical answer"
-msgstr ""
+msgstr "Numbriline vastus"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_number
@@ -1115,7 +1124,7 @@ msgstr "Lehekülje pealkiri"
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_page_sequence
 msgid "Page number"
-msgstr ""
+msgstr "Lehekülje number"
 
 #. module: survey
 #: model:ir.actions.act_window,name:survey.act_survey_pages
@@ -1145,7 +1154,7 @@ msgstr ""
 #. module: survey
 #: model:survey.stage,name:survey.stage_permanent
 msgid "Permanent"
-msgstr ""
+msgstr "Püsiv"
 
 #. module: survey
 #: code:addons/survey/wizard/survey_email_compose_message.py:164
@@ -1156,7 +1165,7 @@ msgstr ""
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.page
 msgid "Previous page"
-msgstr ""
+msgstr "Eelmine lehekülg"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_form
@@ -1171,7 +1180,7 @@ msgstr ""
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey_print_url
 msgid "Print link"
-msgstr ""
+msgstr "Printimise link"
 
 #. module: survey
 #: model:survey.label,value:survey.choice_1_2_5
@@ -1186,7 +1195,7 @@ msgstr ""
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey_public_url
 msgid "Public link"
-msgstr ""
+msgstr "Avalik link"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey_public_url_html
@@ -1224,18 +1233,18 @@ msgstr "Küsimus"
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_label_question_id_2
 msgid "Question 2"
-msgstr ""
+msgstr "Küsimus 2"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_question_question
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid "Question Name"
-msgstr ""
+msgstr "Küsimuse nimi"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid "Question name"
-msgstr ""
+msgstr "Küsimuse nimi"
 
 #. module: survey
 #: model:ir.actions.act_window,name:survey.act_survey_page_question
@@ -1274,17 +1283,17 @@ msgstr ""
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid "Row1"
-msgstr ""
+msgstr "Rida1"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid "Row2"
-msgstr ""
+msgstr "Rida2"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid "Row3"
-msgstr ""
+msgstr "Rida3"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_form
@@ -1309,12 +1318,12 @@ msgstr "Müügihaldus"
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_email_compose_message
 msgid "Save as a new template"
-msgstr ""
+msgstr "Salvesta uue mallina"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_email_compose_message
 msgid "Save as new template"
-msgstr ""
+msgstr "Salvesta uue mallina"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_user_input_quizz_score
@@ -1334,22 +1343,22 @@ msgstr ""
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_label_search
 msgid "Search Label"
-msgstr ""
+msgstr "Otsi silti"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_page_search
 msgid "Search Page"
-msgstr ""
+msgstr "Otsi lehte"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_question_search
 msgid "Search Question"
-msgstr ""
+msgstr "Otsi küsimust"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_user_input_search
 msgid "Search Survey"
-msgstr ""
+msgstr "Otsi küsitlust"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_response_line_search
@@ -1387,7 +1396,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:survey.field_survey_question_sequence
 #: model:ir.model.fields,field_description:survey.field_survey_stage_sequence
 msgid "Sequence"
-msgstr "Jada"
+msgstr "Järjestus"
 
 #. module: survey
 #: sql_constraint:survey.stage:0
@@ -1407,7 +1416,7 @@ msgstr ""
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_mail_compose_message_public
 msgid "Share options"
-msgstr ""
+msgstr "Jagamise valikud"
 
 #. module: survey
 #: selection:survey.mail.compose.message,public:0
@@ -1428,7 +1437,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:survey.field_survey_user_input_line_skipped
 #: model:ir.ui.view,arch_db:survey.result
 msgid "Skipped"
-msgstr ""
+msgstr "Vahele jäetud"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.page
@@ -1452,12 +1461,12 @@ msgstr "Tase"
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_init
 msgid "Start Survey"
-msgstr ""
+msgstr "Alusta küsitlust"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_tree
 msgid "Started"
-msgstr ""
+msgstr "Alustatud"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_user_input_state
@@ -1467,7 +1476,7 @@ msgstr "Olek"
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_email_compose_message
 msgid "Subject..."
-msgstr ""
+msgstr "Teema..."
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.page
@@ -1487,7 +1496,7 @@ msgstr ""
 #. module: survey
 #: selection:survey.user_input_line,answer_type:0
 msgid "Suggestion"
-msgstr ""
+msgstr "Soovitus"
 
 #. module: survey
 #: model:ir.model,name:survey.model_survey_survey
@@ -1504,7 +1513,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:survey.survey_tree
 #: model:ir.ui.view,arch_db:survey.survey_user_input_search
 msgid "Survey"
-msgstr ""
+msgstr "Uuring"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_response_line_tree
@@ -1539,12 +1548,12 @@ msgstr "Küsitluse olek"
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_form
 msgid "Survey Title"
-msgstr ""
+msgstr "Küsitluse pealkiri"
 
 #. module: survey
 #: model:ir.model,name:survey.model_survey_user_input
 msgid "Survey User Input"
-msgstr ""
+msgstr "Uuringus osalenud kasutaja sisend"
 
 #. module: survey
 #: model:ir.model,name:survey.model_survey_user_input_line
@@ -1570,14 +1579,14 @@ msgstr ""
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_question_page_id
 msgid "Survey page"
-msgstr ""
+msgstr "Küsitluse lehekülg"
 
 #. module: survey
 #: model:ir.actions.act_window,name:survey.action_survey_form
 #: model:ir.ui.menu,name:survey.menu_survey_form
 #: model:ir.ui.menu,name:survey.menu_surveys
 msgid "Surveys"
-msgstr ""
+msgstr "Küsitlused"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_kanban
@@ -1608,12 +1617,12 @@ msgstr "Tekstivastus"
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.sfinished
 msgid "Thank you!"
-msgstr ""
+msgstr "Aitäh!"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey_thank_you_message
 msgid "Thanks Message"
-msgstr ""
+msgstr "Tänusõnum"
 
 #. module: survey
 #: model:survey.label,value:survey.frow_2_5_3
@@ -1648,14 +1657,14 @@ msgstr ""
 #: model:survey.question,validation_error_msg:survey.feedback_4_1
 #, python-format
 msgid "The answer you entered has an invalid format."
-msgstr ""
+msgstr "Sisestatud vastus on vales vormingus."
 
 #. module: survey
 #: code:addons/survey/wizard/survey_email_compose_message.py:138
 #, python-format
 msgid ""
-"The content of the text don't contain '__URL__'.                     __URL__ "
-"is automaticaly converted into the special url of the survey."
+"The content of the text don't contain '__URL__'.                     __URL__"
+" is automaticaly converted into the special url of the survey."
 msgstr ""
 
 #. module: survey
@@ -1701,8 +1710,7 @@ msgstr ""
 #. module: survey
 #: model:survey.page,description:survey.feedback_2
 msgid ""
-"These questions relate to the ergonomy and ease of use of Odoo. Try to "
-"remind your firsts days on Odoo and\n"
+"These questions relate to the ergonomy and ease of use of Odoo. Try to remind your firsts days on Odoo and\n"
 "what have been your difficulties."
 msgstr ""
 
@@ -1771,7 +1779,7 @@ msgstr "See sõnum kuvatakse, kui küsitlus on lõppenud."
 #: model:survey.question,constr_error_msg:survey.feedback_4_1
 #, python-format
 msgid "This question requires an answer."
-msgstr ""
+msgstr "See küsimus vajab vastust."
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.nopages
@@ -1812,7 +1820,7 @@ msgstr "Tiitel"
 #: model:survey.label,value:survey.fcol_2_5_4
 #: model:survey.label,value:survey.fcol_2_7_4
 msgid "Totally agree"
-msgstr ""
+msgstr "Täiesti nõus"
 
 #. module: survey
 #: model:survey.label,value:survey.fcol_2_1_1
@@ -1856,7 +1864,7 @@ msgstr ""
 #. module: survey
 #: model:res.groups,name:survey.group_survey_user
 msgid "User"
-msgstr ""
+msgstr "Kasutaja"
 
 #. module: survey
 #: model:survey.survey,title:survey.feedback_form
@@ -1894,12 +1902,12 @@ msgstr ""
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey_user_input_ids
 msgid "User responses"
-msgstr ""
+msgstr "Kasutajate avstused"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey_users_can_go_back
 msgid "Users can go back"
-msgstr ""
+msgstr "Kasutajad võivad minna tagasi"
 
 #. module: survey
 #: model:ir.model.fields,help:survey.field_survey_survey_auth_required
@@ -1921,17 +1929,17 @@ msgstr ""
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_user_input_form
 msgid "View Results"
-msgstr ""
+msgstr "Vaata tulemusi"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_form
 msgid "View results"
-msgstr ""
+msgstr "Vaata tulemusi"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.result_choice
 msgid "Vote"
-msgstr ""
+msgstr "Hääleta"
 
 #. module: survey
 #: model:survey.question,question:survey.feedback_2_7
@@ -1980,8 +1988,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:survey.survey_question_form
 msgid ""
 "YYYY-MM-DD hh:mm:ss\n"
-"                                            <i class=\"fa fa-calendar fa-2x"
-"\"/>"
+"                                            <i class=\"fa fa-calendar fa-2x\"/>"
 msgstr ""
 
 #. module: survey
@@ -2010,10 +2017,10 @@ msgstr ""
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.survey_email_compose_message
 msgid ""
-"You can share your survey web public link and/or send private invitations to "
-"your audience. People can answer once per invitation, and whenever they want "
-"with the public web link (in this case, the \"Login Required\" setting must "
-"be disabled)."
+"You can share your survey web public link and/or send private invitations to"
+" your audience. People can answer once per invitation, and whenever they "
+"want with the public web link (in this case, the \"Login Required\" setting "
+"must be disabled)."
 msgstr ""
 
 #. module: survey
@@ -2041,24 +2048,24 @@ msgstr ""
 #. module: survey
 #: model:ir.model,name:survey.model_ir_autovacuum
 msgid "ir.autovacuum"
-msgstr ""
+msgstr "ir.autovacuum"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.auth_required
 msgid "log in"
-msgstr ""
+msgstr "logi sisse"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.page
 msgid "of"
-msgstr ""
+msgstr "punkti"
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.sfinished
 msgid "points."
-msgstr ""
+msgstr "punktist."
 
 #. module: survey
 #: model:ir.ui.view,arch_db:survey.sfinished
 msgid "review your answers"
-msgstr ""
+msgstr "vaata oma vastused üle"

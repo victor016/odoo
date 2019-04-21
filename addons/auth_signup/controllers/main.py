@@ -32,7 +32,7 @@ class AuthSignupHome(Home):
         if 'error' not in qcontext and request.httprequest.method == 'POST':
             try:
                 self.do_signup(qcontext)
-                return super(AuthSignupHome, self).web_login(*args, **kw)
+                return self.web_login(*args, **kw)
             except (SignupError, AssertionError), e:
                 if request.env["res.users"].sudo().search([("login", "=", qcontext.get("login"))]):
                     qcontext["error"] = _("Another user is already registered using this email address.")
@@ -53,10 +53,13 @@ class AuthSignupHome(Home):
             try:
                 if qcontext.get('token'):
                     self.do_signup(qcontext)
-                    return super(AuthSignupHome, self).web_login(*args, **kw)
+                    return self.web_login(*args, **kw)
                 else:
                     login = qcontext.get('login')
                     assert login, "No login provided."
+                    _logger.info(
+                        "Password reset attempt for <%s> by user <%s> from %s",
+                        login, request.env.user.login, request.httprequest.remote_addr)
                     request.env['res.users'].sudo().reset_password(login)
                     qcontext['message'] = _("An email has been sent with credentials to reset your password")
             except SignupError:

@@ -176,6 +176,19 @@ Content-Type: text/html;
 --Apple-Mail=_9331E12B-8BD2-4EC7-B53E-01F3FBEC9227--
 """
 
+MAIL_SINGLE_BINARY = """X-Original-To: raoul@grosbedon.fr
+Delivered-To: raoul@grosbedon.fr
+Received: by mail1.grosbedon.com (Postfix, from userid 10002)
+    id E8166BFACA; Fri, 23 Aug 2013 13:18:01 +0200 (CEST)
+From: "Bruce Wayne" <bruce@wayneenterprises.com>
+Content-Type: application/pdf;
+Content-Disposition: filename=thetruth.pdf
+Content-Transfer-Encoding: base64
+Message-Id: <6BB1FAB2-2104-438E-9447-07AE2C8C4A92@sexample.com>
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+
+SSBhbSB0aGUgQmF0TWFuCg=="""
+
 
 MAIL_MULTIPART_IMAGE = """X-Original-To: raoul@example.com
 Delivered-To: micheline@example.com
@@ -347,6 +360,10 @@ class TestMailgateway(TestMail):
         self.assertIn('Second part',
                       res.get('body', ''),
                       'message_parse: second part of the html version should be in body after parsing multipart/mixed')
+
+        res = self.env['mail.thread'].message_parse(MAIL_SINGLE_BINARY)
+        self.assertEqual(res['body'], '')
+        self.assertEqual(res['attachments'][0][0], 'thetruth.pdf')
 
     @mute_logger('odoo.addons.mail.models.mail_thread')
     def test_message_process_cid(self):
@@ -722,7 +739,7 @@ class TestMailgateway(TestMail):
         self.assertEqual(msg.model, False,
                          'message_post: private discussion: context key "thread_model" not correctly ignored when having no res_id')
         # Test: message-id
-        self.assertIn('openerp-private', msg.message_id, 'message_post: private discussion: message-id should contain the private keyword')
+        self.assertIn('openerp-private', msg.message_id.split('@')[0], 'message_post: private discussion: message-id should contain the private keyword')
 
         # Do: Bert replies through mailgateway (is a customer)
         self.format_and_process(
@@ -750,9 +767,9 @@ class TestMailgateway(TestMail):
     @mute_logger('odoo.addons.mail.models.mail_thread', 'odoo.models', 'odoo.addons.mail.models.mail_mail')
     def test_forward_parent_id(self):
         msg = self.group_pigs.sudo(self.user_employee).message_post(no_auto_thread=True, subtype='mail.mt_comment')
-        self.assertNotIn(msg.model, msg.message_id)
-        self.assertNotIn('-%d-' % msg.res_id, msg.message_id)
-        self.assertIn('reply_to', msg.message_id)
+        self.assertNotIn(msg.model, msg.message_id.split('@')[0])
+        self.assertNotIn('-%d-' % msg.res_id, msg.message_id.split('@')[0])
+        self.assertIn('reply_to', msg.message_id.split('@')[0])
 
         # forward it to a new thread AND an existing thread
         fw_msg_id = '<THIS.IS.A.FW.MESSAGE.1@bert.fr>'

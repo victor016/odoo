@@ -15,6 +15,9 @@ var _t = core._t;
 
 var ViewManager = Widget.extend(ControlPanelMixin, {
     className: "o_view_manager_content",
+    custom_events: {
+        get_controller_context: '_onGetControllerContext',
+    },
     /**
      * Called each time the view manager is attached into the DOM
      */
@@ -202,17 +205,19 @@ var ViewManager = Widget.extend(ControlPanelMixin, {
                 });
             }
 
+            self.active_search = $.Deferred();
             // Call do_search on the searchview to compute domains, contexts and groupbys
             if (self.search_view_loaded &&
                     self.flags.auto_search &&
                     view.controller.searchable !== false) {
-                self.active_search = $.Deferred();
                 $.when(self.search_view_loaded, view.loaded).done(function() {
                     self.searchview.do_search();
                 });
+            } else {
+                self.active_search.resolve();
             }
 
-            return $.when(view.loaded, self.active_search)
+            return $.when(view.loaded, self.active_search, self.search_view_loaded)
                 .then(function() {
                     return self._display_view(view_options, old_view).then(function() {
                         self.trigger('switch_mode', view_type, view_options);
@@ -471,6 +476,25 @@ var ViewManager = Widget.extend(ControlPanelMixin, {
             }
         }
         return this._super.apply(this, arguments);
+    },
+
+    //--------------------------------------------------------------------------
+    // Handlers
+    //--------------------------------------------------------------------------
+
+    // ONLY FORWARDPORT THIS COMMIT UP TO SAAS-15
+    /**
+     * Handles a context request: provides to the caller the context of the
+     * active view.
+     *
+     * @private
+     * @param {OdooEvent} ev
+     * @param {function} ev.data.callback used to send the requested context
+     */
+    _onGetControllerContext: function (ev) {
+        var controller = this.active_view && this.active_view.controller;
+        var context = controller && controller.get_context();
+        ev.data.callback(context);
     },
 });
 

@@ -222,3 +222,90 @@ class TestTranslation(TransactionCase):
         categories = padawans_fr.search([('id', 'in', [self.customers.id, padawans.id])], order='name')
         self.assertEqual(categories.ids, [padawans.id, self.customers.id],
             "Search ordered by translated name should return Padawans (Apprentis) before Customers (Clients)")
+
+
+class TestXMLTranslation(TransactionCase):
+    def setUp(self):
+        super(TestXMLTranslation, self).setUp()
+        self.env['ir.translation'].load_module_terms(['base'], ['fr_FR', 'nl_NL'])
+
+    def create_view(self, archf, terms, **kwargs):
+        view = self.env['ir.ui.view'].create({
+            'name': 'test',
+            'model': 'res.partner',
+            'arch': archf % terms,
+        })
+        for lang, trans_terms in kwargs.items():
+            for src, val in zip(terms, trans_terms):
+                self.env['ir.translation'].create({
+                    'type': 'model',
+                    'name': 'ir.ui.view,arch_db',
+                    'lang': lang,
+                    'res_id': view.id,
+                    'src': src,
+                    'value': val,
+                    'state': 'translated',
+                })
+        return view
+
+    def test_copy(self):
+        """ Create a simple view, fill in translations, and copy it. """
+        archf = '<form string="%s"><div>%s</div><div>%s</div></form>'
+        terms_en = ('Knife', 'Fork', 'Spoon')
+        terms_fr = ('Couteau', 'Fourchette', 'Cuiller')
+        view0 = self.create_view(archf, terms_en, fr_FR=terms_fr)
+
+        env_en = self.env(context={})
+        env_fr = self.env(context={'lang': 'fr_FR'})
+
+        # check translated field
+        self.assertEqual(view0.with_env(env_en).arch_db, archf % terms_en)
+        self.assertEqual(view0.with_env(env_fr).arch_db, archf % terms_fr)
+
+        # copy without lang
+        view1 = view0.with_env(env_en).copy({})
+        self.assertEqual(view1.with_env(env_en).arch_db, archf % terms_en)
+        self.assertEqual(view1.with_env(env_fr).arch_db, archf % terms_fr)
+
+        # copy with lang='fr_FR'
+        view2 = view0.with_env(env_fr).copy({})
+        self.assertEqual(view2.with_env(env_en).arch_db, archf % terms_en)
+        self.assertEqual(view2.with_env(env_fr).arch_db, archf % terms_fr)
+
+        # copy with lang='fr_FR' and translate=html_translate
+        self.patch(type(self.env['ir.ui.view']).arch_db, 'translate', html_translate)
+        view3 = view0.with_env(env_fr).copy({})
+        self.assertEqual(view3.with_env(env_en).arch_db, archf % terms_en)
+        self.assertEqual(view3.with_env(env_fr).arch_db, archf % terms_fr)
+
+    def test_spaces(self):
+        """ Create translations where value has surrounding spaces. """
+        archf = '<form string="%s"><div>%s</div><div>%s</div></form>'
+        terms_en = ('Knife', 'Fork', 'Spoon')
+        terms_fr = (' Couteau', 'Fourchette ', ' Cuiller ')
+        self.create_view(archf, terms_en, fr_FR=terms_fr)
+
+    def test_sync(self):
+        """ Check translations after minor change in source terms. """
+        archf = '<form string="X">%s</form>'
+        terms_en = ('Bread and cheeze',)
+        terms_fr = ('Pain et fromage',)
+        terms_nl = ('Brood and kaas',)
+        view = self.create_view(archf, terms_en, fr_FR=terms_fr, nl_NL=terms_nl)
+
+        env_en = self.env(context={})
+        env_fr = self.env(context={'lang': 'fr_FR'})
+        env_nl = self.env(context={'lang': 'nl_NL'})
+
+        self.assertEqual(view.with_env(env_en).arch_db, archf % terms_en)
+        self.assertEqual(view.with_env(env_fr).arch_db, archf % terms_fr)
+        self.assertEqual(view.with_env(env_nl).arch_db, archf % terms_nl)
+
+        # modify source term in view (fixed type in 'cheeze')
+        terms_en = ('Bread and cheese',)
+        view.write({'arch_db': archf % terms_en})
+
+        # check whether translations have been synchronized
+        self.assertEqual(view.with_env(env_en).arch_db, archf % terms_en)
+        self.assertEqual(view.with_env(env_fr).arch_db, archf % terms_fr)
+        self.assertEqual(view.with_env(env_nl).arch_db, archf % terms_nl)

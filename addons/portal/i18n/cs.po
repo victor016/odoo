@@ -3,21 +3,22 @@
 # * portal
 # 
 # Translators:
-# Martin Trigaux <mat@odoo.com>, 2016
+# Martin Trigaux, 2016
 # xlu <xlu@seznam.cz>, 2016
+# trendspotter, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:57+0000\n"
 "PO-Revision-Date: 2016-09-07 08:57+0000\n"
-"Last-Translator: xlu <xlu@seznam.cz>, 2016\n"
+"Last-Translator: trendspotter, 2018\n"
 "Language-Team: Czech (https://www.transifex.com/odoo/teams/41243/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #. module: portal
 #: model:mail.template,body_html:portal.mail_template_data_portal_welcome
@@ -94,6 +95,12 @@ msgstr "Zobrazovaný název"
 #: model:ir.model.fields,field_description:portal.field_portal_wizard_user_email
 msgid "Email"
 msgstr "Email"
+
+#. module: portal
+#: code:addons/portal/wizard/portal_wizard.py:130
+#, python-format
+msgid "Group %s is not a portal"
+msgstr ""
 
 #. module: portal
 #: model:ir.model.fields,field_description:portal.field_portal_wizard_id
@@ -182,19 +189,19 @@ msgstr ""
 #: code:addons/portal/wizard/portal_wizard.py:106
 #, python-format
 msgid "Several contacts have the same email: "
-msgstr ""
+msgstr "Několik kontaktů má stejný e-mail:"
 
 #. module: portal
 #: code:addons/portal/wizard/portal_wizard.py:103
 #, python-format
 msgid "Some contacts don't have a valid email: "
-msgstr ""
+msgstr "Některé kontakty nemají platný e-mail:"
 
 #. module: portal
 #: code:addons/portal/wizard/portal_wizard.py:109
 #, python-format
 msgid "Some contacts have the same email as an existing portal user:"
-msgstr ""
+msgstr "Některé kontakty mají stejný e-mail jako stávající uživatel portálu:"
 
 #. module: portal
 #: model:ir.model.fields,help:portal.field_portal_wizard_portal_id

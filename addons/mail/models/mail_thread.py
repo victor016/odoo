@@ -174,10 +174,10 @@ class MailThread(models.AbstractModel):
                              RIGHT JOIN mail_channel_partner cp
                              ON (cp.channel_id = rel.mail_channel_id AND cp.partner_id = %s AND
                                 (cp.seen_message_id IS NULL OR cp.seen_message_id < msg.id))
-                             WHERE msg.model = %s AND msg.res_id in %s AND
+                             WHERE msg.model = %s AND msg.res_id = ANY(%s) AND
                                    (msg.author_id IS NULL OR msg.author_id != %s) AND
                                    (msg.message_type != 'notification' OR msg.model != 'mail.channel')""",
-                         (partner_id, self._name, tuple(self.ids), partner_id,))
+                         (partner_id, self._name, list(self.ids), partner_id,))
         for result in self._cr.fetchall():
             res[result[0]] += 1
 
@@ -341,7 +341,9 @@ class MailThread(models.AbstractModel):
                         'email_link': email_link
                     }
                 }
-            return "%(static_help)s<p>%(dyn_help)s" % {
+            # do not add alias two times if it was added previously
+            if not help or help.find("oe_view_nocontent_alias") == -1:
+                return '%(static_help)s<p class="oe_view_nocontent_alias">%(dyn_help)s</p>' % {
                     'static_help': help or '',
                     'dyn_help': _("You could also add a new %(document)s by sending an email to: %(email_link)s.") %  {
                         'document': document_name,
@@ -1358,6 +1360,8 @@ class MailThread(models.AbstractModel):
         mail module, and should not contain security or generic html cleaning.
         Indeed those aspects should be covered by the html_sanitize method
         located in tools. """
+        if not body:
+            return body, attachments
         root = lxml.html.fromstring(body)
         postprocessed = False
         to_remove = []
@@ -1392,7 +1396,7 @@ class MailThread(models.AbstractModel):
         # Content-Type: multipart/related;
         #   boundary="_004_3f1e4da175f349248b8d43cdeb9866f1AMSPR06MB343eurprd06pro_";
         #   type="text/html"
-        if not message.is_multipart() or message.get('content-type', '').startswith("text/"):
+        if message.get_content_maintype() == 'text':
             encoding = message.get_content_charset()
             body = message.get_payload(decode=True)
             body = tools.ustr(body, encoding, errors='replace')
@@ -1694,9 +1698,10 @@ class MailThread(models.AbstractModel):
         return self._message_post_process_attachments(attachments, attachment_ids, {'model': attach_model, 'res_id': attach_res_id})
 
     def _message_post_process_attachments(self, attachments, attachment_ids, message_data):
-        IrAttachment, parameter_attachments = self.env['ir.attachment'], self.env['ir.attachment']
+        IrAttachment = self.env['ir.attachment']
         m2m_attachment_ids = []
         cid_mapping = {}
+        fname_mapping = {}
         if attachment_ids:
             filtered_attachment_ids = self.env['ir.attachment'].sudo().search([
                 ('res_model', '=', 'mail.compose.message'),
@@ -1712,9 +1717,7 @@ class MailThread(models.AbstractModel):
                 name, content = attachment
             elif len(attachment) == 3:
                 name, content, info = attachment
-                if info and info.get('cid'):
-                    cid = info['cid']
-                    cid_mapping[cid] = name
+                cid = info and info.get('cid')
             else:
                 continue
             if isinstance(content, unicode):
@@ -1722,13 +1725,17 @@ class MailThread(models.AbstractModel):
             data_attach = {
                 'name': name,
                 'datas': base64.b64encode(str(content)),
-                'datas_fname': cid or name,
+                'type': 'binary',
+                'datas_fname': name,
                 'description': name,
                 'res_model': message_data['model'],
                 'res_id': message_data['res_id'],
             }
-            parameter_attachments |= IrAttachment.create(data_attach)
-        m2m_attachment_ids += [(4, attach.id) for attach in parameter_attachments]
+            new_attachment = IrAttachment.create(data_attach)
+            m2m_attachment_ids.append((4, new_attachment.id))
+            if cid:
+                cid_mapping[cid] = new_attachment
+            fname_mapping[name] = new_attachment
 
         if cid_mapping and message_data.get('body'):
             root = lxml.html.fromstring(tools.ustr(message_data['body']))
@@ -1736,12 +1743,11 @@ class MailThread(models.AbstractModel):
             for node in root.iter('img'):
                 if node.get('src', '').startswith('cid:'):
                     cid = node.get('src').split('cid:')[1]
-                    fname = cid_mapping.get(cid, node.get('data-filename', ''))
-                    attachment = parameter_attachments.filtered(lambda attachment: attachment.datas_fname == cid)
+                    attachment = cid_mapping.get(cid)
                     if not attachment:
-                        attachment = parameter_attachments.filtered(lambda attachment: attachment.datas_fname == fname)
+                        attachment = fname_mapping.get(node.get('data-filename'), '')
                     if attachment:
-                        node.set('src', '/web/image/%s' % attachment.ids[0])
+                        node.set('src', '/web/image/%s' % attachment.id)
                         postprocessed = True
             if postprocessed:
                 body = lxml.html.tostring(root, pretty_print=False, encoding='UTF-8')
@@ -2066,6 +2072,7 @@ class MailThread(models.AbstractModel):
                 partner_ids=[(4, pid) for pid in partner_ids],
                 auto_delete=True,
                 auto_delete_message=True,
+                parent_id=False, # override accidental context defaults
                 subtype_id=self.env.ref('mail.mt_note').id)
 
     @api.multi
@@ -2137,7 +2144,7 @@ class MailThread(models.AbstractModel):
 
         # add followers coming from res.users relational fields that are tracked
         user_ids = [values[name] for name in user_field_lst if values.get(name)]
-        user_pids = [user.partner_id.id for user in self.env['res.users'].sudo().browse(user_ids)]
+        user_pids = [user.partner_id.id for user in self.env['res.users'].sudo().browse(user_ids) if user.partner_id.active]
         for partner_id in user_pids:
             new_partners.setdefault(partner_id, None)
 

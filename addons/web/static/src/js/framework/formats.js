@@ -47,6 +47,7 @@ function format_value (value, descriptor, value_if_empty) {
                 _.str.sprintf('%d', value));
         case 'monetary':
         case 'float':
+        case 'field_float_scannable':
             var digits = descriptor.digits ? descriptor.digits : [69,2];
             digits = typeof digits === "string" ? py.eval(digits) : digits;
             var precision = digits[1];
@@ -130,11 +131,12 @@ function parse_value (value, descriptor, value_if_empty) {
             } while(tmp !== value);
             tmp = Number(value);
             // do not accept not numbers or float values
-            if (isNaN(tmp) || tmp % 1)
+            if (isNaN(tmp) || tmp % 1 || tmp < -2147483648 || tmp > 2147483647)
                 throw new Error(_.str.sprintf(_t("'%s' is not a correct integer"), value));
             return tmp;
         case 'monetary':
         case 'float':
+        case 'field_float_scannable':
             var tmp2 = value;
             do {
                 tmp = tmp2;

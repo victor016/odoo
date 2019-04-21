@@ -264,12 +264,12 @@ html[lang] > body.editor_enable [data-oe-translation-state] {
         }
 
         &.oe_vertical {
-            border: 2px dashed @odoo-brand-primary;
+            border: @odoo-dropzone-border;
             border-left: none;
             border-right: none;
 
             width: @odoo-dropzone-size;
-            float: left;
+            height: 100%;
             margin: 0 -@odoo-dropzone-size/2;
 
             &:after {
@@ -1069,14 +1069,24 @@ body.editor_enable {
             left: 0;
         }
     }
+    .btn {
+        -webkit-user-select: initial;
+    }
 }
 
 #web_editor_inside_iframe {
     background-color: @odoo-brand-secondary;
 
     #wrapwrap {
+        position: relative;
+        display: table;
+        table-layout: fixed;
+        width: 100%;
         height: 100%;
 
+        > * {
+            display: table-row;
+        }
         > main {
             height: 100%;
 

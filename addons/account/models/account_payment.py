@@ -52,7 +52,7 @@ class account_abstract_payment(models.AbstractModel):
     @api.constrains('amount')
     def _check_amount(self):
         if not self.amount > 0.0:
-            raise ValidationError('The payment amount must be strictly positive.')
+            raise ValidationError(_('The payment amount must be strictly positive.'))
 
     @api.one
     @api.depends('payment_type', 'journal_id')
@@ -214,6 +214,19 @@ class account_payment(models.Model):
     # FIXME: ondelete='restrict' not working (eg. cancel a bank statement reconciliation with a payment)
     move_line_ids = fields.One2many('account.move.line', 'payment_id', readonly=True, copy=False, ondelete='restrict')
 
+    def open_payment_matching_screen(self):
+        # Open reconciliation view for customers/suppliers
+        action_context = {'company_ids': [self.company_id.id], 'partner_ids': [self.partner_id.commercial_partner_id.id]}
+        if self.partner_type == 'customer':
+            action_context.update({'mode': 'customers'})
+        elif self.partner_type == 'supplier':
+            action_context.update({'mode': 'suppliers'})
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'manual_reconciliation_view',
+            'context': action_context,
+        }
+
     @api.one
     @api.depends('invoice_ids', 'payment_type', 'partner_type', 'partner_id')
     def _compute_destination_account_id(self):
@@ -243,11 +256,13 @@ class account_payment(models.Model):
                 self.partner_type = 'customer'
             elif self.payment_type == 'outbound':
                 self.partner_type = 'supplier'
+            else:
+                self.partner_type = False
         # Set payment method domain
         res = self._onchange_journal()
         if not res.get('domain', {}):
             res['domain'] = {}
-        res['domain']['journal_id'] = self.payment_type == 'inbound' and [('at_least_one_inbound', '=', True)] or [('at_least_one_outbound', '=', True)]
+        res['domain']['journal_id'] = self.payment_type == 'inbound' and [('at_least_one_inbound', '=', True)] or self.payment_type == 'outbound' and [('at_least_one_outbound', '=', True)] or []
         res['domain']['journal_id'].append(('type', 'in', ('bank', 'cash')))
         return res
 
@@ -356,6 +371,8 @@ class account_payment(models.Model):
                     if rec.payment_type == 'outbound':
                         sequence_code = 'account.payment.supplier.invoice'
             rec.name = self.env['ir.sequence'].with_context(ir_sequence_date=rec.payment_date).next_by_code(sequence_code)
+            if not rec.name and rec.payment_type != 'transfer':
+                raise UserError(_("You have to define a sequence for %s in your company.") % (sequence_code,))
 
             # Create the journal entry
             amount = rec.amount * (rec.payment_type in ('outbound', 'transfer') and 1 or -1)
@@ -402,8 +419,16 @@ class account_payment(models.Model):
                 amount_wo = total_payment_company_signed - total_residual_company_signed
             else:
                 amount_wo = total_residual_company_signed - total_payment_company_signed
-            debit_wo = amount_wo > 0 and amount_wo or 0.0
-            credit_wo = amount_wo < 0 and -amount_wo or 0.0
+            # Align the sign of the secondary currency writeoff amount with the sign of the writeoff
+            # amount in the company currency
+            if amount_wo > 0:
+                debit_wo = amount_wo
+                credit_wo = 0.0
+                amount_currency_wo = abs(amount_currency_wo)
+            else:
+                debit_wo = 0.0
+                credit_wo = -amount_wo
+                amount_currency_wo = -abs(amount_currency_wo)
             writeoff_line['name'] = _('Counterpart')
             writeoff_line['account_id'] = self.writeoff_account_id.id
             writeoff_line['debit'] = debit_wo

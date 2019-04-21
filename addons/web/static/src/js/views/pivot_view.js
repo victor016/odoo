@@ -188,8 +188,8 @@ var PivotView = View.extend({
             this.initial_col_groupby = context.pivot_col_groupby || this.initial_col_groupby;
         }
         this.main_row.groupbys = group_by.length ? group_by : (context.pivot_row_groupby || this.initial_row_groupby.slice(0));
-        this.main_col.groupbys = context.pivot_column_groupby || this.initial_col_groupby.slice(0);
-        this.active_measures = context.pivot_measures || this.active_measures;
+        this.main_col.groupbys = context.col_group_by || context.pivot_column_groupby || this.initial_col_groupby.slice(0);
+        this.active_measures = context.measures || context.pivot_measures || this.active_measures;
 
         this.domain = domain;
         this.context = context;
@@ -803,7 +803,7 @@ var PivotView = View.extend({
         framework.blockUI();
         var nbr_measures = this.active_measures.length,
             headers = this.compute_headers(),
-            measure_row = nbr_measures > 1 ? _.last(headers) : [],
+            measure_row = nbr_measures >= 1 ? _.last(headers) : [],
             rows = this.compute_rows(),
             i, j, value;
         headers[0].splice(0,1);
@@ -829,7 +829,8 @@ var PivotView = View.extend({
             title: this.title,
         };
         if(table.measure_row.length + 1 > 256) {
-            c.show_message(_t("For Excel compatibility, data cannot be exported if there are more than 256 columns.\n\nTip: try to flip axis, filter further or reduce the number of measures."));
+            crash_manager.show_message(_t("For Excel compatibility, data cannot be exported if there are more than 256 columns.\n\nTip: try to flip axis, filter further or reduce the number of measures."));
+            framework.unblockUI();
             return;
         }
         session.get_file({

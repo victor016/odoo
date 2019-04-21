@@ -129,12 +129,15 @@ var QWeb2 = {
                 }
                 return r.join('');
             } else {
+                // avoid XMLSerializer with text node for IE
+                if (node.nodeType == 3) {
+                    return node.data;
+                }
                 if (typeof XMLSerializer !== 'undefined') {
                     return (new XMLSerializer()).serializeToString(node);
                 } else {
                     switch(node.nodeType) {
                     case 1: return node.outerHTML;
-                    case 3: return node.data;
                     case 4: return '<![CDATA[' + node.data + ']]>';
                     case 8: return '<!-- ' + node.data + '-->';
                     }
@@ -170,7 +173,7 @@ var QWeb2 = {
                         new_dict[as_first] = index === 0;
                         new_dict[as_last] = index + 1 === size;
                         new_dict[as_parity] = (index % 2 == 1 ? 'odd' : 'even');
-                        if (cur.constructor === Object) {
+                        if (cur && cur.constructor === Object) {
                             this.extend(new_dict, cur);
                         }
                         new_dict[as] = cur;

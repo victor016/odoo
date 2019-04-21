@@ -3,7 +3,7 @@
 # * pos_data_drinks
 # 
 # Translators:
-# Martin Trigaux <mat@odoo.com>, 2016
+# Martin Trigaux, 2016
 # Manuela Silva <manuela.silva@sky.com>, 2016
 msgid ""
 msgstr ""
@@ -29,7 +29,7 @@ msgstr "Bacardi"
 #: model:product.product,name:pos_data_drinks.baileys
 #: model:product.template,name:pos_data_drinks.baileys_product_template
 msgid "Baileys"
-msgstr ""
+msgstr "Baileys"
 
 #. module: pos_data_drinks
 #: model:pos.category,name:pos_data_drinks.beer
@@ -116,13 +116,13 @@ msgstr "Cuba Livre"
 #: model:product.product,name:pos_data_drinks.daiquiri
 #: model:product.template,name:pos_data_drinks.daiquiri_product_template
 msgid "Daiquiri"
-msgstr ""
+msgstr "Daiquiri"
 
 #. module: pos_data_drinks
 #: model:product.product,name:pos_data_drinks.disaronno
 #: model:product.template,name:pos_data_drinks.disaronno_product_template
 msgid "Disaronno"
-msgstr ""
+msgstr "Disaronno"
 
 #. module: pos_data_drinks
 #: model:product.product,name:pos_data_drinks.efes
@@ -134,7 +134,7 @@ msgstr ""
 #: model:product.product,name:pos_data_drinks.espresso
 #: model:product.template,name:pos_data_drinks.espresso_product_template
 msgid "Espresso"
-msgstr ""
+msgstr "Café"
 
 #. module: pos_data_drinks
 #: model:product.product,name:pos_data_drinks.fanta

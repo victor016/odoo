@@ -29,8 +29,10 @@ var Printer = core.Class.extend(mixins.PropertiesMixin,{
                 self.connection.rpc('/hw_proxy/print_xml_receipt',{receipt: r},{timeout: 5000})
                     .then(function(){
                         send_printing_job();
-                    },function(){
+                    },function(error, event){
                         self.receipt_queue.unshift(r);
+                        console.log('There was an error while trying to print the order:');
+                        console.log(error);
                     });
             }
         }
@@ -54,7 +56,7 @@ models.load_models({
 
         for(var i = 0; i < printers.length; i++){
             if(active_printers[printers[i].id]){
-                var url = printers[i].proxy_ip;
+                var url = printers[i].proxy_ip || '';
                 if(url.indexOf('//') < 0){
                     url = 'http://'+url;
                 }
@@ -135,8 +137,10 @@ models.Orderline = models.Orderline.extend({
         }
     },
     set_dirty: function(dirty) {
-        this.mp_dirty = dirty;
-        this.trigger('change',this);
+        if (this.mp_dirty !== dirty) {
+            this.mp_dirty = dirty;
+            this.trigger('change', this);
+        }
     },
     get_line_diff_hash: function(){
         if (this.get_note()) {
@@ -191,7 +195,12 @@ models.Order = models.Order.extend({
             var product_id = line.get_product().id;
 
             if (typeof resume[line_hash] === 'undefined') {
-                resume[line_hash] = { qty: qty, note: note, product_id: product_id };
+                resume[line_hash] = {
+                    qty: qty,
+                    note: note,
+                    product_id: product_id,
+                    product_name_wrapped: line.generate_wrapped_product_name(),
+                };
             } else {
                 resume[line_hash].qty += qty;
             }
@@ -222,6 +231,7 @@ models.Order = models.Order.extend({
                 add.push({
                     'id':       curr.product_id,
                     'name':     this.pos.db.get_product_by_id(curr.product_id).display_name,
+                    'name_wrapped': curr.product_name_wrapped,
                     'note':     curr.note,
                     'qty':      curr.qty,
                 });
@@ -229,6 +239,7 @@ models.Order = models.Order.extend({
                 add.push({
                     'id':       curr.product_id,
                     'name':     this.pos.db.get_product_by_id(curr.product_id).display_name,
+                    'name_wrapped': curr.product_name_wrapped,
                     'note':     curr.note,
                     'qty':      curr.qty - old.qty,
                 });
@@ -236,6 +247,7 @@ models.Order = models.Order.extend({
                 rem.push({
                     'id':       curr.product_id,
                     'name':     this.pos.db.get_product_by_id(curr.product_id).display_name,
+                    'name_wrapped': curr.product_name_wrapped,
                     'note':     curr.note,
                     'qty':      old.qty - curr.qty,
                 });
@@ -248,6 +260,7 @@ models.Order = models.Order.extend({
                 rem.push({
                     'id':       old.product_id,
                     'name':     this.pos.db.get_product_by_id(old.product_id).display_name,
+                    'name_wrapped': old.product_name_wrapped,
                     'note':     old.note,
                     'qty':      old.qty, 
                 });

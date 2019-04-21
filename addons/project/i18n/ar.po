@@ -3,31 +3,37 @@
 # * project
 # 
 # Translators:
-# Martin Trigaux <mat@odoo.com>, 2016
-# hoxhe aits <hoxhe0@gmail.com>, 2016
-# Mustafa Rawi <mustafa@cubexco.com>, 2016
-# Osama Ahmaro <osamaahmaro@gmail.com>, 2016
-# Mohammed Ibrahim <m.ibrahim@mussder.com>, 2016
-# ThaniAldawood <taldawood@hotmail.com>, 2016
 # mohammed rabea <moh.rabea@gmail.com>, 2016
 # HaNi alakkad <haniakad@gmail.com>, 2016
-# amrnegm <amrnegm.01@gmail.com>, 2016
-# aymen rahmani <aymen.isims@gmail.com>, 2016
-# Ali zuaby <ali@zuaby.net>, 2016
 # hamza tayseer atieh <hamza.atieh@minervadata.com>, 2016
-# Akram Alfusayal <akram_ma@hotmail.com>, 2016
+# Osama Ahmaro <osamaahmaro@gmail.com>, 2016
+# Mohammed Ibrahim <m.ibrahim@mussder.com>, 2016
+# aymen rahmani <aymen.isims@gmail.com>, 2016
 # Mohammed Albasha <m.albasha.ma@gmail.com>, 2016
-# SaFi J. <safi2266@gmail.com>, 2016
+# Ali zuaby <ali@zuaby.net>, 2016
+# ThaniAldawood <taldawood@hotmail.com>, 2016
+# Akram Alfusayal <akram_ma@hotmail.com>, 2016
+# amrnegm <amrnegm.01@gmail.com>, 2016
+# Mustafa J. Kadhem <safi2266@gmail.com>, 2016
 # Hossam Esam <hossamesam17@gmail.com>, 2016
-# Shaima Safar <shaima.safar@open-inside.com>, 2017
 # khalil qandil <khalilqandil@gmail.com>, 2017
+# Shaima Safar <shaima.safar@open-inside.com>, 2017
+# Yihya Hugirat <hugirat@gmail.com>, 2017
+# sohbi ahmed <gestshb@gmail.com>, 2018
+# hoxhe Aits <hoxhe0@gmail.com>, 2018
+# Martin Trigaux, 2018
+# Osoul <baruni@osoul.ly>, 2018
+# Amer Hazaa <eng.amer.it@gmail.com>, 2018
+# Mostafa Hanafy <mostafa.s.hanafy@gmail.com>, 2018
+# Mustafa Rawi <mustafa@cubexco.com>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-10 08:42+0000\n"
-"PO-Revision-Date: 2016-10-10 08:42+0000\n"
-"Last-Translator: khalil qandil <khalilqandil@gmail.com>, 2017\n"
+"POT-Creation-Date: 2017-06-23 13:26+0000\n"
+"PO-Revision-Date: 2016-09-07 09:27+0000\n"
+"Last-Translator: Mustafa Rawi <mustafa@cubexco.com>, 2019\n"
 "Language-Team: Arabic (https://www.transifex.com/odoo/teams/41243/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -120,11 +126,10 @@ msgid ""
 "                                <span style=\"font-style:italic;\">You’re not alone</span>\n"
 "                            </p>\n"
 "                            <p dir=\"ltr\" style=\"font-size:13px;margin-top:0pt;margin-bottom:8pt;\">\n"
-"                                <span>We would be delighted to assist you along the way. Contact us at \n"
-"                                <a href=\"mailto:help@odoo.com\"><span style=\"text-decoration:underline;\">\n"
-"                                help@odoo.com</span></a> if you have any question. You can also discover \n"
-"                                how to get the best out of Odoo Project with our </span>\n"
-"                                <a href=\"https://www.odoo.com/documentation/user/9.0/project.html\">\n"
+"                                <span>We would be delighted to assist you along the way. Contact us through our\n"
+"                                <a href=\"https://www.odoo.com/help\">support form</a> if you have any question.\n"
+"                                You can also discover how to get the best out of Odoo Project with our </span>\n"
+"                                <a href=\"https://www.odoo.com/documentation/user/10.0/project.html\">\n"
 "                                <span style=\"text-decoration:underline;\">User Documentation</span></a>\n"
 "                                </span><span> or with our </span>\n"
 "                                <a href=\"https://www.odoo.com/documentation\">\n"
@@ -169,6 +174,7 @@ msgstr ""
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_res_partner_task_count
+#: model:ir.model.fields,field_description:project.field_res_users_task_count
 msgid "# Tasks"
 msgstr "عدد المهام"
 
@@ -591,7 +597,7 @@ msgstr ""
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
 msgid "<strong>Enter your activities</strong> (every day)"
-msgstr ""
+msgstr "أدخل نشاطاتك"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -816,6 +822,8 @@ msgid ""
 "A Python dictionary that will be evaluated to provide default values when "
 "creating new records for this alias."
 msgstr ""
+"قاموس بايثون سيتم تقديره لتوفير قيم افتراضية عند إنشاء سجلات جديدة لهذا "
+"اللقب."
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -877,6 +885,11 @@ msgid "Active"
 msgstr "نشط"
 
 #. module: project
+#: model:ir.ui.view,arch_db:project.project_planner
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: project
 #: model:ir.ui.view,arch_db:project.task_type_edit
 msgid "Add a description..."
 msgstr "أضف وصفاً..."
@@ -915,7 +928,7 @@ msgstr "الكنية"
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project_alias_contact
 msgid "Alias Contact Security"
-msgstr ""
+msgstr "الاسم المستعار للاتصال الأمن"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project_alias_model
@@ -1251,7 +1264,7 @@ msgstr "المؤسسة"
 #: model:ir.model.fields,field_description:project.field_account_analytic_account_company_uom_id
 #: model:ir.model.fields,field_description:project.field_project_project_company_uom_id
 msgid "Company UOM"
-msgstr ""
+msgstr "وحدة القياس بالمؤسسة"
 
 #. module: project
 #: model:ir.ui.menu,name:project.menu_project_config
@@ -1519,7 +1532,7 @@ msgstr ""
 #: code:addons/project/static/src/js/web_planner_project.js:19
 #, python-format
 msgid "Deployment"
-msgstr ""
+msgstr "التطبيق والاستخدام"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task_description
@@ -1938,6 +1951,7 @@ msgid ""
 "ID of the parent record holding the alias (example: project holding the task"
 " creation alias)"
 msgstr ""
+"مُعرف السجل الأصلي الذي يحتوي اللقب (مثال: 'المشروع' يحمل لقب إنشاء المهمة)"
 
 #. module: project
 #. openerp-web
@@ -2053,7 +2067,7 @@ msgstr ""
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task_planned_hours
 msgid "Initially Planned Hours"
-msgstr ""
+msgstr "ساعات العمل المبدئية المخطط لها"
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project_alias_id
@@ -2323,7 +2337,7 @@ msgstr ""
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_project_project_filter
 msgid "My Favorites"
-msgstr ""
+msgstr "مفضلاتي"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_task_search_form
@@ -2432,6 +2446,11 @@ msgstr ""
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
+msgid "Objectives"
+msgstr "أهداف"
+
+#. module: project
+#: model:ir.ui.view,arch_db:project.project_planner
 msgid ""
 "Odoo Project is a super fast and easy way to make your activities and tasks visible to\n"
 "                        everyone in your company. Follow how things progress, see when things are stuck, know\n"
@@ -2473,6 +2492,8 @@ msgid ""
 "attached, even if they did not reply to it. If set, this will disable the "
 "creation of new records completely."
 msgstr ""
+"معرف اختياري لمناقشة (سجل) سيتم إرفاق كافة الرسائل الواردة به، حتى لو لم "
+"يردوا عليه. إذا تم تعيين قيمة له، سيعطل هذا إنشاء السجلات الجديدة بالكامل."
 
 #. module: project
 #: model:ir.actions.act_window,help:project.open_view_project_all
@@ -2541,7 +2562,7 @@ msgstr "المالِك"
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_config_settings_module_pad
 msgid "Pads"
-msgstr ""
+msgstr "كراريس"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project_alias_parent_model_id
@@ -2551,7 +2572,7 @@ msgstr "موديل الشريك"
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project_alias_parent_thread_id
 msgid "Parent Record Thread ID"
-msgstr ""
+msgstr "معرف مناقشة السجل الأصلي"
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project_alias_parent_model_id
@@ -2560,6 +2581,9 @@ msgid ""
 " necessarily the model given by alias_model_id (example: project "
 "(parent_model) and task (model))"
 msgstr ""
+"كائن السجل الأصلي الذي يحتوي اللقب. الكائن الذي يحتوي رقم إشارة اللقب ليس "
+"بالضرورة هو نفسه الكائن المخزن في القيمة alias_model_id (مثال: مشروع "
+"(parent_model) والمهمة (model))"
 
 #. module: project
 #: model:ir.model,name:project.model_res_partner
@@ -2583,6 +2607,7 @@ msgid ""
 "Please remove existing tasks in the project linked to the accounts you want "
 "to delete."
 msgstr ""
+"برجاء إزالة المهمات الموجودة بالمشروع المرتبط بالحسابات التي تود حذفها."
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project_alias_contact
@@ -2592,6 +2617,10 @@ msgid ""
 "- partners: only authenticated partners\n"
 "- followers: only followers of the related document or members of following channels\n"
 msgstr ""
+"سياسة لنشر رسالة على المستند باستخدام بوابة البريد الالكتروني.\n"
+"- الجميع: يمكن للجميع النشر\n"
+"- الشركاء: الشركاء المعتمدون فقط\n"
+"- المتابعين: فقط متابعو الوثيقة ذات الصلة أو أعضاء القنوات التالية.\n"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -2641,7 +2670,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:project.field_account_analytic_account_project_count
 #: model:ir.model.fields,field_description:project.field_project_project_project_count
 msgid "Project Count"
-msgstr ""
+msgstr "عدد المشاريع"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_config_settings
@@ -2704,6 +2733,7 @@ msgstr "مهام المشروع"
 #: model:ir.model.fields,field_description:project.field_project_task_type_project_ids
 #: model:ir.ui.menu,name:project.menu_projects_config
 #: model:ir.ui.view,arch_db:project.analytic_account_inherited_form
+#: model:ir.ui.view,arch_db:project.project_planner
 #: model:ir.ui.view,arch_db:project.view_project
 msgid "Projects"
 msgstr "المشروعات"
@@ -2775,7 +2805,7 @@ msgstr ""
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project_alias_force_thread_id
 msgid "Record Thread ID"
-msgstr ""
+msgstr "معرف مناقشة السجل"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -3152,6 +3182,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:project.field_project_project_task_ids
 #: model:ir.model.fields,field_description:project.field_project_project_task_needaction_count
 #: model:ir.model.fields,field_description:project.field_res_partner_task_ids
+#: model:ir.model.fields,field_description:project.field_res_users_task_ids
 #: model:ir.ui.menu,name:project.menu_action_view_task
 #: model:ir.ui.view,arch_db:project.edit_project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -3245,6 +3276,9 @@ msgid ""
 " email that does not reply to an existing record will cause the creation of "
 "a new record of this model (e.g. a Project Task)"
 msgstr ""
+"الكائن (من نوع مستندات أودو) الذي يتجاوب معه هذا اللقب. أي رسالة واردة لا "
+"ترد على سجل موجود ستسبب إنشاء سجل جديد من نفس نوع هذا الكائن (مثلًا: مهمة "
+"مشروع)"
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project_alias_name
@@ -3252,6 +3286,8 @@ msgid ""
 "The name of the email alias, e.g. 'jobs' if you want to catch emails for "
 "<jobs@example.odoo.com>"
 msgstr ""
+"اسم لقب البريد الإلكتروني، مثلًا: 'وظائف' إذا كنت جمع الرسائل المرسلة "
+"لـ<jobs@example.odoo.com>"
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project_alias_user_id
@@ -3261,6 +3297,10 @@ msgid ""
 "the sender (From) address, or will use the Administrator account if no "
 "system user is found for that address."
 msgstr ""
+"مالك السجلات المنشأة عند استلام رسائل بريد إلكتروني على هذا اللقب. إذا لم "
+"يتم تعيين قيمة لهذا الحقل، سيحاول النظام معرفة المالك الصحيح حسب عنوان "
+"البريد الإلكتروني للمرسل، أو سيستخدم حساب المشرف إذا لم يجد حسابًا مرتبطًا "
+"بعنوان البريد الإلكتروني."
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -3307,6 +3347,8 @@ msgid ""
 "This stage is folded in the kanban view when there are no records in that "
 "stage to display."
 msgstr ""
+"يتم طي هذه المرحلة عند استخدام طريقة كانبان للعرض عندما لا توجد سجلات يمكن "
+"عرضها في هذه المرحلة."
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -3332,6 +3374,8 @@ msgid ""
 "This will set the unit of measure used in projects and tasks.\n"
 "If you use the timesheet linked to projects, don't forget to setup the right unit of measure in your employees."
 msgstr ""
+"سيقوم هذا بتعيين وحدة القياس المستخدمة في المشاريع والمهام.\n"
+"إذا استخدمت سجل الأنشطة المرتبط بالمشاريع، لا تنسى ضبط وحدة القياس الصحيحة لموظفيك."
 
 #. module: project
 #: model:res.groups,name:project.group_time_work_estimation_tasks

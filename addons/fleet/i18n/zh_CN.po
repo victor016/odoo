@@ -3,16 +3,19 @@
 # * fleet
 # 
 # Translators:
-# Jeffery CHEN <jeffery9@gmail.com>, 2016
-# liAnGjiA <liangjia@qq.com>, 2016
-# Bo Cao <cao.poobo@hotmail.com>, 2017
+# Bo Cao, 2017
+# Martin Trigaux, 2017
+# Jeffery CHEN Fan <jeffery9@gmail.com>, 2017
+# e2f <projects@e2f.com>, 2018
+# liAnGjiA <liangjia@qq.com>, 2019
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-07 08:58+0000\n"
-"PO-Revision-Date: 2016-09-07 08:58+0000\n"
-"Last-Translator: Bo Cao <cao.poobo@hotmail.com>, 2017\n"
+"POT-Creation-Date: 2017-06-23 13:28+0000\n"
+"PO-Revision-Date: 2016-09-07 09:19+0000\n"
+"Last-Translator: liAnGjiA <liangjia@qq.com>, 2019\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +33,7 @@ msgstr "%s %s已添加到车队"
 #: code:addons/fleet/models/fleet.py:652
 #, python-format
 msgid "%s contract(s) need(s) to be renewed and/or closed!"
-msgstr "%s 合约，需续订或关闭！"
+msgstr "%s 合同，需续订或关闭！"
 
 #. module: fleet
 #: model:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
@@ -121,7 +124,7 @@ msgstr "金额"
 #: model:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_search
 #: model:ir.ui.view,arch_db:fleet.fleet_vehicle_view_search
 msgid "Archived"
-msgstr "已存档"
+msgstr "归档"
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_9
@@ -180,6 +183,11 @@ msgstr "更换刹车片"
 #: model:ir.model,name:fleet.model_fleet_vehicle_model_brand
 msgid "Brand model of the vehicle"
 msgstr "车辆品牌型号"
+
+#. module: fleet
+#: model:fleet.vehicle.tag,name:fleet.vehicle_tag_break
+msgid "Break"
+msgstr "分隔"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_co2
@@ -252,7 +260,7 @@ msgstr "点击来创建一个新标签"
 #. module: fleet
 #: model:ir.actions.act_window,help:fleet.fleet_vehicle_log_contract_action
 msgid "Click to create a new contract."
-msgstr "点击创建一个新的合约"
+msgstr "点击创建一个新的合同"
 
 #. module: fleet
 #: model:ir.actions.act_window,help:fleet.fleet_vehicle_costs_action
@@ -315,6 +323,11 @@ msgid "Color of the vehicle"
 msgstr "车辆颜色"
 
 #. module: fleet
+#: model:fleet.vehicle.tag,name:fleet.vehicle_tag_compact
+msgid "Compact"
+msgstr "紧凑"
+
+#. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_company_id
 msgid "Company"
 msgstr "公司"
@@ -332,7 +345,7 @@ msgstr "配置"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_fuel_contract_id
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_services_contract_id
 msgid "Contract"
-msgstr "合约"
+msgstr "合同"
 
 #. module: fleet
 #: model:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_graph
@@ -347,7 +360,7 @@ msgstr "合同到期日期"
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_contract_ins_ref
 msgid "Contract Reference"
-msgstr "合同参考"
+msgstr "合同参照"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_contract_start_date
@@ -370,7 +383,7 @@ msgstr "合同细节"
 #. module: fleet
 #: model:ir.model,name:fleet.model_fleet_vehicle_log_contract
 msgid "Contract information on a vehicle"
-msgstr "车辆的合约信息"
+msgstr "车辆的合同信息"
 
 #. module: fleet
 #: model:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_form
@@ -388,7 +401,12 @@ msgstr "承包人"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_contracts
 #: model:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
 msgid "Contracts"
-msgstr "合约"
+msgstr "合同"
+
+#. module: fleet
+#: model:fleet.vehicle.tag,name:fleet.vehicle_tag_convertible
+msgid "Convertible"
+msgstr "可转换"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_contract_cost_id
@@ -452,7 +470,7 @@ msgstr "每月的费用"
 msgid ""
 "Costs paid at regular intervals, depending on the cost frequency.If the cost"
 " frequency is set to unique, the cost will be logged at the start date"
-msgstr ""
+msgstr "定期支付费用，这取决于成本的频率。如果成本频率被设置为唯一的，其成本将被记录在开始日期内。"
 
 #. module: fleet
 #: model:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_form
@@ -616,6 +634,11 @@ msgid "Emissions"
 msgstr "排量"
 
 #. module: fleet
+#: model:fleet.vehicle.tag,name:fleet.vehicle_tag_leasing
+msgid "Employee Car"
+msgstr "公司雇员轿车"
+
+#. module: fleet
 #: code:addons/fleet/models/fleet.py:37
 #, python-format
 msgid "Emptying the odometer value of a vehicle is not allowed."
@@ -639,7 +662,7 @@ msgstr "发动机参数"
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_20
 msgid "Engine/Drive Belt(s) Replacement"
-msgstr "发动机/传动皮带更换"
+msgstr "引擎/驱动皮带备件"
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_13
@@ -751,7 +774,7 @@ msgstr "有警告"
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_contract_renewal_overdue
 msgid "Has Contracts Overdue"
-msgstr "有逾期合约"
+msgstr "有逾期合同"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_contract_renewal_due_soon
@@ -891,7 +914,12 @@ msgstr "开票日期"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_fuel_inv_ref
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_services_inv_ref
 msgid "Invoice Reference"
-msgstr "发票参考"
+msgstr "发票参照"
+
+#. module: fleet
+#: model:fleet.vehicle.tag,name:fleet.vehicle_tag_junior
+msgid "Junior"
+msgstr "初级"
 
 #. module: fleet
 #: selection:fleet.vehicle,odometer_unit:0
@@ -967,7 +995,7 @@ msgstr "车辆牌照"
 #. module: fleet
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle_license_plate
 msgid "License plate number of the vehicle (i = plate number for a car)"
-msgstr ""
+msgstr "车辆的牌照号码（i = 汽车车牌号）"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_fuel_liter
@@ -989,7 +1017,7 @@ msgstr "车辆的位置（车库，...）"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model_brand_image
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model_image
 msgid "Logo"
-msgstr "徽标"
+msgstr "Logo"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_image_medium
@@ -1253,7 +1281,7 @@ msgstr "Odoo能帮你管理不同车辆的费用.费用从服务，合同中产�
 msgid ""
 "Odoo will warn you when services or contract have to be\n"
 "                renewed."
-msgstr "当服务和合约必须更新时，Odoo会提醒你。"
+msgstr "当服务和合同必须更新时，Odoo会提醒你。"
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_31
@@ -1310,7 +1338,7 @@ msgstr "对这次的上一级费用成本"
 #. module: fleet
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle_log_contract_purchaser_id
 msgid "Person to which the contract is signed for"
-msgstr "该合约的签署人"
+msgstr "该合同的签署人"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_power
@@ -1343,7 +1371,12 @@ msgstr "价格"
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_fuel_price_per_liter
 msgid "Price per liter"
-msgstr ""
+msgstr "每公升价格"
+
+#. module: fleet
+#: model:fleet.vehicle.tag,name:fleet.vehicle_tag_purchased
+msgid "Purchased"
+msgstr "已采购"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_fuel_purchaser_id
@@ -1438,6 +1471,16 @@ msgstr "更换转子"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_seats
 msgid "Seats Number"
 msgstr "座位数"
+
+#. module: fleet
+#: model:fleet.vehicle.tag,name:fleet.vehicle_tag_sedan
+msgid "Sedan"
+msgstr "轿车"
+
+#. module: fleet
+#: model:fleet.vehicle.tag,name:fleet.vehicle_tag_senior
+msgid "Senior"
+msgstr "高级"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_state_sequence
@@ -1655,7 +1698,7 @@ msgstr "费用总计(不含税)"
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_contract_renewal_total
 msgid "Total of contracts due or overdue minus one"
-msgstr "截止或者逾期减一的合约总计"
+msgstr "截止或者逾期减一的合同总计"
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_18
@@ -1897,12 +1940,12 @@ msgstr "更换雨刷"
 #. module: fleet
 #: model:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_form
 msgid "Write here all other information relative to this contract"
-msgstr "与该合约相关的所有其它信息写于此处。"
+msgstr "与该合同相关的所有其它信息写于此处。"
 
 #. module: fleet
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle_log_contract_notes
 msgid "Write here all supplementary information relative to this contract"
-msgstr ""
+msgstr "在此处输入与此合同相关的所有补充信息"
 
 #. module: fleet
 #: model:ir.ui.view,arch_db:fleet.fleet_vehicle_log_fuel_view_form

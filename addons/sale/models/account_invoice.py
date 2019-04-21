@@ -39,6 +39,9 @@ class AccountInvoice(models.Model):
     def _onchange_delivery_address(self):
         addr = self.partner_id.address_get(['delivery'])
         self.partner_shipping_id = addr and addr.get('delivery')
+        if self.env.context.get('type', 'out_invoice') == 'out_invoice':
+            company = self.company_id or self.env.user.company_id
+            self.comment = company.with_context(lang=self.partner_id.lang).sale_note
 
     @api.multi
     def action_invoice_paid(self):
@@ -84,6 +87,13 @@ class AccountInvoice(models.Model):
 
         return report_pages
 
+    @api.multi
+    def get_delivery_partner_id(self):
+        self.ensure_one()
+        return self.partner_shipping_id.id or super(AccountInvoice, self).get_delivery_partner_id()
+
+    def _get_refund_common_fields(self):
+        return super(AccountInvoice, self)._get_refund_common_fields() + ['team_id', 'partner_shipping_id']
 
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
@@ -95,6 +105,5 @@ class AccountInvoiceLine(models.Model):
         'invoice_line_id', 'order_line_id',
         string='Sale Order Lines', readonly=True, copy=False)
     layout_category_id = fields.Many2one('sale.layout_category', string='Section')
-    layout_category_sequence = fields.Integer(
-        related='layout_category_id.sequence',
-        string='Layout Sequence', store=True, default=0)
+    layout_category_sequence = fields.Integer(string='Layout Sequence')
+    # TODO: remove layout_category_sequence in master or make it work properly

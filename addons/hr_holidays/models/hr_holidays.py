@@ -174,7 +174,7 @@ class Holidays(models.Model):
     payslip_status = fields.Boolean('Reported in last payslips',
         help='Green this button when the leave has been taken into account in the payslip.')
     report_note = fields.Text('HR Comments')
-    user_id = fields.Many2one('res.users', string='User', related='employee_id.user_id', related_sudo=True, store=True, default=lambda self: self.env.uid, readonly=True)
+    user_id = fields.Many2one('res.users', string='User', related='employee_id.user_id', related_sudo=True, compute_sudo=True, store=True, default=lambda self: self.env.uid, readonly=True)
     date_from = fields.Datetime('Start Date', readonly=True, index=True, copy=False,
         states={'draft': [('readonly', False)], 'confirm': [('readonly', False)]})
     date_to = fields.Datetime('End Date', readonly=True, copy=False,
@@ -241,13 +241,14 @@ class Holidays(models.Model):
                 ('date_to', '>=', holiday.date_from),
                 ('employee_id', '=', holiday.employee_id.id),
                 ('id', '!=', holiday.id),
+                ('type', '=', holiday.type),
                 ('state', 'not in', ['cancel', 'refuse']),
             ]
             nholidays = self.search_count(domain)
             if nholidays:
                 raise ValidationError(_('You can not have 2 leaves that overlaps on same day!'))
 
-    @api.constrains('state', 'number_of_days_temp')
+    @api.constrains('state', 'number_of_days_temp', 'holiday_status_id')
     def _check_holidays(self):
         for holiday in self:
             if holiday.holiday_type != 'employee' or holiday.type != 'remove' or not holiday.employee_id or holiday.holiday_status_id.limit:
@@ -283,7 +284,7 @@ class Holidays(models.Model):
 
         if employee_id:
             employee = self.env['hr.employee'].browse(employee_id)
-            resource = employee.resource_id
+            resource = employee.resource_id.sudo()
             if resource and resource.calendar_id:
                 hours = resource.calendar_id.get_working_hours(from_dt, to_dt, resource_id=resource.id, compute_leaves=True)
                 uom_hour = resource.calendar_id.uom_id
@@ -439,6 +440,23 @@ class Holidays(models.Model):
                 holiday.action_validate()
 
     @api.multi
+    def _prepare_create_by_category(self, employee):
+        self.ensure_one()
+        values = {
+            'name': self.name,
+            'type': self.type,
+            'holiday_type': 'employee',
+            'holiday_status_id': self.holiday_status_id.id,
+            'date_from': self.date_from,
+            'date_to': self.date_to,
+            'notes': self.notes,
+            'number_of_days_temp': self.number_of_days_temp,
+            'parent_id': self.id,
+            'employee_id': employee.id
+        }
+        return values
+
+    @api.multi
     def action_validate(self):
         if not self.env.user.has_group('hr_holidays.group_hr_holidays_user'):
             raise UserError(_('Only an HR Officer or Manager can approve leave requests.'))
@@ -478,18 +496,7 @@ class Holidays(models.Model):
             elif holiday.holiday_type == 'category':
                 leaves = self.env['hr.holidays']
                 for employee in holiday.category_id.employee_ids:
-                    values = {
-                        'name': holiday.name,
-                        'type': holiday.type,
-                        'holiday_type': 'employee',
-                        'holiday_status_id': holiday.holiday_status_id.id,
-                        'date_from': holiday.date_from,
-                        'date_to': holiday.date_to,
-                        'notes': holiday.notes,
-                        'number_of_days_temp': holiday.number_of_days_temp,
-                        'parent_id': holiday.id,
-                        'employee_id': employee.id
-                    }
+                    values = holiday._prepare_create_by_category(employee)
                     leaves += self.with_context(mail_notify_force_send=False).create(values)
                 # TODO is it necessary to interleave the calls?
                 leaves.action_approve()

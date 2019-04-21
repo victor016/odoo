@@ -3,32 +3,37 @@
 # * sale
 # 
 # Translators:
-# ExcaliberX <excaliberx@gmail.com>, 2017
 # Leandro Noijovich <eliel.sorcerer@gmail.com>, 2017
+# ExcaliberX <excaliberx@gmail.com>, 2017
+# Fishfur A Banter <fishfurbanter@gmail.com>, 2017
+# Martin Trigaux, 2018
+# Yihya Hugirat <hugirat@gmail.com>, 2018
+# דודי מלכה <Dudimalka6@gmail.com>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-14 15:53+0000\n"
-"PO-Revision-Date: 2016-11-14 15:53+0000\n"
-"Last-Translator: Leandro Noijovich <eliel.sorcerer@gmail.com>, 2017\n"
+"POT-Creation-Date: 2018-03-08 13:18+0000\n"
+"PO-Revision-Date: 2016-09-07 09:28+0000\n"
+"Last-Translator: דודי מלכה <Dudimalka6@gmail.com>, 2019\n"
 "Language-Team: Hebrew (https://www.transifex.com/odoo/teams/41243/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: he\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
 #. module: sale
 #: model:mail.template,body_html:sale.email_template_edi_sale
 msgid ""
 "\n"
 "<p>Dear ${object.partner_id.name}\n"
-"% set access_action = object.get_access_action()\n"
+"% set access_action = object.with_context(force_website=True).get_access_action()\n"
 "% set doc_name = 'quotation' if object.state in ('draft', 'sent') else 'order confirmation'\n"
 "% set is_online = access_action and access_action['type'] == 'ir.actions.act_url'\n"
-"% set access_name = is_online and object.template_id and 'Accept and pay %s online' % doc_name or 'View %s' % doc_name\n"
-"% set access_url = is_online and access_action['url'] or object.get_signup_url()\n"
+"% set access_name = is_online and object.template_id and doc_name == 'quotation' and 'Accept and pay %s online' % doc_name or 'View %s' % doc_name\n"
+"% set access_url = is_online and access_action['url'] or None\n"
 "\n"
 "% if object.partner_id.parent_id:\n"
 "    (<i>${object.partner_id.parent_id.name}</i>)\n"
@@ -91,6 +96,7 @@ msgstr "# כמות"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_res_partner_sale_order_count
+#: model:ir.model.fields,field_description:sale.field_res_users_sale_order_count
 msgid "# of Sales Order"
 msgstr "# מכירות בהזמנה"
 
@@ -142,14 +148,16 @@ msgstr ""
 msgid ""
 "<html>\n"
 "                <head></head>\n"
+"                % set record = ctx.get('record')\n"
+"                % set company = record and record.company_id or user.company_id\n"
 "                <body style=\"margin: 0; padding: 0;\">\n"
-"                <table border=\"0\" width=\"100%\" cellpadding=\"0\" bgcolor=\"#ededed\" style=\"padding: 20px; background-color: #ededed\" summary=\"o_mail_notification\">\n"
+"                <table border=\"0\" width=\"100%\" cellpadding=\"0\" bgcolor=\"#ededed\" style=\"padding: 20px; background-color: #ededed; border-collapse:separate;\" summary=\"o_mail_notification\">\n"
 "                    <tbody>\n"
 "\n"
 "                      <!-- HEADER -->\n"
 "                      <tr>\n"
 "                        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
 "                            <tr>\n"
 "                              <td valign=\"middle\">\n"
 "                                  <span style=\"font-size:20px; color:white; font-weight: bold;\">\n"
@@ -157,7 +165,7 @@ msgid ""
 "                                  </span>\n"
 "                              </td>\n"
 "                              <td valign=\"middle\" align=\"right\">\n"
-"                                  <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${user.company_id.name}\">\n"
+"                                  <img src=\"/logo.png?company=${company.id}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${company.name}\">\n"
 "                              </td>\n"
 "                            </tr>\n"
 "                          </table>\n"
@@ -167,7 +175,7 @@ msgid ""
 "                      <!-- CONTENT -->\n"
 "                      <tr>\n"
 "                        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#ffffff\" style=\"min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#ffffff\" style=\"min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;\">\n"
 "                            <tbody>\n"
 "                              <td valign=\"top\" style=\"font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;\">\n"
 "                                ${object.body | safe}\n"
@@ -180,19 +188,19 @@ msgid ""
 "                      <!-- FOOTER -->\n"
 "                      <tr>\n"
 "                        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px;\">\n"
+"                          <table width=\"590\" border=\"0\" cellpadding=\"0\" bgcolor=\"#875A7B\" style=\"min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;\">\n"
 "                            <tr>\n"
 "                              <td valign=\"middle\" align=\"left\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
-"                                ${user.company_id.name}<br/>\n"
-"                                ${user.company_id.phone or ''}\n"
+"                                ${company.name}<br/>\n"
+"                                ${company.phone or ''}\n"
 "                              </td>\n"
 "                              <td valign=\"middle\" align=\"right\" style=\"color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;\">\n"
-"                                % if user.company_id.email:\n"
-"                                <a href=\"mailto:${user.company_id.email}\" style=\"text-decoration:none; color: white;\">${user.company_id.email}</a><br/>\n"
+"                                % if company.email:\n"
+"                                <a href=\"mailto:${company.email}\" style=\"text-decoration:none; color: white;\">${company.email}</a><br/>\n"
 "                                % endif\n"
-"                                % if user.company_id.website:\n"
-"                                    <a href=\"${user.company_id.website}\" style=\"text-decoration:none; color: white;\">\n"
-"                                        ${user.company_id.website}\n"
+"                                % if company.website:\n"
+"                                    <a href=\"${company.website}\" style=\"text-decoration:none; color: white;\">\n"
+"                                        ${company.website}\n"
 "                                    </a>\n"
 "                                % endif\n"
 "                              </td>\n"
@@ -232,7 +240,7 @@ msgstr "<p><b>אשר את ההזמנה</b> אם הלקוח רוכש</p>"
 msgid ""
 "<span>(*) This configuration is related to the company you're logged "
 "into.</span>"
-msgstr ""
+msgstr "<span>(*) תצורה זו קשורה לחברה שאליה אתה מחובר .</span>"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
@@ -358,6 +366,11 @@ msgid "Allows you to specify an analytic account on sales orders."
 msgstr ""
 
 #. module: sale
+#: model:ir.ui.view,arch_db:sale.report_invoice_layouted
+msgid "Amount"
+msgstr "סכום"
+
+#. module: sale
 #: model:ir.model.fields,field_description:sale.field_crm_team_sales_to_invoice_amount
 msgid "Amount of sales to invoice"
 msgstr "כמות של מכירות לקבלה"
@@ -465,7 +478,7 @@ msgstr "בחרו כאן על מנת לנהל קבלות בצוות מכירות 
 #. module: sale
 #: model:ir.model.fields,help:sale.field_crm_team_use_quotations
 msgid "Check this box to manage quotations in this sales team."
-msgstr ""
+msgstr "בחרו כאן על מנת לנהל את הצעות המחיר בצוות מכירות הזה"
 
 #. module: sale
 #. openerp-web
@@ -640,7 +653,9 @@ msgid "Delivered"
 msgstr "נשלח"
 
 #. module: sale
+#: code:addons/sale/models/sale.py:715
 #: model:ir.ui.view,arch_db:sale.view_order_form
+#, python-format
 msgid "Delivered Quantity"
 msgstr "כמות שנשלחה"
 
@@ -668,7 +683,7 @@ msgstr "כתובת אספקה עבור הזמנת לקוח נוכחית."
 #. module: sale
 #: model:ir.model.fields,help:sale.field_sale_order_partner_shipping_id
 msgid "Delivery address for current sales order."
-msgstr ""
+msgstr "כתובת אספקה עבור הזמנת לקוח נוכחית."
 
 #. module: sale
 #: model:product.product,name:sale.advance_product_0
@@ -743,12 +758,12 @@ msgstr "השם המוצג"
 #. module: sale
 #: model:res.groups,name:sale.group_display_incoterm
 msgid "Display incoterms on Sales Order and related invoices"
-msgstr ""
+msgstr "הצגת את תנאי סחר בהזמנת ובחשבוניות קשורות"
 
 #. module: sale
 #: selection:sale.config.settings,module_sale_margin:0
 msgid "Display margins on quotations and sales orders"
-msgstr ""
+msgstr "הצג  רווחים על הצעות מחיר והזמנות מכירה"
 
 #. module: sale
 #: selection:sale.config.settings,group_sale_layout:0
@@ -790,17 +805,12 @@ msgstr ""
 #. module: sale
 #: selection:sale.report,state:0
 msgid "Draft Quotation"
-msgstr ""
+msgstr "טיוטה להצעת מחיר"
 
 #. module: sale
 #: model:ir.model,name:sale.model_mail_compose_message
 msgid "Email composition wizard"
 msgstr "אשף יצירת דואר אלקטרוני"
-
-#. module: sale
-#: model:ir.model,name:sale.model_survey_mail_compose_message
-msgid "Email composition wizard for Survey"
-msgstr "אשף יצירת דואר אלקטרוני לסקר"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_validity_date
@@ -811,6 +821,12 @@ msgstr "תאריך פג תוקף"
 #: model:ir.ui.view,arch_db:sale.view_order_product_search
 msgid "Extended Filters"
 msgstr "סינון מתקדם"
+
+#. module: sale
+#: code:addons/sale/models/sale.py:688
+#, python-format
+msgid "Extra line with %s "
+msgstr ""
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_fiscal_position_id
@@ -880,7 +896,7 @@ msgstr "חשבון הכנסות"
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_config_settings_group_display_incoterm
 msgid "Incoterms"
-msgstr ""
+msgstr "מונחי סחר בינלאומיים "
 
 #. module: sale
 #: model:ir.model,name:sale.model_account_invoice
@@ -978,7 +994,9 @@ msgid "Invoiced"
 msgstr "הונפקה קבלה"
 
 #. module: sale
+#: code:addons/sale/models/sale.py:716
 #: model:ir.ui.view,arch_db:sale.view_order_form
+#, python-format
 msgid "Invoiced Quantity"
 msgstr ""
 
@@ -1049,6 +1067,14 @@ msgstr ""
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.crm_team_salesteams_view_form
 msgid "Invoicing/Progression Ratio"
+msgstr ""
+
+#. module: sale
+#: code:addons/sale/models/sale.py:740
+#, python-format
+msgid ""
+"It is forbidden to modify the following fields in a locked order:\n"
+"%s"
 msgstr ""
 
 #. module: sale
@@ -1147,6 +1173,7 @@ msgstr "חומר"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_res_partner_sale_warn_msg
+#: model:ir.model.fields,field_description:sale.field_res_users_sale_warn_msg
 msgid "Message for Sales Order"
 msgstr "הודעה עבור מכירות הזמנה"
 
@@ -1169,7 +1196,7 @@ msgstr "ההזמנות שלי"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_sales_order_line_filter
 msgid "My Sales Order Lines"
-msgstr ""
+msgstr "המכירות שלי לפי שורות פריט"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_layout_category_name
@@ -1183,7 +1210,8 @@ msgid "Never allow to modify a confirmed sales order"
 msgstr ""
 
 #. module: sale
-#: code:addons/sale/models/sale.py:102
+#: code:addons/sale/models/sale.py:110 code:addons/sale/models/sale.py:261
+#: code:addons/sale/models/sale.py:262
 #, python-format
 msgid "New"
 msgstr "חדש"
@@ -1252,7 +1280,7 @@ msgstr "אין מה להפיק"
 msgid ""
 "Number of days between the order confirmation and the shipping of the "
 "products to the customer"
-msgstr ""
+msgstr "מספר ימים בין אישור ההזמנה לבין שליחת הפריטים ללקוח"
 
 #. module: sale
 #: model:ir.actions.act_window,help:sale.action_orders
@@ -1332,7 +1360,9 @@ msgid "Ordered Qty"
 msgstr "כמות שהוזמנה"
 
 #. module: sale
+#: code:addons/sale/models/sale.py:713
 #: model:ir.ui.view,arch_db:sale.view_order_form
+#, python-format
 msgid "Ordered Quantity"
 msgstr "כמות שהוזמנה"
 
@@ -1484,17 +1514,17 @@ msgstr ""
 #. module: sale
 #: model:ir.model,name:sale.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "רכש"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_procurement_group_id
 msgid "Procurement Group"
-msgstr ""
+msgstr "קבוצת רכישה"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_line_procurement_ids
 msgid "Procurements"
-msgstr ""
+msgstr "רכישות"
 
 #. module: sale
 #: model:ir.model,name:sale.model_product_product
@@ -1551,7 +1581,7 @@ msgstr ""
 #. module: sale
 #: model:res.groups,name:sale.group_mrp_properties
 msgid "Properties on lines"
-msgstr ""
+msgstr "מאפיינים לשורות"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_order_line_tree
@@ -1676,7 +1706,7 @@ msgstr "הגדרת דוחות"
 #. module: sale
 #: model:ir.ui.menu,name:sale.Report_configuration
 msgid "Report Layout Categories"
-msgstr ""
+msgstr "קטגוריות בתצוגת דוחות"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_order_form
@@ -1756,6 +1786,8 @@ msgstr "מידע על מכירות"
 #: model:ir.model,name:sale.model_sale_order
 #: model:ir.model.fields,field_description:sale.field_res_partner_sale_order_ids
 #: model:ir.model.fields,field_description:sale.field_res_partner_sale_warn
+#: model:ir.model.fields,field_description:sale.field_res_users_sale_order_ids
+#: model:ir.model.fields,field_description:sale.field_res_users_sale_warn
 #: model:ir.ui.view,arch_db:sale.view_order_form
 #: model:ir.ui.view,arch_db:sale.view_sales_order_filter
 #: model:res.request.link,name:sale.req_link_sale_order
@@ -1774,23 +1806,23 @@ msgstr "הזמנת לקוח אושרה"
 #: model:ir.model.fields,field_description:sale.field_product_product_sale_line_warn
 #: model:ir.model.fields,field_description:sale.field_product_template_sale_line_warn
 msgid "Sales Order Line"
-msgstr ""
+msgstr "שורת פריט בהזמנה"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_order_form
 #: model:ir.ui.view,arch_db:sale.view_order_line_tree
 msgid "Sales Order Lines"
-msgstr ""
+msgstr "שורות פריט בהזמנה"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_sales_order_line_filter
 msgid "Sales Order Lines ready to be invoiced"
-msgstr ""
+msgstr "שורות פריט בהזמנה שמוכנות להפוך לחשבונית"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.view_sales_order_line_filter
 msgid "Sales Order Lines related to a Sales Order of mine"
-msgstr ""
+msgstr "שורות פריט בהזמנות לקוחות שמשוייכות אלי"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_orders
@@ -1808,7 +1840,7 @@ msgstr "הזמנות מכירות"
 #. module: sale
 #: model:ir.model,name:sale.model_sale_report
 msgid "Sales Orders Statistics"
-msgstr ""
+msgstr "נתונים על מכירות"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_config_settings_group_sale_layout
@@ -1881,11 +1913,14 @@ msgstr ""
 #: model:ir.model.fields,help:sale.field_product_product_sale_line_warn
 #: model:ir.model.fields,help:sale.field_product_template_sale_line_warn
 #: model:ir.model.fields,help:sale.field_res_partner_sale_warn
+#: model:ir.model.fields,help:sale.field_res_users_sale_warn
 msgid ""
 "Selecting the \"Warning\" option will notify user with the message, "
 "Selecting \"Blocking Message\" will throw an exception with the message and "
 "block the flow. The Message has to be written in the next field."
 msgstr ""
+"בחירה באפשרות \"אזהרה\" תודיע למשתמש עם ההודעה,בחירת \"חסימת הודעה\" תזרוק "
+"חריג עם ההודעה וחסום את ההתקדמות. ההודעה צריכה להיכתב בשדה הבא."
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_config_settings_module_website_sale_digital
@@ -1956,7 +1991,7 @@ msgstr ""
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_config_settings_group_pricelist_item
 msgid "Show pricelists to customers"
-msgstr ""
+msgstr "הראה רשימת מחידים ללקוחות"
 
 #. module: sale
 #: selection:product.pricelist,discount_policy:0
@@ -1982,7 +2017,7 @@ msgstr ""
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_origin
 msgid "Source Document"
-msgstr ""
+msgstr "מסמך מקור"
 
 #. module: sale
 #: selection:sale.config.settings,sale_pricelist_setting:0
@@ -2053,11 +2088,28 @@ msgid "Terms and conditions"
 msgstr "תנאים והגבלות"
 
 #. module: sale
-#: code:addons/sale/models/sale_analytic.py:84
+#: code:addons/sale/models/sale_analytic.py:117
 #, python-format
 msgid ""
-"The Sale Order %s linked to the Analytic Account must be validated before "
-"registering expenses."
+"The Sales Order %s linked to the Analytic Account %s is cancelled. You "
+"cannot register an expense on a cancelled Sales Order."
+msgstr ""
+
+#. module: sale
+#: code:addons/sale/models/sale_analytic.py:112
+#, python-format
+msgid ""
+"The Sales Order %s linked to the Analytic Account %s must be validated "
+"before registering expenses."
+msgstr ""
+
+#. module: sale
+#: code:addons/sale/models/sale_analytic.py:115
+#, python-format
+msgid ""
+"The Sales Order %s linked to the Analytic Account %s is currently locked. "
+"You cannot register an expense on a locked Sales Order. Please create a new "
+"SO linked to this Analytic Account."
 msgstr ""
 
 #. module: sale
@@ -2069,6 +2121,14 @@ msgstr ""
 #: model:ir.model.fields,help:sale.field_sale_order_project_id
 #: model:ir.model.fields,help:sale.field_sale_order_related_project_id
 msgid "The analytic account related to a sales order."
+msgstr "חשבון וח ניהול המקושר להזמנה"
+
+#. module: sale
+#: code:addons/sale/models/sale.py:709
+#, python-format
+msgid ""
+"The ordered quantity has been decreased. Do not forget to take it into "
+"account on your invoices and delivery orders."
 msgstr ""
 
 #. module: sale
@@ -2079,7 +2139,7 @@ msgid ""
 msgstr ""
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:147
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:148
 #, python-format
 msgid ""
 "The product used to invoice a down payment should be of type 'Service'. "
@@ -2087,7 +2147,7 @@ msgid ""
 msgstr ""
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:145
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:146
 #, python-format
 msgid ""
 "The product used to invoice a down payment should have an invoice policy set"
@@ -2174,7 +2234,6 @@ msgid "Total"
 msgstr "סך הכל"
 
 #. module: sale
-#: model:ir.ui.view,arch_db:sale.report_invoice_layouted
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
 msgid "Total Price"
 msgstr "מחיר כולל"
@@ -2190,6 +2249,12 @@ msgstr "סך הכל כולל מיסים"
 #: model:ir.model.fields,field_description:sale.field_product_template_track_service
 msgid "Track Service"
 msgstr ""
+
+#. module: sale
+#: code:addons/sale/models/sale.py:491
+#, python-format
+msgid "Uncategorized"
+msgstr "ללא קטגוריה"
 
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_order_line_price_unit
@@ -2246,7 +2311,7 @@ msgstr ""
 #. module: sale
 #: model:ir.model.fields,field_description:sale.field_sale_config_settings_group_sale_pricelist
 msgid "Use pricelists to adapt your price per customers"
-msgstr ""
+msgstr "בעזרת מחירונים ניתן להתאים מחירי פריטים ללקוחות"
 
 #. module: sale
 #. openerp-web
@@ -2352,17 +2417,11 @@ msgid "You will find here all orders that are ready to be invoiced."
 msgstr "תמצא כאן את כל ההזמנות שמוכנות להפקת קבלה."
 
 #. module: sale
+#: model:ir.actions.act_window,help:sale.action_quotations
 #: model:ir.actions.act_window,help:sale.action_quotations_salesteams
 msgid ""
 "Your next actions should flow efficiently: confirm the Quotation\n"
 "                to a Sale Order, then create the Invoice and collect the Payment."
-msgstr ""
-
-#. module: sale
-#: model:ir.actions.act_window,help:sale.action_quotations
-msgid ""
-"Your next actions should flow efficiently: confirm the Quotation\n"
-"            to a Sale Order, then create the Invoice and collect the Payment."
 msgstr ""
 
 #. module: sale

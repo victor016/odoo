@@ -3,37 +3,40 @@
 # * project_issue
 # 
 # Translators:
-# Martin Trigaux <mat@odoo.com>, 2016
 # Ladislav Tomm <tomm@helemik.cz>, 2016
 # xlu <xlu@seznam.cz>, 2016
+# Martin Trigaux, 2016
+# Martin N <nedbalm@gmail.com>, 2017
+# trendspotter <j.podhorecky@volny.cz>, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2016-09-07 08:56+0000\n"
-"Last-Translator: xlu <xlu@seznam.cz>, 2016\n"
+"PO-Revision-Date: 2016-09-07 09:27+0000\n"
+"Last-Translator: trendspotter <j.podhorecky@volny.cz>, 2018\n"
 "Language-Team: Czech (https://www.transifex.com/odoo/teams/41243/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #. module: project_issue
 #: model:ir.model.fields,field_description:project_issue.field_project_issue_report_email
 msgid "# Emails"
-msgstr ""
+msgstr "# Maily"
 
 #. module: project_issue
 #: model:ir.model.fields,field_description:project_issue.field_res_partner_issue_count
 msgid "# Issues"
-msgstr ""
+msgstr "# Problémy"
 
 #. module: project_issue
 #: model:ir.model.fields,field_description:project_issue.field_project_issue_report_nbr_issues
 msgid "# of Issues"
-msgstr ""
+msgstr "# o Problémech"
 
 #. module: project_issue
 #: code:addons/project_issue/models/project_issue.py:156
@@ -44,22 +47,22 @@ msgstr "%s (kopie)"
 #. module: project_issue
 #: model:ir.ui.view,arch_db:project_issue.project_issue_kanban_view
 msgid "<b>Category:</b>"
-msgstr ""
+msgstr "<b>Kategorie:</b>"
 
 #. module: project_issue
 #: model:ir.ui.view,arch_db:project_issue.project_issue_kanban_view
 msgid "<b>Project:</b>"
-msgstr ""
+msgstr "<b>Projekt:</b>"
 
 #. module: project_issue
 #: model:ir.ui.view,arch_db:project_issue.view_project_form_inherited
 msgid "<span attrs=\"{'invisible':[('use_issues', '=', False)]}\">as </span>"
-msgstr ""
+msgstr "<span attrs=\"{'invisible':[('use_issues', '=', False)]}\">jako </span>"
 
 #. module: project_issue
 #: selection:project.config.settings,module_project_issue_sheet:0
 msgid "Activate timesheets on issues"
-msgstr ""
+msgstr "Aktivujte časový rozvrh k problému."
 
 #. module: project_issue
 #: model:ir.model.fields,field_description:project_issue.field_project_issue_active
@@ -141,7 +144,7 @@ msgstr "Blokovaný"
 #: model:project.issue,legend_done:project_issue.crm_case_patcheserrorinprogram0
 #: model:project.issue,legend_done:project_issue.crm_case_programnotgivingproperoutput0
 msgid "Buzz or set as done"
-msgstr ""
+msgstr "Buzz nebo nastaveno jako hotovo"
 
 #. module: project_issue
 #: model:ir.filters,name:project_issue.filter_issue_report_responsible
@@ -172,7 +175,7 @@ msgstr "Index barvy"
 #. module: project_issue
 #: model:ir.model.fields,help:project_issue.field_project_issue_channel
 msgid "Communication channel."
-msgstr ""
+msgstr "Komunikační kanál."
 
 #. module: project_issue
 #: model:ir.model.fields,field_description:project_issue.field_project_issue_company_id
@@ -199,7 +202,7 @@ msgstr "Datum vytvoření"
 #: model:ir.ui.view,arch_db:project_issue.view_project_issue_filter
 #: model:ir.ui.view,arch_db:project_issue.view_project_issue_report_filter
 msgid "Create Day"
-msgstr ""
+msgstr "Den vytvoření"
 
 #. module: project_issue
 #: model:ir.model.fields,field_description:project_issue.field_project_issue_create_uid
@@ -226,12 +229,12 @@ msgstr "Zákazník"
 #: code:addons/project_issue/models/project_issue.py:298
 #, python-format
 msgid "Customer Email"
-msgstr ""
+msgstr "Mail zákazníka"
 
 #. module: project_issue
 #: model:ir.model.fields,help:project_issue.field_project_project_label_issues
 msgid "Customize the issues label, for example to call them cases."
-msgstr ""
+msgstr "Přizpůsobte si Značku problému, například Volejte jim k případům."
 
 #. module: project_issue
 #: model:ir.model.fields,field_description:project_issue.field_project_issue_date
@@ -271,7 +274,7 @@ msgstr "Dnů k uzavření"
 #. module: project_issue
 #: model:ir.model.fields,field_description:project_issue.field_project_issue_date_deadline
 msgid "Deadline"
-msgstr "Končný termín"
+msgstr "Konečný termín"
 
 #. module: project_issue
 #: model:ir.filters,name:project_issue.filter_issue_report_delay
@@ -281,7 +284,7 @@ msgstr "Zpoždění"
 #. module: project_issue
 #: model:ir.ui.view,arch_db:project_issue.project_issue_kanban_view
 msgid "Delete"
-msgstr "?!?Smazat"
+msgstr "Smazat"
 
 #. module: project_issue
 #: model:ir.ui.view,arch_db:project_issue.project_issue_form_view
@@ -360,7 +363,7 @@ msgstr "Vysoká"
 #: code:addons/project_issue/models/project_issue.py:271
 #, python-format
 msgid "I take it"
-msgstr ""
+msgstr "beru to"
 
 #. module: project_issue
 #: model:ir.model.fields,field_description:project_issue.field_project_issue_id
@@ -373,35 +376,35 @@ msgstr "ID"
 #: model:ir.ui.view,arch_db:project_issue.project_issue_form_view
 #: model:ir.ui.view,arch_db:project_issue.view_project_issue_filter
 msgid "Issue"
-msgstr ""
+msgstr "Problém"
 
 #. module: project_issue
 #: model:mail.message.subtype,name:project_issue.mt_issue_blocked
 #: model:mail.message.subtype,name:project_issue.mt_project_issue_blocked
 msgid "Issue Blocked"
-msgstr ""
+msgstr "Problém blokován"
 
 #. module: project_issue
 #: model:mail.message.subtype,name:project_issue.mt_issue_new
 #: model:mail.message.subtype,name:project_issue.mt_project_issue_new
 msgid "Issue Opened"
-msgstr ""
+msgstr "Problém otevřen"
 
 #. module: project_issue
 #: model:mail.message.subtype,name:project_issue.mt_issue_ready
 #: model:mail.message.subtype,name:project_issue.mt_project_issue_ready
 msgid "Issue Ready"
-msgstr ""
+msgstr "Problém připraven"
 
 #. module: project_issue
 #: model:mail.message.subtype,name:project_issue.mt_project_issue_stage
 msgid "Issue Stage Changed"
-msgstr ""
+msgstr "Stupeň problému změněn"
 
 #. module: project_issue
 #: model:ir.ui.view,arch_db:project_issue.project_issue_form_view
 msgid "Issue Summary..."
-msgstr ""
+msgstr "Souhrn problému..."
 
 #. module: project_issue
 #: model:ir.ui.view,arch_db:project_issue.view_project_issue_filter
@@ -416,17 +419,17 @@ msgstr ""
 #. module: project_issue
 #: model:mail.message.subtype,description:project_issue.mt_issue_blocked
 msgid "Issue blocked"
-msgstr ""
+msgstr "Problém blokován"
 
 #. module: project_issue
 #: model:mail.message.subtype,description:project_issue.mt_issue_new
 msgid "Issue opened"
-msgstr ""
+msgstr "Problém otevřen"
 
 #. module: project_issue
 #: model:mail.message.subtype,description:project_issue.mt_issue_ready
 msgid "Issue ready for next stage"
-msgstr ""
+msgstr "Problém je připraven pro následující stupeň"
 
 #. module: project_issue
 #: model:ir.actions.act_window,name:project_issue.act_project_project_2_project_issue_all
@@ -564,7 +567,7 @@ msgstr "Normální"
 #: model:project.issue,legend_blocked:project_issue.crm_case_problemloadingpage0
 #: model:project.issue,legend_blocked:project_issue.crm_case_programmingerror0
 msgid "Not validated"
-msgstr ""
+msgstr "Neověřeno"
 
 #. module: project_issue
 #: model:ir.model.fields,help:project_issue.field_project_issue_report_delay_close
@@ -582,6 +585,8 @@ msgid ""
 "Override the default value displayed for the blocked state for kanban "
 "selection, when the task or issue is in that stage."
 msgstr ""
+"Přepínejte výchozí hodnotu zobrazenou pro zablokovaný stav pro výběr kanban,"
+" když je úloha nebo problém v této fázi."
 
 #. module: project_issue
 #: model:ir.model.fields,help:project_issue.field_project_issue_legend_done
@@ -589,6 +594,8 @@ msgid ""
 "Override the default value displayed for the done state for kanban "
 "selection, when the task or issue is in that stage."
 msgstr ""
+"Přepínejte výchozí hodnotu zobrazenou pro dokončený stav pro výběr kanban, "
+"pokud je úkol nebo problém v této fázi."
 
 #. module: project_issue
 #: model:ir.model.fields,help:project_issue.field_project_issue_legend_normal
@@ -596,6 +603,8 @@ msgid ""
 "Override the default value displayed for the normal state for kanban "
 "selection, when the task or issue is in that stage."
 msgstr ""
+"Přepněte výchozí hodnotu zobrazenou pro normální stav výběru kanban, pokud "
+"je úkol nebo problém v této fázi."
 
 #. module: project_issue
 #: model:ir.model,name:project_issue.model_res_partner
@@ -727,6 +736,9 @@ msgid ""
 "These email addresses will be added to the CC field of all inbound\n"
 "        and outbound emails for this record before being sent. Separate multiple email addresses with a comma"
 msgstr ""
+"Tyto e-mailové adresy budou přidány do pole CC všech příchozích a odchozích "
+"e-mailů pro tento záznam před odesláním. Oddělte více e-mailových adres "
+"čárkou"
 
 #. module: project_issue
 #: model:ir.model.fields,help:project_issue.field_project_issue_email_from

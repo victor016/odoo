@@ -5,10 +5,11 @@ from datetime import datetime
 import hashlib
 import hmac
 import logging
+import string
 import time
 import urlparse
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.addons.payment.models.payment_acquirer import ValidationError
 from odoo.addons.payment_authorize.controllers.main import AuthorizeController
 from odoo.tools.float_utils import float_compare
@@ -54,7 +55,15 @@ class PaymentAcquirerAuthorize(models.Model):
             values['x_fp_timestamp'],
             values['x_amount'],
             values['x_currency_code']])
-        return hmac.new(str(values['x_trans_key']), data, hashlib.md5).hexdigest()
+
+        # [BACKWARD COMPATIBILITY] Check that the merchant did update his transaction
+        # key to signature key (end of MD5 support from Authorize.net)
+        # The signature key is now '128-character hexadecimal format', while the
+        # transaction key was only 16-character.
+        if len(values['x_trans_key']) == 128:
+            return hmac.new(values['x_trans_key'].decode("hex"), data, hashlib.sha512).hexdigest().upper()
+        else:
+            return hmac.new(str(values['x_trans_key']), data, hashlib.md5).hexdigest()
 
     @api.multi
     def authorize_form_generate_values(self, values):
@@ -126,8 +135,18 @@ class PaymentAcquirerAuthorize(models.Model):
         for field_name in mandatory_fields:
             if not data.get(field_name):
                 error[field_name] = 'missing'
-        if data['cc_expiry'] and datetime.now().strftime('%y%M') > datetime.strptime(data['cc_expiry'], '%M / %y').strftime('%y%M'):
-            return False
+        if data['cc_expiry']:
+            # FIX we split the date into their components and check if there is two components containing only digits
+            # this fixes multiples crashes, if there was no space between the '/' and the components the code was crashing
+            # the code was also crashing if the customer was proving non digits to the date.
+            cc_expiry = [i.strip() for i in data['cc_expiry'].split('/')]
+            if len(cc_expiry) != 2 or any(not i.isdigit() for i in cc_expiry):
+                return False
+            try:
+                if datetime.now().strftime('%y%m') > datetime.strptime('/'.join(cc_expiry), '%m/%y').strftime('%y%m'):
+                    return False
+            except ValueError:
+                return False
         return False if error else True
 
     @api.multi
@@ -162,9 +181,9 @@ class TxAuthorize(models.Model):
     def _authorize_form_get_tx_from_data(self, data):
         """ Given a data dict coming from authorize, verify it and find the related
         transaction record. """
-        reference, trans_id, fingerprint = data.get('x_invoice_num'), data.get('x_trans_id'), data.get('x_MD5_Hash')
+        reference, trans_id, fingerprint = data.get('x_invoice_num'), data.get('x_trans_id'), data.get('x_SHA2_Hash') or data.get('x_MD5_Hash')
         if not reference or not trans_id or not fingerprint:
-            error_msg = 'Authorize: received data with missing reference (%s) or trans_id (%s) or fingerprint (%s)' % (reference, trans_id, fingerprint)
+            error_msg = _('Authorize: received data with missing reference (%s) or trans_id (%s) or fingerprint (%s)') % (reference, trans_id, fingerprint)
             _logger.info(error_msg)
             raise ValidationError(error_msg)
         tx = self.search([('reference', '=', reference)])
@@ -256,14 +275,14 @@ class TxAuthorize(models.Model):
     def authorize_s2s_capture_transaction(self):
         self.ensure_one()
         transaction = AuthorizeAPI(self.acquirer_id)
-        tree = transaction.capture(self.acquirer_reference, self.amount)
+        tree = transaction.capture(self.acquirer_reference or '', self.amount)
         return self._authorize_s2s_validate_tree(tree)
 
     @api.multi
     def authorize_s2s_void_transaction(self):
         self.ensure_one()
         transaction = AuthorizeAPI(self.acquirer_id)
-        tree = transaction.void(self.acquirer_reference)
+        tree = transaction.void(self.acquirer_reference or '')
         return self._authorize_s2s_validate_tree(tree)
 
     @api.multi
@@ -285,15 +304,15 @@ class TxAuthorize(models.Model):
                     'acquirer_reference': tree.get('x_trans_id'),
                     'date_validate': fields.Datetime.now(),
                 })
-                if self.callback_eval and init_state != 'authorized':
-                    safe_eval(self.callback_eval, {'self': self})
+                if self.sudo().callback_eval and init_state != 'authorized':
+                    safe_eval(self.sudo().callback_eval, {'self': self})
             if tree.get('x_type').lower() == 'auth_only':
                 self.write({
                     'state': 'authorized',
                     'acquirer_reference': tree.get('x_trans_id'),
                 })
-                if self.callback_eval:
-                    safe_eval(self.callback_eval, {'self': self})
+                if self.sudo().callback_eval:
+                    safe_eval(self.sudo().callback_eval, {'self': self})
             if tree.get('x_type').lower() == 'void':
                 self.write({
                     'state': 'cancel',
@@ -344,6 +363,6 @@ class PaymentToken(models.Model):
                     'acquirer_ref': res.get('payment_profile_id'),
                 }
             else:
-                raise ValidationError('The Customer Profile creation in Authorize.NET failed.')
+                raise ValidationError(_('The Customer Profile creation in Authorize.NET failed.'))
         else:
             return values

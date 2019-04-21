@@ -401,6 +401,17 @@ ListView.include(/** @lends instance.web.ListView# */{
         return cells;
     },
     /**
+     * Prevent reloading content while an ongoing save
+     */
+    reload_content_when_ready: function() {
+        var self = this;
+        var self_super = this._super;
+        var original_arguments = arguments;
+        return this.saving_mutex.exec(function() {
+            return self_super.apply(self, original_arguments);
+        });
+    },
+    /**
      * If currently editing a row, resizes all registered form fields based
      * on the corresponding row cell
      */
@@ -634,6 +645,7 @@ ListView.include(/** @lends instance.web.ListView# */{
      * @return {*}
      */
     _next: function (next_record, options) {
+        options = options || {};
         next_record = next_record || 'succ';
         var self = this;
         return this.save_edition().then(function (saveInfo) {
@@ -828,6 +840,10 @@ ListView.List.include(/** @lends instance.web.ListView.List# */{
         if (!this.view.editable() || !this.view.is_action_enabled('edit')) {
             return this._super.apply(this, arguments);
         }
+        if (this.__is_starting_edition) {
+            return;
+        }
+        this.__is_starting_edition = true;
 
         var self = this;
         var args = arguments;
@@ -839,6 +855,8 @@ ListView.List.include(/** @lends instance.web.ListView.List# */{
             focus_field: $(event.target).not(".o_readonly").data('field'),
         }).fail(function() {
             return _super.apply(self, args); // The record can't be edited so open it in a modal (use-case: readonly mode)
+        }).always(function () {
+            self.__is_starting_edition = false;
         });
     },
     /**

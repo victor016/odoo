@@ -3,16 +3,17 @@
 # * hr
 # 
 # Translators:
-# Dorin Hongu <dhongu@gmail.com>, 2016
 # Cozmin Candea <office@terrabit.ro>, 2016
-# Martin Trigaux <mat@odoo.com>, 2016
+# Martin Trigaux, 2016
+# Dorin Hongu <dhongu@gmail.com>, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-10 08:43+0000\n"
-"PO-Revision-Date: 2016-10-10 08:43+0000\n"
-"Last-Translator: Martin Trigaux <mat@odoo.com>, 2016\n"
+"PO-Revision-Date: 2016-09-07 09:21+0000\n"
+"Last-Translator: Dorin Hongu <dhongu@gmail.com>, 2018\n"
 "Language-Team: Romanian (https://www.transifex.com/odoo/teams/41243/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,6 +70,8 @@ msgid ""
 "<span class=\"o_unfollow\">Unfollow</span>\n"
 "                                    <span class=\"o_following\">Following</span>"
 msgstr ""
+"<span class=\"o_unfollow\">Nu urmări</span>\n"
+"                                    <span class=\"o_following\">Urmărește</span>"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
@@ -175,7 +178,7 @@ msgstr ""
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Birth"
-msgstr "Data nasterii"
+msgstr "Data nașterii"
 
 #. module: hr
 #: model:hr.job,name:hr.job_ceo
@@ -195,7 +198,7 @@ msgstr "Departamente Subordonate"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Citizenship & Other Information"
-msgstr ""
+msgstr "Cetățenie & Alte Informații"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_city
@@ -206,17 +209,17 @@ msgstr "Oraș"
 #: model:ir.actions.act_window,help:hr.act_employee_from_department
 #: model:ir.actions.act_window,help:hr.open_view_employee_list_my
 msgid "Click to add a new employee."
-msgstr ""
+msgstr "Faceți clic pentru a adăuga un nou angajat."
 
 #. module: hr
 #: model:ir.actions.act_window,help:hr.open_module_tree_department
 msgid "Click to create a department."
-msgstr ""
+msgstr "Faceți clic pentru a crea un departament."
 
 #. module: hr
 #: model:ir.actions.act_window,help:hr.action_hr_job
 msgid "Click to define a new job position."
-msgstr ""
+msgstr "Faceți clic pentru a defini o nouă poziție de angajare."
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -269,7 +272,7 @@ msgstr "Configurare"
 #. module: hr
 #: model:hr.job,name:hr.job_consultant
 msgid "Consultant"
-msgstr ""
+msgstr "Consultant"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
@@ -302,12 +305,12 @@ msgstr "Creat în"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_job_no_of_employee
 msgid "Current Number of Employees"
-msgstr "Numarul Actual de Angajati"
+msgstr "Numărul Actual de Angajati"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_birthday
 msgid "Date of Birth"
-msgstr "Data nasterii"
+msgstr "Data nașterii"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -426,12 +429,12 @@ msgstr "Numele angajatului"
 #: model:ir.ui.view,arch_db:hr.view_employee_tree
 #: model:ir.ui.view,arch_db:hr.view_partner_tree2
 msgid "Employees"
-msgstr "Angajati"
+msgstr "Angajați"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.open_view_employee_tree
 msgid "Employees Structure"
-msgstr "Structura Angajati"
+msgstr "Structura Angajați"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_category_list
@@ -464,7 +467,7 @@ msgstr ""
 #: model:ir.model.fields,help:hr.field_hr_job_expected_employees
 msgid ""
 "Expected number of employees for this job position after new recruitment."
-msgstr "Numarul prevazut de angajati pentru acest post dupa noua recrutare."
+msgstr "Numărul prevazut de angajati pentru acest post dupa noua recrutare."
 
 #. module: hr
 #: model:hr.job,name:hr.job_developer
@@ -634,7 +637,7 @@ msgstr ""
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_job_filter
 msgid "In Position"
-msgstr "In pozitie"
+msgstr "În funcție"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_job_filter
@@ -646,7 +649,7 @@ msgstr "In recrutare"
 #: model:hr.job,website_description:hr.job_hrm
 #: model:hr.job,website_description:hr.job_marketing
 msgid "Increase opportunities"
-msgstr ""
+msgstr "Creșteți oportunitățile"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -658,7 +661,7 @@ msgstr ""
 #. module: hr
 #: model:ir.model,name:hr.model_fleet_vehicle
 msgid "Information on a vehicle"
-msgstr "Informatii despre un vehicul"
+msgstr "Informații despre un vehicul"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_filter
@@ -774,7 +777,7 @@ msgstr "Manager"
 #. module: hr
 #: model:res.groups,name:hr.group_hr_attendance
 msgid "Manual Attendance"
-msgstr ""
+msgstr "Prezență manuală"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_marital
@@ -838,7 +841,7 @@ msgstr "Mai mult <i class=\"fa fa-caret-down\"/>"
 #: model:hr.job,website_description:hr.job_marketing
 #: model:hr.job,website_description:hr.job_trainee
 msgid "Must have ..."
-msgstr ""
+msgstr "Trebuie avut ..."
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_name
@@ -848,7 +851,7 @@ msgstr "Nume"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_country_id
 msgid "Nationality (Country)"
-msgstr ""
+msgstr "Naționalitate (Țara)"
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -879,7 +882,7 @@ msgstr "Note"
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_job_no_of_employee
 msgid "Number of employees currently occupying this job position."
-msgstr "Numarul de angajati care ocupa in prezent aceasta functie."
+msgstr "Numărul de angajati care ocupa in prezent aceasta functie."
 
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_job_no_of_hired_employee
@@ -890,7 +893,7 @@ msgstr ""
 #. module: hr
 #: model:ir.model.fields,help:hr.field_hr_job_no_of_recruitment
 msgid "Number of new employees you expect to recruit."
-msgstr "Numarul angajatilor noi pe care planuiti sa ii recrutati."
+msgstr "Numărul angajatilor noi pe care planuiti sa ii recrutati."
 
 #. module: hr
 #: model:ir.actions.act_window,help:hr.open_module_tree_department
@@ -913,7 +916,7 @@ msgstr "Altul"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Other Information ..."
-msgstr "Alte Informatii ..."
+msgstr "Alte informații ..."
 
 #. module: hr
 #: model:hr.job,website_description:hr.job_ceo
@@ -949,7 +952,7 @@ msgstr "Nr pasaport"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Personal Information"
-msgstr "Informatii Personale"
+msgstr "Informații Personale"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_image
@@ -1092,7 +1095,7 @@ msgstr "Necasatorit(a)"
 #: model:hr.job,website_description:hr.job_marketing
 #: model:hr.job,website_description:hr.job_trainee
 msgid "Skills"
-msgstr ""
+msgstr "Aptitudini"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_image_small
@@ -1338,7 +1341,7 @@ msgstr "Email serviciu"
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_work_location
 msgid "Work Location"
-msgstr ""
+msgstr "Loc muncă"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_mobile_phone
@@ -1568,13 +1571,13 @@ msgstr "de exemplu Cu jumatate de norma"
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_hr_job_form
 msgid "e.g. Sales Manager"
-msgstr ""
+msgstr "ex. Director vânzări"
 
 #. module: hr
 #: code:addons/hr/models/mail_thread.py:41
 #, python-format
 msgid "skipping"
-msgstr ""
+msgstr "livrare"
 
 #. module: hr
 #: model:res.groups,comment:hr.group_hr_user

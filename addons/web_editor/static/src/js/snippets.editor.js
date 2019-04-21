@@ -107,7 +107,7 @@ data.Class = Widget.extend({
                     return $from.closest(selector, parentNode);
                 },
                 all: function ($from) {
-                    return $from ? $from.find(selector) : $(selector);
+                    return $from ? cssFind($from, selector) : $(selector);
                 },
                 is: function ($from) {
                     return $from.is(selector);
@@ -130,14 +130,30 @@ data.Class = Widget.extend({
                     });
                 },
                 all: is_children ? function ($from) {
-                    return ($from || self.$editable).find(selector);
+                    return cssFind($from || self.$editable, selector);
                 } : function ($from) {
-                    return $from ? $from.find(selector) : self.$editable.filter(selector).add(self.$editable.find(selector));
+                    $from = $from || self.$editable;
+                    return $from.filter(selector).add(cssFind($from, selector));
                 },
                 is: function ($from) {
                     return $from.is(selector);
                 }
             };
+        }
+
+        /**
+         * jQuery find function behavior is:
+         *      $('A').find('A B') <=> $('A A B')
+         * The searches behavior to find options' DOM needs to be
+         *      $('A').find('A B') <=> $('A B')
+         * This is what this function does.
+         *
+         * @param {jQuery} $from - the jQuery element(s) from which to search
+         * @param {string} selector - the CSS selector to match
+         * @returns {jQuery}
+         */
+        function cssFind($from, selector) {
+            return $from.find('*').filter(selector);
         }
     },
 
@@ -599,6 +615,10 @@ data.Class = Widget.extend({
         var self = this;
         var zone_template = $("<div class='oe_drop_zone oe_insert'/>");
 
+        function isFullWidth($elem) {
+            return $elem.parent().width() === $elem.outerWidth(true);
+        }
+
         if ($selector_children) {
             $selector_children.each(function () {
                 var $zone = $(this);
@@ -616,7 +636,10 @@ data.Class = Widget.extend({
                         'display': 'inline-block'
                     });
                 } else if (float === "left" || float === "right") {
-                    $drop.addClass("oe_vertical").css('height', Math.max(Math.min($zone.outerHeight(), $zone.children().last().outerHeight()), 30));
+                    $drop.css('float', float);
+                    if (!isFullWidth($zone)) {
+                        $drop.addClass("oe_vertical").css('height', Math.max(Math.min($zone.outerHeight(), $zone.children().last().outerHeight()), 30));
+                    }
                 }
 
                 $drop = $drop.clone();
@@ -631,7 +654,10 @@ data.Class = Widget.extend({
                         'display': 'inline-block'
                     });
                 } else if (float === "left" || float === "right") {
-                    $drop.addClass("oe_vertical").css('height', Math.max(Math.min($zone.outerHeight(), $zone.children().first().outerHeight()), 30));
+                    $drop.css('float', float);
+                    if (!isFullWidth($zone)) {
+                        $drop.addClass("oe_vertical").css('height', Math.max(Math.min($zone.outerHeight(), $zone.children().first().outerHeight()), 30));
+                    }
                 }
                 if (test) {
                     $drop.css({'float': 'none', 'display': 'inline-block'});
@@ -652,14 +678,20 @@ data.Class = Widget.extend({
                 if($zone.prev('.oe_drop_zone:visible').length === 0) {
                     $drop = zone_template.clone();
                     if (float === "left" || float === "right") {
-                        $drop.addClass("oe_vertical").css('height', Math.max(Math.min($zone.outerHeight(), $zone.prev().outerHeight() || Infinity), 30));
+                        $drop.css('float', float);
+                        if (!isFullWidth($zone)) {
+                            $drop.addClass("oe_vertical").css('height', Math.max(Math.min($zone.outerHeight(), $zone.prev().outerHeight() || Infinity), 30));
+                        }
                     }
                     $zone.before($drop);
                 }
                 if($zone.next('.oe_drop_zone:visible').length === 0) {
                     $drop = zone_template.clone();
                     if (float === "left" || float === "right") {
-                        $drop.addClass("oe_vertical").css('height', Math.max(Math.min($zone.outerHeight(), $zone.next().outerHeight() || Infinity), 30));
+                        $drop.css('float', float);
+                        if (!isFullWidth($zone)) {
+                            $drop.addClass("oe_vertical").css('height', Math.max(Math.min($zone.outerHeight(), $zone.next().outerHeight() || Infinity), 30));
+                        }
                     }
                     $zone.after($drop);
                 }
@@ -846,6 +878,7 @@ data.Editor = Class.extend({
     },
     _drag_and_drop_start: function () {
         var self = this;
+        this.dropped = false;
         self.buildingBlock.editor_busy = true;
         self.size = {
             width: self.$target.width(),
@@ -874,8 +907,17 @@ data.Editor = Class.extend({
         self._drag_and_drop_after_insert_dropzone();
         self._drag_and_drop_active_drop_zone($('.oe_drop_zone'));
     },
-    _drag_and_drop_stop: function () {
+    _drag_and_drop_stop: function (ev, ui) {
         var self = this;
+
+        // TODO lot of this is duplicated code of the d&d feature of snippets
+        if (!this.dropped) {
+            var $el = $.nearest({x: ui.position.left, y: ui.position.top}, '.oe_drop_zone').first();
+            if ($el.length) {
+                $el.after(this.$target);
+                this.dropped = true;
+            }
+        }
 
         $(".oe_drop_zone").droppable('destroy').remove();
 
@@ -994,7 +1036,9 @@ data.Editor = Class.extend({
         this.$target.after($clone);
         this.buildingBlock.call_for_all_snippets($clone, function (editor, $snippet) {
             for (var i in editor.styles) {
-                editor.styles[i].on_clone($snippet);
+                editor.styles[i].on_clone($snippet, {
+                    isCurrent: ($snippet.is($clone)),
+                });
             }
         });
         return false;
@@ -1102,7 +1146,7 @@ data.Editor = Class.extend({
         }).bind(this));
 
         // Activate the overlay
-        $style_button.toggleClass("hidden", $ul.children(":not(.divider):not(.hidden)").length === 0);
+        $style_button.toggleClass("hidden", $ul.children(":not(.o_main_header):not(.divider):not(.hidden)").length === 0);
         this.$overlay.toggleClass("oe_active", !!focus);
 
         function _do_action_focus(style, $dest) {

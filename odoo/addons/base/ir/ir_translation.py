@@ -47,7 +47,8 @@ class IrTranslationImport(object):
         # of ir_translation, so this copy will be much faster.
         query = """ CREATE TEMP TABLE %s (
                         imd_model VARCHAR(64),
-                        imd_name VARCHAR(128)
+                        imd_name VARCHAR(128),
+                        noupdate BOOLEAN
                     ) INHERITS (%s) """ % (self._table, self._model_table)
         self._cr.execute(query)
 
@@ -104,7 +105,8 @@ class IrTranslationImport(object):
 
         # Step 1: resolve ir.model.data references to res_ids
         cr.execute(""" UPDATE %s AS ti
-                       SET res_id = imd.res_id
+                          SET res_id = imd.res_id,
+                              noupdate = imd.noupdate
                        FROM ir_model_data AS imd
                        WHERE ti.res_id IS NULL
                        AND ti.module IS NOT NULL AND ti.imd_name IS NOT NULL
@@ -150,7 +152,10 @@ class IrTranslationImport(object):
                                src = ti.src,
                                state = 'translated'
                            FROM %s AS ti
-                           WHERE %s AND ti.value IS NOT NULL AND ti.value != ''
+                          WHERE %s
+                            AND ti.value IS NOT NULL
+                            AND ti.value != ''
+                            AND noupdate IS NOT TRUE
                        """ % (self._model_table, self._table, find_expr),
                        (tuple(src_relevant_fields), tuple(src_relevant_fields)))
 
@@ -235,18 +240,19 @@ class IrTranslation(models.Model):
         ''' When changing source term of a translation, change its value in db
         for the associated object, and the src field.
         '''
-        for record in self:
-            if record.type == 'model':
-                model_name, field_name = record.name.split(',')
-                model = self.env[model_name]
-                field = model._fields[field_name]
-                if not callable(field.translate):
-                    # Make a context without language information, because we want
-                    # to write on the value stored in db and not on the one
-                    # associated with the current language. Also not removing lang
-                    # from context trigger an error when lang is different.
-                    model.browse(record.res_id).with_context(lang=None).write({field_name: record.source})
-        return self.write({'src': self.source})
+        self.ensure_one()
+        if self.type == 'model':
+            model_name, field_name = self.name.split(',')
+            model = self.env[model_name]
+            field = model._fields[field_name]
+            if not callable(field.translate):
+                # Make a context without language information, because we want
+                # to write on the value stored in db and not on the one
+                # associated with the current language. Also not removing lang
+                # from context trigger an error when lang is different.
+                model.browse(self.res_id).with_context(lang=None).write({field_name: self.source})
+        if self.src != self.source:
+            self.write({'src': self.source})
 
     def _search_source(self, operator, value):
         ''' the source term is stored on 'src' field '''
@@ -458,15 +464,15 @@ class IrTranslation(models.Model):
         if not callable(field.translate):
             return
 
-        trans = self.env['ir.translation']
-        outdated = trans
-        discarded = trans
+        Translation = self.env['ir.translation']
+        outdated = Translation
+        discarded = Translation
 
         for record in records:
             # get field value and terms to translate
             value = record[field.name]
             terms = set(field.get_trans_terms(value))
-            record_trans = trans.search([
+            translations = Translation.search([
                 ('type', '=', 'model'),
                 ('name', '=', "%s,%s" % (field.model_name, field.name)),
                 ('res_id', '=', record.id),
@@ -474,19 +480,32 @@ class IrTranslation(models.Model):
 
             if not terms:
                 # discard all translations for that field
-                discarded += record_trans
+                discarded += translations
                 continue
 
-            # remap existing translations on terms when possible
-            for trans in record_trans:
-                if trans.src == trans.value:
-                    discarded += trans
-                elif trans.src not in terms:
-                    matches = get_close_matches(trans.src, terms, 1, 0.9)
-                    if matches:
-                        trans.write({'src': matches[0], 'state': trans.state})
-                    else:
-                        outdated += trans
+            # remap existing translations on terms when possible; each term
+            # should be translated at most once per language
+            done = set()                # {(src, lang), ...}
+            translations_to_match = []
+
+            for translation in translations:
+                if translation.src == translation.value:
+                    discarded += translation
+                elif translation.src in terms:
+                    done.add((translation.src, translation.lang))
+                else:
+                    translations_to_match.append(translation)
+
+            for translation in translations_to_match:
+                matches = get_close_matches(translation.src, terms, 1, 0.9)
+                src = matches[0] if matches else None
+                if not src:
+                    outdated += translation
+                elif (src, translation.lang) in done:
+                    discarded += translation
+                else:
+                    translation.write({'src': src, 'state': translation.state})
+                    done.add((src, translation.lang))
 
         # process outdated and discarded translations
         outdated.write({'state': 'to_translate'})
@@ -558,13 +577,18 @@ class IrTranslation(models.Model):
                 record = trans.env[mname].browse(trans.res_id)
                 field = record._fields[fname]
                 if callable(field.translate):
-                    # check whether applying (trans.src -> trans.value) then
-                    # (trans.value -> trans.src) gives the original value back
+                    src = trans.src
+                    val = trans.value.strip()
+                    # check whether applying (src -> val) then (val -> src)
+                    # gives the original value back
                     value0 = field.translate(lambda term: None, record[fname])
-                    value1 = field.translate({trans.src: trans.value}.get, value0)
-                    value2 = field.translate({trans.value: trans.src}.get, value1)
+                    value1 = field.translate({src: val}.get, value0)
+                    # don't check the reverse if no translation happened
+                    if value0 == value1:
+                        continue
+                    value2 = field.translate({val: src}.get, value1)
                     if value2 != value0:
-                        raise ValidationError(_("Translation is not valid:\n%s") % trans.value)
+                        raise ValidationError(_("Translation is not valid:\n%s") % val)
 
     @api.model
     def create(self, vals):
@@ -688,6 +712,16 @@ class IrTranslation(models.Model):
                 action['context'] = {
                     'search_default_name': "%s,%s" % (fld.model_name, fld.name),
                 }
+            else:
+                rec = record
+                try:
+                    while fld.related:
+                        rec, fld = fld.traverse_related(rec)
+                    if rec:
+                        action['context'] = {'search_default_name': "%s,%s" % (fld.model_name, fld.name),}
+                except AccessError:
+                    pass
+
         return action
 
     @api.model

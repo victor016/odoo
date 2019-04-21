@@ -612,6 +612,36 @@ class TestExpression(TransactionCase):
         not_be = Partner.with_context(lang='fr_FR').search([('country_id', '!=', 'Belgique')])
         self.assertNotIn(agrolait, not_be)
 
+    def test_proper_combine_unit_leaves(self):
+        # test that unit leaves (TRUE_LEAF, FALSE_LEAF) are properly handled in specific cases
+        false = expression.FALSE_DOMAIN
+        true = expression.TRUE_DOMAIN
+        normal = [('foo', '=', 'bar')]
+        # OR with single FALSE_LEAF
+        expr = expression.OR([false])
+        self.assertEqual(expr, false)
+        # OR with multiple FALSE_LEAF
+        expr = expression.OR([false, false])
+        self.assertEqual(expr, false)
+        # OR with FALSE_LEAF and a normal leaf
+        expr = expression.OR([false, normal])
+        self.assertEqual(expr, normal)
+        # OR with AND of single TRUE_LEAF and normal leaf
+        expr = expression.OR([expression.AND([true]), normal])
+        self.assertEqual(expr, true)
+        # AND with single TRUE_LEAF
+        expr = expression.AND([true])
+        self.assertEqual(expr, true)
+        # AND with multiple TRUE_LEAF
+        expr = expression.AND([true, true])
+        self.assertEqual(expr, true)
+        # AND with TRUE_LEAF and normal leaves
+        expr = expression.AND([true, normal])
+        self.assertEqual(expr, normal)
+        # AND with OR with single FALSE_LEAF and normal leaf
+        expr = expression.AND([expression.OR([false]), normal])
+        self.assertEqual(expr, false)
+
 
 class TestAutoJoin(TransactionCase):
 
@@ -683,25 +713,25 @@ class TestAutoJoin(TransactionCase):
         self.assertEqual(partners, p_aa,
             "_auto_join off: ('bank_ids.sanitized_acc_number', 'like', '..'): incorrect result")
         # Test produced queries
-        self.assertEqual(len(self.query_list), 3,
-            "_auto_join off: ('bank_ids.sanitized_acc_number', 'like', '..') should produce 3 queries (1 in res_partner_bank, 2 on res_partner)")
+        self.assertEqual(len(self.query_list), 2,
+            "_auto_join off: ('bank_ids.sanitized_acc_number', 'like', '..') should produce 2 queries (1 in res_partner_bank, 1 on res_partner)")
         sql_query = self.query_list[0].get_sql()
         self.assertIn('res_partner_bank', sql_query[0],
             "_auto_join off: ('bank_ids.sanitized_acc_number', 'like', '..') first query incorrect main table")
 
-        expected = "%s::text like %s" % (unaccent('"res_partner_bank"."sanitized_acc_number"'), unaccent('%s'))
+        expected = "%s like %s" % (unaccent('"res_partner_bank"."sanitized_acc_number"::text'), unaccent('%s'))
         self.assertIn(expected, sql_query[1],
             "_auto_join off: ('bank_ids.sanitized_acc_number', 'like', '..') first query incorrect where condition")
-        
+
         self.assertEqual(['%' + name_test + '%'], sql_query[2],
             "_auto_join off: ('bank_ids.sanitized_acc_number', 'like', '..') first query incorrect parameter")
-        sql_query = self.query_list[2].get_sql()
+        sql_query = self.query_list[1].get_sql()
         self.assertIn('res_partner', sql_query[0],
-            "_auto_join off: ('bank_ids.sanitized_acc_number', 'like', '..') third query incorrect main table")
+            "_auto_join off: ('bank_ids.sanitized_acc_number', 'like', '..') second query incorrect main table")
         self.assertIn('"res_partner"."id" in (%s)', sql_query[1],
-            "_auto_join off: ('bank_ids.sanitized_acc_number', 'like', '..') third query incorrect where condition")
+            "_auto_join off: ('bank_ids.sanitized_acc_number', 'like', '..') second query incorrect where condition")
         self.assertIn(p_aa.id, sql_query[2],
-            "_auto_join off: ('bank_ids.sanitized_acc_number', 'like', '..') third query incorrect parameter")
+            "_auto_join off: ('bank_ids.sanitized_acc_number', 'like', '..') second query incorrect parameter")
 
         # Do: cascaded one2many without _auto_join
         self._reinit_mock()
@@ -710,8 +740,8 @@ class TestAutoJoin(TransactionCase):
         self.assertEqual(partners, p_a + p_b,
             "_auto_join off: ('child_ids.bank_ids.id', 'in', [..]): incorrect result")
         # Test produced queries
-        self.assertEqual(len(self.query_list), 5,
-            "_auto_join off: ('child_ids.bank_ids.id', 'in', [..]) should produce 5 queries (1 in res_partner_bank, 4 on res_partner)")
+        self.assertEqual(len(self.query_list), 3,
+            "_auto_join off: ('child_ids.bank_ids.id', 'in', [..]) should produce 3 queries (1 in res_partner_bank, 2 on res_partner)")
 
         # Do: one2many with _auto_join
         patch_auto_join(partner_obj, 'bank_ids', True)
@@ -729,7 +759,7 @@ class TestAutoJoin(TransactionCase):
         self.assertIn('"res_partner_bank" as "res_partner__bank_ids"', sql_query[0],
             "_auto_join on: ('bank_ids.sanitized_acc_number', 'like', '..') query incorrect join")
 
-        expected = "%s::text like %s" % (unaccent('"res_partner__bank_ids"."sanitized_acc_number"'), unaccent('%s'))
+        expected = "%s like %s" % (unaccent('"res_partner__bank_ids"."sanitized_acc_number"::text'), unaccent('%s'))
         self.assertIn(expected, sql_query[1],
             "_auto_join on: ('bank_ids.sanitized_acc_number', 'like', '..') query incorrect where condition")
         
@@ -812,7 +842,7 @@ class TestAutoJoin(TransactionCase):
         self.assertIn('"res_country"', sql_query[0],
             "_auto_join on for state_id: ('state_id.country_id.code', 'like', '..') query 1 incorrect main table")
 
-        expected = "%s::text like %s" % (unaccent('"res_country"."code"'), unaccent('%s'))
+        expected = "%s like %s" % (unaccent('"res_country"."code"::text'), unaccent('%s'))
         self.assertIn(expected, sql_query[1],
             "_auto_join on for state_id: ('state_id.country_id.code', 'like', '..') query 1 incorrect where condition")
 
@@ -846,7 +876,7 @@ class TestAutoJoin(TransactionCase):
         self.assertIn('"res_country" as "res_country_state__country_id"', sql_query[0],
             "_auto_join on for country_id: ('state_id.country_id.code', 'like', '..') query 1 incorrect join")
 
-        expected = "%s::text like %s" % (unaccent('"res_country_state__country_id"."code"'), unaccent('%s'))
+        expected = "%s like %s" % (unaccent('"res_country_state__country_id"."code"::text'), unaccent('%s'))
         self.assertIn(expected, sql_query[1],
             "_auto_join on for country_id: ('state_id.country_id.code', 'like', '..') query 1 incorrect where condition")
         
@@ -880,7 +910,7 @@ class TestAutoJoin(TransactionCase):
         self.assertIn('"res_country" as "res_partner__state_id__country_id"', sql_query[0],
             "_auto_join on: ('state_id.country_id.code', 'like', '..') query incorrect join")
 
-        expected = "%s::text like %s" % (unaccent('"res_partner__state_id__country_id"."code"'), unaccent('%s'))
+        expected = "%s like %s" % (unaccent('"res_partner__state_id__country_id"."code"::text'), unaccent('%s'))
         self.assertIn(expected, sql_query[1],
             "_auto_join on: ('state_id.country_id.code', 'like', '..') query incorrect where condition")
         
@@ -910,7 +940,7 @@ class TestAutoJoin(TransactionCase):
         # Test produced queries that domains effectively present
         sql_query = self.query_list[0].get_sql()
 
-        expected = "%s::text like %s" % (unaccent('"res_partner__child_ids__bank_ids"."sanitized_acc_number"'), unaccent('%s'))
+        expected = "%s like %s" % (unaccent('"res_partner__child_ids__bank_ids"."sanitized_acc_number"::text'), unaccent('%s'))
         self.assertIn(expected, sql_query[1],
             "_auto_join on one2many with domains incorrect result")
         # TDE TODO: check first domain has a correct table name
@@ -943,7 +973,7 @@ class TestAutoJoin(TransactionCase):
         self.assertLessEqual(p_a + p_b, partners,
             "_auto_join off: ('child_ids.state_id.country_id.code', 'like', '..') incorrect result")
         # Test produced queries
-        self.assertEqual(len(self.query_list), 5,
+        self.assertEqual(len(self.query_list), 4,
             "_auto_join off: ('child_ids.state_id.country_id.code', 'like', '..') number of queries incorrect")
 
         # Do: ('child_ids.state_id.country_id.code', 'like', '..') with _auto_join

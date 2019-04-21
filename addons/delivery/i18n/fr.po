@@ -5,9 +5,9 @@
 # Translators:
 # Miguel Vidali <mvidali129@gmail.com>, 2016
 # Nancy Bolognesi <nb@microcom.ca>, 2016
-# Martin Trigaux <mat@odoo.com>, 2016
+# Martin Trigaux, 2016
 # Olivier Lenoir <olivier.lenoir@free.fr>, 2016
-# Fabrice Henrion <fhe@odoo.com>, 2016
+# Fabrice Henrion, 2016
 # Maxime Chambreuil <mchambreuil@ursainfosystems.com>, 2016
 # Xavier Belmere <Info@cartmeleon.com>, 2016
 # Xavier Symons <xsy@openerp.com>, 2016
@@ -17,9 +17,9 @@
 # Simon CARRIER <carrier.sim@gmail.com>, 2016
 # Olivier Dony <odo@odoo.com>, 2016
 # Leo Schmitt <inactive+lschmitt@transifex.com>, 2016
-# Florian Hatat <mininet@wanadoo.fr>, 2016
+# Florian Hatat, 2016
 # Tony Galmiche <tony.galmiche@infosaone.com>, 2016
-# Hamid Darabi <hamid.darabi@gmail.com>, 2016
+# Hamid Darabi, 2016
 # Fabri Yohann <psn@fabri.pw>, 2016
 # Jérôme Tanché <jerome.tanche@ouest-dsi.fr>, 2016
 # Lionel Sausin <ls@numerigraphe.com>, 2016
@@ -29,13 +29,17 @@
 # Nicolas Seinlet <nicolas@seinlet.com>, 2016
 # zoe <yann.hoareau@migs.re>, 2016
 # Richard Mathot <rim@odoo.com>, 2017
+# Sébastien Le Ray <sebastien-github@orniz.org>, 2017
+# lap.odoo <lap@odoo.com>, 2017
+# fr trans <e2ftrans1@yahoo.com>, 2017
+# e2f <projects@e2f.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
 "PO-Revision-Date: 2016-09-07 08:56+0000\n"
-"Last-Translator: Richard Mathot <rim@odoo.com>, 2017\n"
+"Last-Translator: e2f <projects@e2f.com>, 2018\n"
 "Language-Team: French (https://www.transifex.com/odoo/teams/41243/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -150,6 +154,10 @@ msgid ""
 "A service is a non-material product you provide.\n"
 "A digital content is a non-material product you sell online. The files attached to the products are the one that are sold on the e-commerce such as e-books, music, pictures,... The \"Digital Product\" module has to be installed."
 msgstr ""
+"Un produit « stockable » est un produit pour lequel vous désirez gérer le stock. L'application « Inventaire » doit être installée.\n"
+"Un produit « consommable », en revanche, est un produit non géré en stock.\n"
+"Un service est un bien immatériel que vous fournissez ou achetez.\n"
+"Un contenu numérique est un bien immatériel que vous vendez en ligne. Les fichier liés aux produits sont ceux vendu sur la boutique en ligne (livres électronique, musique, photos, …). Le module « Produits numériques » doit être installé."
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_message_needaction
@@ -290,6 +298,8 @@ msgid ""
 "Can be changed during the 'put in pack' to adjust the weight of the "
 "shipping."
 msgstr ""
+"Peut être modifiée lors de l'opération d'« ajout au colis » pour ajuster le "
+"poids de la livraison."
 
 #. module: delivery
 #: model:ir.ui.view,arch_db:delivery.view_picking_withcarrier_out_form
@@ -396,6 +406,8 @@ msgid ""
 "Create a task under this project on sale order validation. This setting must"
 " be set for each company."
 msgstr ""
+"Crée une tâche au sein de ce projet lors d'une validation de commande vente."
+" Ce paramétrage est propre à chaque société."
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_create_uid
@@ -648,6 +660,8 @@ msgid ""
 "Filling this form allows you to filter delivery carriers according to the "
 "delivery address of your customer."
 msgstr ""
+"Lorsque vous remplissez ce formulaire, vous pouvez filtrer les transporteurs"
+" vers l'adresse de livraison de votre client."
 
 #. module: delivery
 #: selection:delivery.carrier,delivery_type:0
@@ -691,6 +705,7 @@ msgstr ""
 #. module: delivery
 #: model:delivery.carrier,name:delivery.free_delivery_carrier
 #: model:product.product,name:delivery.free_delivery_carrier_product_product
+#: model:product.template,name:delivery.free_delivery_carrier_product_template
 msgid "Free delivery charges"
 msgstr "Frais de livraison gratuit"
 
@@ -958,6 +973,9 @@ msgid ""
 "Timesheets on contract: Invoice based on the tracked hours on the related timesheet.\n"
 "Create a task and track hours: Create a task on the sale order validation and track the work hours."
 msgstr ""
+"Définition manuelle des quantités sur la commande : facture selon les quantités saisies manuellement, sans création de compte analytique.\n"
+"Feuilles de temps sur les contrats : facture selon les heures passées en fonction de la feuille de temps liée.\n"
+"Créer une tâche et suivre les heures : crée une tâche à validation de la commande et effectue un suivi du temps passé."
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_produce_delay
@@ -1081,6 +1099,7 @@ msgstr "Coût normal - Coût total"
 #. module: delivery
 #: model:delivery.carrier,name:delivery.normal_delivery_carrier
 #: model:product.product,name:delivery.normal_delivery_carrier_product_product
+#: model:product.template,name:delivery.normal_delivery_carrier_product_template
 msgid "Normal Delivery Charges"
 msgstr "Frais de livraison normaux"
 
@@ -1110,6 +1129,8 @@ msgid ""
 "On ordered quantities: control bills based on ordered quantities.\n"
 "On received quantities: control bills based on received quantity."
 msgstr ""
+"Sur quantités commandées : facture en fonction des quantités commandées.\n"
+"Sur quantités reçues : facture en fonction des quantités reçues"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule_operator
@@ -1122,6 +1143,8 @@ msgid ""
 "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
 "Delivered Quantity: Invoiced based on the quantity the vendor delivered (time or deliveries)."
 msgstr ""
+"Quantités commandées : facturation basée sur les quantités commandées par le client.\n"
+"Quantités livrées : facturation basée sur les quantités que le fournisseur a livré (temps passé dans le cas de prestations)."
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_outgoing_qty
@@ -1136,7 +1159,7 @@ msgstr "Colis"
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_product_packaging_shipper_package_code
 msgid "Package Code"
-msgstr ""
+msgstr "Code de colis"
 
 #. module: delivery
 #: code:addons/delivery/models/stock_picking.py:35
@@ -1473,6 +1496,8 @@ msgstr "Mettre un prix"
 #: model:ir.model.fields,help:delivery.field_delivery_carrier_prod_environment
 msgid "Set to True if your credentials are certified for production."
 msgstr ""
+"Définissez la valeur sur Vrai si vos identifiants sont certifiés pour la "
+"production."
 
 #. module: delivery
 #: code:addons/delivery/models/stock_picking.py:147
@@ -1518,6 +1543,9 @@ msgid ""
 "                Average Price: The cost price is recomputed at each incoming shipment and used for the product valuation.\n"
 "                Real Price: The cost price displayed is the price of the last outgoing product (will be use in case of inventory loss for example)."
 msgstr ""
+"Prix Standard: Le coût est mis à jour manuellement à la fin d'une période spécifique (en général une fois par an).\n"
+"                Prix Moyen: Le coût est recalculé à chaque entrée en stock et utilisé pour la valorisation du produit.\n"
+"                Prix réel: Le coût affiché est le coût du dernier produit sorti de stock (il sera utilisé dans le cas d'une perte d'inventaire par exemple). "
 
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier_hs_code
@@ -1610,11 +1638,12 @@ msgstr ""
 #: model:ir.model.fields,help:delivery.field_delivery_carrier_stock_move_ids
 #: model:ir.model.fields,help:delivery.field_delivery_carrier_stock_quant_ids
 msgid "Technical: used to compute quantities."
-msgstr ""
+msgstr "Technique : utilisé pour calculer les quantités."
 
 #. module: delivery
 #: model:delivery.carrier,name:delivery.delivery_carrier
 #: model:product.product,name:delivery.delivery_carrier_product_product
+#: model:product.template,name:delivery.delivery_carrier_product_template
 msgid "The Poste"
 msgstr "La Poste"
 
@@ -1642,6 +1671,9 @@ msgid ""
 "The sale price is managed from the product template. Click on the 'Variant "
 "Prices' button to set the extra attribute prices."
 msgstr ""
+"Le prix de vente est géré depuis le modèle de produit. Cliquez sur le bouton"
+" « Prix des variantes » pour définir les tarifs des attributs "
+"supplémentaires."
 
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier_volume
@@ -1860,7 +1892,7 @@ msgstr "Image de la variante"
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_price_extra
 msgid "Variant Price Extra"
-msgstr ""
+msgstr "Prix supplémentaires des variantes"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_supplier_taxes_id

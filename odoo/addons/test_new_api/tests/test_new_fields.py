@@ -61,6 +61,19 @@ class TestFields(common.TransactionCase):
         self.assertTrue(field.store)
         self.assertTrue(field.readonly)
 
+    def test_10_computed_custom(self):
+        """ check definition of custom computed fields """
+        self.env['ir.model.fields'].create({
+            'name': 'x_bool_false_computed',
+            'model_id': self.env.ref('test_new_api.model_test_new_api_message').id,
+            'field_description': 'A boolean computed to false',
+            'compute': "for r in self: r['x_bool_false_computed'] = False",
+            'store': False,
+            'ttype': 'boolean'
+        })
+        field = self.env['test_new_api.message']._fields['x_bool_false_computed']
+        self.assertFalse(field.depends)
+
     def test_10_non_stored(self):
         """ test non-stored fields """
         # a field declared with store=False should not have a column
@@ -179,6 +192,29 @@ class TestFields(common.TransactionCase):
         cath.parent = finn
         self.assertEqual(ewan.display_name, "Gabriel / Finnley / Catherine / Ewan")
 
+    def test_12_recursive_recompute(self):
+        """ test recomputation on recursively dependent field """
+        a = self.env['test_new_api.recursive'].create({'name': 'A'})
+        b = self.env['test_new_api.recursive'].create({'name': 'B', 'parent': a.id})
+        c = self.env['test_new_api.recursive'].create({'name': 'C', 'parent': b.id})
+        d = self.env['test_new_api.recursive'].create({'name': 'D', 'parent': c.id})
+        self.assertEqual(a.display_name, 'A')
+        self.assertEqual(b.display_name, 'A / B')
+        self.assertEqual(c.display_name, 'A / B / C')
+        self.assertEqual(d.display_name, 'A / B / C / D')
+
+        b.parent = False
+        self.assertEqual(a.display_name, 'A')
+        self.assertEqual(b.display_name, 'B')
+        self.assertEqual(c.display_name, 'B / C')
+        self.assertEqual(d.display_name, 'B / C / D')
+
+        b.name = 'X'
+        self.assertEqual(a.display_name, 'A')
+        self.assertEqual(b.display_name, 'X')
+        self.assertEqual(c.display_name, 'X / C')
+        self.assertEqual(d.display_name, 'X / C / D')
+
     def test_12_cascade(self):
         """ test computed field depending on computed field """
         message = self.env.ref('test_new_api.message_0_0')
@@ -204,6 +240,13 @@ class TestFields(common.TransactionCase):
         self.assertEqual(cath.parent, beth)
         self.assertEqual(ewan.parent, cath)
         self.assertEqual(ewan.name, "Erwan")
+
+        # write on non-stored inverse field on severals records
+        foo1 = Category.create({'name': 'Foo'})
+        foo2 = Category.create({'name': 'Foo'})
+        (foo1 + foo2).write({'display_name': 'Bar'})
+        self.assertEqual(foo1.name, 'Bar')
+        self.assertEqual(foo2.name, 'Bar')
 
         record = self.env['test_new_api.compute.inverse']
 
@@ -232,6 +275,16 @@ class TestFields(common.TransactionCase):
         self.assertEqual(record.foo, 'Ho')
         self.assertEqual(record.bar, 'Ho')
         self.assertEqual(record.counts, {'compute': 0, 'inverse': 1})
+
+    def test_13_inverse_access(self):
+        """ test access rights on inverse fields """
+        foo = self.env['test_new_api.category'].create({'name': 'Foo'})
+        user = self.env['res.users'].create({'name': 'Foo', 'login': 'foo'})
+        self.assertFalse(user.has_group('base.group_system'))
+        # add group on non-stored inverse field
+        self.patch(type(foo).display_name, 'groups', 'base.group_system')
+        with self.assertRaises(AccessError):
+            foo.sudo(user).display_name = 'Forbidden'
 
     def test_14_search(self):
         """ test search on computed fields """
@@ -485,6 +538,10 @@ class TestFields(common.TransactionCase):
         self.env['ir.property'].create({'name': 'foo', 'fields_id': field.id,
                                         'value': 'default', 'type': 'char'})
 
+        # assumption: users don't have access to 'ir.property'
+        accesses = self.env['ir.model.access'].search([('model_id.model', '=', 'ir.property')])
+        accesses.write(dict.fromkeys(['perm_read', 'perm_write', 'perm_create', 'perm_unlink'], False))
+
         # create/modify a record, and check the value for each user
         record = self.env['test_new_api.company'].create({'foo': 'main'})
         record.invalidate_cache()
@@ -497,6 +554,58 @@ class TestFields(common.TransactionCase):
         self.assertEqual(record.sudo(user0).foo, 'main')
         self.assertEqual(record.sudo(user1).foo, 'alpha')
         self.assertEqual(record.sudo(user2).foo, 'default')
+
+        record.sudo(user1).foo = False
+        record.invalidate_cache()
+        self.assertEqual(record.sudo(user0).foo, 'main')
+        self.assertEqual(record.sudo(user1).foo, False)
+        self.assertEqual(record.sudo(user2).foo, 'default')
+
+        # set field with 'force_company' in context
+        record.sudo(user0).with_context(force_company=company1.id).foo = 'beta'
+        record.invalidate_cache()
+        self.assertEqual(record.sudo(user0).foo, 'main')
+        self.assertEqual(record.sudo(user1).foo, 'beta')
+        self.assertEqual(record.sudo(user2).foo, 'default')
+
+        # create company record and attribute
+        company_record = self.env['test_new_api.company'].create({'foo': 'ABC'})
+        attribute_record = self.env['test_new_api.company.attr'].create({
+            'company': company_record.id,
+            'quantity': 1,
+        })
+        self.assertEqual(attribute_record.bar, 'ABC')
+
+        # change quantity, 'bar' should recompute to 'ABCABC'
+        attribute_record.quantity = 2
+        self.assertEqual(attribute_record.bar, 'ABCABC')
+        self.assertFalse(self.env.has_todo())
+
+        # change company field 'foo', 'bar' should recompute to 'DEFDEF'
+        company_record.foo = 'DEF'
+        self.assertEqual(attribute_record.company.foo, 'DEF')
+        self.assertEqual(attribute_record.bar, 'DEFDEF')
+        self.assertFalse(self.env.has_todo())
+
+        # add group on company-dependent field
+        self.assertFalse(user0.has_group('base.group_system'))
+        self.patch(type(record).foo, 'groups', 'base.group_system')
+        with self.assertRaises(AccessError):
+            record.sudo(user0).foo = 'forbidden'
+
+        user0.write({'groups_id': [(4, self.env.ref('base.group_system').id)]})
+        record.sudo(user0).foo = 'yes we can'
+
+        # add ir.rule to prevent access on record
+        self.assertTrue(user0.has_group('base.group_user'))
+        model_id = self.env['ir.model'].search([('model', '=', record._name)]).id
+        rule = self.env['ir.rule'].create({
+            'model_id': model_id,
+            'groups': [self.env.ref('base.group_user').id],
+            'domain_force': str([('id', '!=', record.id)]),
+        })
+        with self.assertRaises(AccessError):
+            record.sudo(user0).foo = 'forbidden'
 
     def test_28_sparse(self):
         """ test sparse fields. """
@@ -654,6 +763,54 @@ class TestFields(common.TransactionCase):
         discussion.write({'very_important_messages': [(5,)]})
         self.assertFalse(discussion.very_important_messages)
         self.assertFalse(message.exists())
+
+    def test_70_x2many_write(self):
+        discussion = self.env.ref('test_new_api.discussion_0')
+        Message = self.env['test_new_api.message']
+        # There must be 3 messages, 0 important
+        self.assertEqual(len(discussion.messages), 3)
+        self.assertEqual(len(discussion.important_messages), 0)
+        self.assertEqual(len(discussion.very_important_messages), 0)
+        discussion.important_messages = [(0, 0, {
+            'body': 'What is the answer?',
+            'important': True,
+        })]
+        # There must be 4 messages, 1 important
+        self.assertEqual(len(discussion.messages), 4)
+        self.assertEqual(len(discussion.important_messages), 1)
+        self.assertEqual(len(discussion.very_important_messages), 1)
+        discussion.very_important_messages |= Message.new({
+            'body': '42',
+            'important': True,
+        })
+        # There must be 5 messages, 2 important
+        self.assertEqual(len(discussion.messages), 5)
+        self.assertEqual(len(discussion.important_messages), 2)
+        self.assertEqual(len(discussion.very_important_messages), 2)
+
+    def test_70_x2many_write(self):
+        discussion = self.env.ref('test_new_api.discussion_0')
+        Message = self.env['test_new_api.message']
+        # There must be 3 messages, 0 important
+        self.assertEqual(len(discussion.messages), 3)
+        self.assertEqual(len(discussion.important_messages), 0)
+        self.assertEqual(len(discussion.very_important_messages), 0)
+        discussion.important_messages = [(0, 0, {
+            'body': 'What is the answer?',
+            'important': True,
+        })]
+        # There must be 4 messages, 1 important
+        self.assertEqual(len(discussion.messages), 4)
+        self.assertEqual(len(discussion.important_messages), 1)
+        self.assertEqual(len(discussion.very_important_messages), 1)
+        discussion.very_important_messages |= Message.new({
+            'body': '42',
+            'important': True,
+        })
+        # There must be 5 messages, 2 important
+        self.assertEqual(len(discussion.messages), 5)
+        self.assertEqual(len(discussion.important_messages), 2)
+        self.assertEqual(len(discussion.very_important_messages), 2)
 
 
 class TestHtmlField(common.TransactionCase):

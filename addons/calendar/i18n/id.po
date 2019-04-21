@@ -3,21 +3,24 @@
 # * calendar
 # 
 # Translators:
-# Deddy Ddr <deddy.ddr@gmail.com>, 2016
-# Wahyu Setiawan <wahyusetiaaa@gmail.com>, 2016
-# Martin Trigaux <mat@odoo.com>, 2016
-# William Surya Permana <zarambie_game@yahoo.com>, 2016
 # Muhammad Herdiansyah <herdiansyah@openmailbox.org>, 2016
 # Febrasari Almania <febrasari.almania@gmail.com>, 2016
-# oon arfiandwi <oon.arfiandwi@gmail.com>, 2016
 # Edy Kend <edy@azmall.co.id>, 2016
+# William Surya Permana <zarambie_game@yahoo.com>, 2016
+# Martin Trigaux, 2016
+# oon arfiandwi (OonID) <oon.arfiandwi@gmail.com>, 2016
+# Deddy Ddr <deddy.ddr@gmail.com>, 2016
+# Wahyu Setiawan <wahyusetiaaa@gmail.com>, 2016
+# Muhammad Syarif <mhdsyarif.ms@gmail.com>, 2017
+# Ryanto The <ry.the77@gmail.com>, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-10 08:44+0000\n"
-"PO-Revision-Date: 2016-10-10 08:44+0000\n"
-"Last-Translator: Edy Kend <edy@azmall.co.id>, 2016\n"
+"PO-Revision-Date: 2016-09-07 09:18+0000\n"
+"Last-Translator: Ryanto The <ry.the77@gmail.com>, 2018\n"
 "Language-Team: Indonesian (https://www.transifex.com/odoo/teams/41243/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -300,12 +303,12 @@ msgstr "${object.event_id.name} - pengingat"
 #. module: calendar
 #: model:mail.template,subject:calendar.calendar_template_meeting_invitation
 msgid "${object.event_id.name} invitation"
-msgstr ""
+msgstr "${object.event_id.name} undangan"
 
 #. module: calendar
 #: model:mail.template,subject:calendar.calendar_template_meeting_changedate
 msgid "${object.event_id.name}: Date updated"
-msgstr ""
+msgstr "${object.event_id.name}: Tanggal diperbaharui"
 
 #. module: calendar
 #: code:addons/calendar/models/calendar.py:639
@@ -555,7 +558,7 @@ msgstr "Nama Tampilan"
 #: code:addons/calendar/static/src/js/base_calendar.js:156
 #, python-format
 msgid "Do you really want to delete this filter from favorites ?"
-msgstr ""
+msgstr "Apakah Anda yakin ingin menghapus filter ini dari favorit?"
 
 #. module: calendar
 #: model:ir.model.fields,field_description:calendar.field_calendar_event_duration
@@ -620,13 +623,15 @@ msgstr "Berakhir pada"
 #: code:addons/calendar/models/calendar.py:821
 #, python-format
 msgid "Ending date cannot be set before starting date."
-msgstr ""
+msgstr "Tanggal akhir tidak bisa ditetapkan sebelum tanggal awal dibuat."
 
 #. module: calendar
 #: code:addons/calendar/models/calendar.py:819
 #, python-format
 msgid "Ending datetime cannot be set before starting datetime."
 msgstr ""
+"Tanggal waktu akhir tidak dapat ditetapkan sebelum tanggal waktu awal "
+"dibuat."
 
 #. module: calendar
 #: model:ir.model,name:calendar.model_calendar_event
@@ -647,7 +652,7 @@ msgstr "Acara alarm"
 #: code:addons/calendar/models/calendar.py:1059
 #, python-format
 msgid "Event recurrence interval cannot be negative."
-msgstr ""
+msgstr "Interval antar kegiatan rutin tidak bisa negatif."
 
 #. module: calendar
 #. openerp-web
@@ -763,7 +768,7 @@ msgstr "Detail Undangan"
 #. module: calendar
 #: model:ir.ui.view,arch_db:calendar.invitation_page_anonymous
 msgid "Invitation for"
-msgstr ""
+msgstr "Undangan untuk"
 
 #. module: calendar
 #: model:ir.ui.view,arch_db:calendar.view_calendar_event_form
@@ -1212,7 +1217,7 @@ msgstr "Ketiga"
 #. module: calendar
 #: model:ir.ui.view,arch_db:calendar.view_calendar_event_form
 msgid "This event is linked to a recurrence...<br/>"
-msgstr ""
+msgstr "Acara ini terkait dengan sebuah pengulangan...<br/>"
 
 #. module: calendar
 #: model:ir.model.fields,field_description:calendar.field_calendar_event_th

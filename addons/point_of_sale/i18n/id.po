@@ -3,28 +3,31 @@
 # * point_of_sale
 # 
 # Translators:
-# Andhitia Rama <andhitia.r@gmail.com>, 2016
-# Wahyu Setiawan <wahyusetiaaa@gmail.com>, 2016
-# Martin Trigaux <mat@odoo.com>, 2016
-# firman firman <firman.olxbpn@gmail.com>, 2016
-# dimas indra <dprahastra@gmail.com>, 2016
-# Febrasari Almania <febrasari.almania@gmail.com>, 2016
-# oon arfiandwi <oon.arfiandwi@gmail.com>, 2016
-# William Surya Permana <zarambie_game@yahoo.com>, 2016
-# Deddy Ddr <deddy.ddr@gmail.com>, 2016
 # Mohamad Dadi Nurdiansah <dadi.nurdiansah@gmail.com>, 2016
+# Deddy Ddr <deddy.ddr@gmail.com>, 2016
 # Muhammad Herdiansyah <herdiansyah@openmailbox.org>, 2016
 # rtfm pliz <rtfmpliz@gmail.com>, 2016
-# Bonny Useful <bonny.useful@gmail.com>, 2016
+# oon arfiandwi (OonID) <oon.arfiandwi@gmail.com>, 2016
+# William Surya Permana <zarambie_game@yahoo.com>, 2016
+# firman firman <firman.olxbpn@gmail.com>, 2016
+# dimas indra <dprahastra@gmail.com>, 2016
 # Andi Fadhel <cliffryu@gmail.com>, 2016
+# Febrasari Almania <febrasari.almania@gmail.com>, 2016
+# Andhitia Rama <andhitia.r@gmail.com>, 2016
+# Wahyu Setiawan <wahyusetiaaa@gmail.com>, 2016
+# Martin Trigaux, 2016
 # alfieqashwa <alfieqashwa@gmail.com>, 2016
+# Bonny Useful <bonny.useful@gmail.com>, 2017
+# Muhammad Syarif <mhdsyarif.ms@gmail.com>, 2017
+# Ryanto The <ry.the77@gmail.com>, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-13 09:53+0000\n"
-"PO-Revision-Date: 2017-02-13 09:53+0000\n"
-"Last-Translator: alfieqashwa <alfieqashwa@gmail.com>, 2016\n"
+"POT-Creation-Date: 2017-06-23 13:27+0000\n"
+"PO-Revision-Date: 2016-09-07 09:25+0000\n"
+"Last-Translator: Ryanto The <ry.the77@gmail.com>, 2018\n"
 "Language-Team: Indonesian (https://www.transifex.com/odoo/teams/41243/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +39,7 @@ msgstr ""
 #: code:addons/point_of_sale/models/pos_order.py:679
 #, python-format
 msgid " REFUND"
-msgstr ""
+msgstr "PENGEMBALIAN DANA"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_report_pos_order_nbr_lines
@@ -45,24 +48,18 @@ msgstr "# Baris"
 
 #. module: point_of_sale
 #. openerp-web
-#: code:addons/point_of_sale/static/src/xml/pos.xml:1423
+#: code:addons/point_of_sale/static/src/xml/pos.xml:1428
 #, python-format
 msgid "% discount"
 msgstr "% diskon"
 
 #. module: point_of_sale
 #. openerp-web
-#: code:addons/point_of_sale/static/src/xml/pos.xml:1550
-#: code:addons/point_of_sale/static/src/xml/pos.xml:1590
+#: code:addons/point_of_sale/static/src/xml/pos.xml:1555
+#: code:addons/point_of_sale/static/src/xml/pos.xml:1595
 #, python-format
 msgid "&nbsp;"
 msgstr "&nbsp"
-
-#. module: point_of_sale
-#: code:addons/point_of_sale/models/pos_order.py:72
-#, python-format
-msgid "(RESCUE FOR %(session)s)"
-msgstr ""
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_pos_form
@@ -90,6 +87,9 @@ msgid ""
 "laptops, or industrial hardware.</p><p>Once the session launched, the system"
 " continues to run without an internet connection.</p>"
 msgstr ""
+"<p>Klik untuk memulai antarmuka POS. Antarmuka ini <b>dapat dipakai di "
+"tablet</b>, laptop, atau perangkat keras industri.</p><p>Begitu sesi "
+"dimulai, sistem dapat terus berjalan tanpa koneksi internet.</p>"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_session_form
@@ -97,6 +97,8 @@ msgid ""
 "<span class=\"o_stat_text\">Put</span>\n"
 "                                <span class=\"o_stat_text\">Money In</span>"
 msgstr ""
+"<span class=\"o_stat_text\">Meletakkan</span>\n"
+"                                <span class=\"o_stat_text\">Uang masuk</span>"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_session_form
@@ -114,6 +116,8 @@ msgid ""
 "<span class=\"o_stat_text\">Take</span>\n"
 "                                <span class=\"o_stat_text\">Money Out</span>"
 msgstr ""
+"<span class=\"o_stat_text\">Mengambil</span>\n"
+"                                <span class=\"o_stat_text\">Uang keluar</span>"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_config_kanban
@@ -282,7 +286,7 @@ msgstr "Informasi Akuntansi"
 #. module: point_of_sale
 #: model:ir.model.fields,help:point_of_sale.field_pos_config_invoice_journal_id
 msgid "Accounting journal used to create invoices."
-msgstr ""
+msgstr "Jurnal akuntasi digunakan untuk membuat tagihan."
 
 #. module: point_of_sale
 #: model:ir.model.fields,help:point_of_sale.field_pos_config_journal_id
@@ -431,6 +435,7 @@ msgid "Available in POS"
 msgstr "Tersedia di POS"
 
 #. module: point_of_sale
+#: model:ir.model.fields,field_description:point_of_sale.field_product_product_available_in_pos
 #: model:ir.model.fields,field_description:point_of_sale.field_product_template_available_in_pos
 msgid "Available in the Point of Sale"
 msgstr "Tersedia dalam Point of Sale"
@@ -642,12 +647,13 @@ msgstr "Perubahan Tip"
 #. module: point_of_sale
 #. openerp-web
 #: code:addons/point_of_sale/static/src/xml/pos.xml:667
-#: code:addons/point_of_sale/static/src/xml/pos.xml:1479
+#: code:addons/point_of_sale/static/src/xml/pos.xml:1484
 #, python-format
 msgid "Change:"
 msgstr "Kembalian:"
 
 #. module: point_of_sale
+#: model:ir.model.fields,help:point_of_sale.field_product_product_to_weight
 #: model:ir.model.fields,help:point_of_sale.field_product_template_to_weight
 msgid ""
 "Check if the product should be weighted using the hardware scale integration"
@@ -656,6 +662,7 @@ msgstr ""
 "timbangan"
 
 #. module: point_of_sale
+#: model:ir.model.fields,help:point_of_sale.field_product_product_available_in_pos
 #: model:ir.model.fields,help:point_of_sale.field_product_template_available_in_pos
 msgid "Check if you want this product to appear in the Point of Sale"
 msgstr "Aktifkan jika menginginkan produk ini muncul di Point of Sale"
@@ -889,7 +896,7 @@ msgstr "Sesi saat ini"
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_current_session_state
 msgid "Current session state"
-msgstr ""
+msgstr "Status sesi saat ini"
 
 #. module: point_of_sale
 #. openerp-web
@@ -935,7 +942,7 @@ msgstr "Tampilan Debug"
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_default_cashbox_lines_ids
 msgid "Default Balance"
-msgstr ""
+msgstr "Saldo Default"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_account_bank_statement_account_id
@@ -945,7 +952,7 @@ msgstr "Default Akun Debit"
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_default_fiscal_position_id
 msgid "Default Fiscal Position"
-msgstr ""
+msgstr "Posisi Fiskal Standar"
 
 #. module: point_of_sale
 #: model:ir.model.fields,help:point_of_sale.field_pos_config_barcode_nomenclature_id
@@ -1114,6 +1121,20 @@ msgstr "selesai"
 
 #. module: point_of_sale
 #. openerp-web
+#: code:addons/point_of_sale/static/src/xml/pos.xml:1314
+#, python-format
+msgid "Download Paid Orders"
+msgstr "Unduh Pesanan yang dibayar"
+
+#. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/xml/pos.xml:1316
+#, python-format
+msgid "Download Unpaid Orders"
+msgstr "Unduh Pesanan yang belum dibayar"
+
+#. module: point_of_sale
+#. openerp-web
 #: code:addons/point_of_sale/static/src/xml/pos.xml:509
 #, python-format
 msgid "Due"
@@ -1165,7 +1186,7 @@ msgstr "Berat paket kosong"
 #: code:addons/point_of_sale/static/src/js/screens.js:420
 #, python-format
 msgid "Empty Serial/Lot Number"
-msgstr ""
+msgstr "Kosongkan Nomor Seri/Lot"
 
 #. module: point_of_sale
 #: model:ir.model.fields,help:point_of_sale.field_pos_config_iface_scan_via_proxy
@@ -1590,11 +1611,6 @@ msgid "Last session closing date"
 msgstr "Sesi akhir tanggal penutupan"
 
 #. module: point_of_sale
-#: model:ir.model.fields,field_description:point_of_sale.field_res_users_date_review
-msgid "Latest Partner Review"
-msgstr "Review terbaru mitra"
-
-#. module: point_of_sale
 #: model:product.product,name:point_of_sale.poireaux_poireaux
 #: model:product.template,name:point_of_sale.poireaux_poireaux_product_template
 msgid "Leeks"
@@ -1658,12 +1674,12 @@ msgstr "Banyak nama"
 #: code:addons/point_of_sale/static/src/js/models.js:2016
 #, python-format
 msgid "Lot/Serial Number(s) Required"
-msgstr ""
+msgstr "Nomor Seri/Lot Wajib Ada"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_order_line_pack_lot_ids
 msgid "Lot/serial Number"
-msgstr ""
+msgstr "Nomor Seri/Lot"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_settings_module_pos_loyalty
@@ -1878,7 +1894,7 @@ msgstr "Ok"
 #: code:addons/point_of_sale/static/src/js/screens.js:421
 #, python-format
 msgid "One or more product(s) required serial/lot number."
-msgstr ""
+msgstr "Satu produk atau lebih membutuhkan nomor seri/lot"
 
 #. module: point_of_sale
 #: model:product.product,name:point_of_sale.Onions
@@ -2046,7 +2062,7 @@ msgstr "Analisa Pesanan"
 #: code:addons/point_of_sale/models/pos_config.py:212
 #, python-format
 msgid "POS Order %s"
-msgstr ""
+msgstr "Pesanan POS %s"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_order_line_form
@@ -2071,13 +2087,13 @@ msgstr "POS perintah baris"
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_partner_property_form
 msgid "POS Sales"
-msgstr ""
+msgstr "Penjualan POS"
 
 #. module: point_of_sale
 #: code:addons/point_of_sale/models/pos_config.py:223
 #, python-format
 msgid "POS order line %s"
-msgstr ""
+msgstr "Baris order POS %s"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_report_pos_order_search
@@ -2236,7 +2252,7 @@ msgstr "Pengambilan"
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_session_form
 msgid "Picking Errors"
-msgstr ""
+msgstr "Pengambilan Eror"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_picking_type_id
@@ -2261,6 +2277,13 @@ msgstr "Silakan konfirmasi jumlah besar"
 #, python-format
 msgid "Please define income account for this product: \"%s\" (id:%d)."
 msgstr "Silakan menentukan nama pendapatan untuk produk ini: \"%s\" (id:%d)."
+
+#. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/js/screens.js:2017
+#, python-format
+msgid "Please print the invoice from the backend"
+msgstr ""
 
 #. module: point_of_sale
 #: code:addons/point_of_sale/models/pos_order.py:446
@@ -2312,6 +2335,7 @@ msgid "Point of Sale Analysis"
 msgstr "Point of Sale analisis"
 
 #. module: point_of_sale
+#: model:ir.model.fields,field_description:point_of_sale.field_product_product_pos_categ_id
 #: model:ir.model.fields,field_description:point_of_sale.field_product_template_pos_categ_id
 msgid "Point of Sale Category"
 msgstr "Point of Sale Kategori"
@@ -2391,7 +2415,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:point_of_sale.field_res_partner_pos_order_count
 #: model:ir.model.fields,field_description:point_of_sale.field_res_users_pos_order_count
 msgid "Pos order count"
-msgstr ""
+msgstr "Jumlah pesanan POS"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_pack_operation_lot_pos_order_line_id
@@ -2559,7 +2583,7 @@ msgstr "Baca Skala Timbang"
 #: code:addons/point_of_sale/static/src/js/tour.js:13
 #, python-format
 msgid "Ready to launch your <b>point of sale</b>? <i>Click here</i>."
-msgstr ""
+msgstr "Siap menjalankan <b>point of sale</b> Anda? <i>Klik di sini</i>."
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_session_form
@@ -2799,7 +2823,7 @@ msgstr "Sequence Number"
 #: code:addons/point_of_sale/static/src/xml/pos.xml:1055
 #, python-format
 msgid "Serial/Lot Number"
-msgstr ""
+msgstr "Nomor Serial/Lot"
 
 #. module: point_of_sale
 #. openerp-web
@@ -2912,7 +2936,7 @@ msgstr "Beberapa perintah tidak harus diserahkan kepada"
 #. module: point_of_sale
 #: model:ir.model,name:point_of_sale.model_pos_pack_operation_lot
 msgid "Specify product lot/serial number in pos order line"
-msgstr ""
+msgstr "Tentukan nomor seri/lot produk di baris order pos"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_iface_start_categ_id
@@ -3155,7 +3179,7 @@ msgstr ""
 #, python-format
 msgid ""
 "The invoice journal and the point of sale must belong to the same company"
-msgstr ""
+msgstr "Jurnal penagihan dan pos harus termasuk dalam perusahaan yang sama"
 
 #. module: point_of_sale
 #: code:addons/point_of_sale/models/pos_session.py:93
@@ -3184,6 +3208,15 @@ msgstr "Urutan tidak terkirim"
 msgid "The order could not be sent to the server due to an unknown error"
 msgstr ""
 "Urutan tidak akan dikirim ke server karena kesalahan yang tidak diketahui"
+
+#. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/js/screens.js:2018
+#, python-format
+msgid ""
+"The order has been synchronized earlier. Please make the invoice from the "
+"backend for the order: "
+msgstr ""
 
 #. module: point_of_sale
 #: model:ir.model.fields,help:point_of_sale.field_pos_config_iface_precompute_cash
@@ -3341,6 +3374,8 @@ msgid ""
 "This cashbox line is used by default when opening or closing a balance for "
 "this point of sale"
 msgstr ""
+"Baris cashbox digunakan secara standar ketika membuka atau menutup saldo "
+"untuk pos ini"
 
 #. module: point_of_sale
 #: model:ir.model.fields,help:point_of_sale.field_account_journal_amount_authorized_diff
@@ -3390,6 +3425,8 @@ msgid ""
 "This invoice has been created from the point of sale session: <a href=# "
 "data-oe-model=pos.order data-oe-id=%d>%s</a>"
 msgstr ""
+"Faktur ini dibuat dari sesi pos: <a href=# data-oe-model=pos.order data-oe-"
+"id=%d>%s</a>"
 
 #. module: point_of_sale
 #: model:ir.model.fields,help:point_of_sale.field_pos_config_settings_module_pos_restaurant
@@ -3444,14 +3481,17 @@ msgstr ""
 "untuk menyesuaikan referensi nomor pesanan Anda."
 
 #. module: point_of_sale
-#: code:addons/point_of_sale/models/pos_order.py:566
+#: code:addons/point_of_sale/models/pos_order.py:603
 #, python-format
 msgid ""
 "This transfer has been created from the point of sale session: <a href=# "
 "data-oe-model=pos.order data-oe-id=%d>%s</a>"
 msgstr ""
+"Transfer ini dibuat dari sesi pos: <a href=# data-oe-model=pos.order data-"
+"oe-id=%d>%s</a>"
 
 #. module: point_of_sale
+#: model:ir.model.fields,help:point_of_sale.field_product_product_pos_categ_id
 #: model:ir.model.fields,help:point_of_sale.field_product_template_pos_categ_id
 msgid "Those categories are used to group similar products for point of sale."
 msgstr ""
@@ -3471,12 +3511,13 @@ msgid "Tip Product"
 msgstr "Tip produk"
 
 #. module: point_of_sale
+#: model:ir.model.fields,field_description:point_of_sale.field_product_product_to_weight
 #: model:ir.model.fields,field_description:point_of_sale.field_product_template_to_weight
 msgid "To Weigh With Scale"
 msgstr "Skala elektronik"
 
 #. module: point_of_sale
-#: code:addons/point_of_sale/models/pos_order.py:675
+#: code:addons/point_of_sale/models/pos_order.py:768
 #, python-format
 msgid ""
 "To return product(s), you need to open a session that will be used to "
@@ -3627,7 +3668,7 @@ msgstr "Pengguna"
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_uuid
 msgid "Uuid"
-msgstr ""
+msgstr "Uuid"
 
 #. module: point_of_sale
 #. openerp-web
@@ -3669,7 +3710,7 @@ msgstr "Gudang"
 #: code:addons/point_of_sale/static/src/xml/pos.xml:1320
 #, python-format
 msgid "Weighing"
-msgstr ""
+msgstr "Menimbang"
 
 #. module: point_of_sale
 #: code:addons/point_of_sale/models/barcode_rule.py:12
@@ -3702,6 +3743,8 @@ msgid ""
 "You can define another list of available currencies on the\n"
 "                                <i>Cash Registers</i> tab of the"
 msgstr ""
+"Anda dapat menentukan daftar lain dari mata uang yang tersedia pada\n"
+"                                tab <i>Mesin Kasir</i> dari"
 
 #. module: point_of_sale
 #: code:addons/point_of_sale/models/pos_order.py:390
@@ -3809,6 +3852,12 @@ msgid ""
 msgstr ""
 "Anda harus memilih pricelist dalam bentuk penjualan!\n"
 "Silakan set satu sebelum memilih produk."
+
+#. module: point_of_sale
+#: code:addons/point_of_sale/models/pos_session.py:24
+#, python-format
+msgid "You have to set a Sale Journal for the POS:%s"
+msgstr "Anda harus mengatur Jurnal Penjualan untuk POS:%s"
 
 #. module: point_of_sale
 #: model:ir.actions.act_window,help:point_of_sale.product_product_action
@@ -3922,43 +3971,51 @@ msgstr "Cash.Box.Out"
 
 #. module: point_of_sale
 #. openerp-web
-#: code:addons/point_of_sale/static/src/xml/pos.xml:1552
-#: code:addons/point_of_sale/static/src/xml/pos.xml:1594
+#: code:addons/point_of_sale/static/src/xml/pos.xml:1557
+#: code:addons/point_of_sale/static/src/xml/pos.xml:1599
 #, python-format
 msgid "close"
 msgstr "tutup"
 
 #. module: point_of_sale
 #. openerp-web
-#: code:addons/point_of_sale/static/src/xml/pos.xml:1510
-#: code:addons/point_of_sale/static/src/xml/pos.xml:1587
+#: code:addons/point_of_sale/static/src/xml/pos.xml:1515
+#: code:addons/point_of_sale/static/src/xml/pos.xml:1592
 #, python-format
 msgid "delete"
 msgstr "hapus"
 
 #. module: point_of_sale
 #. openerp-web
-#: code:addons/point_of_sale/static/src/xml/pos.xml:1248
+#: code:addons/point_of_sale/static/src/xml/pos.xml:1251
 #, python-format
 msgid "discount"
 msgstr "Diskon"
 
 #. module: point_of_sale
 #. openerp-web
-#: code:addons/point_of_sale/static/src/js/screens.js:1905
+#: code:addons/point_of_sale/static/src/js/popups.js:109
+#, python-format
+msgid "error"
+msgstr "Kesalahan"
+
+#. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/js/screens.js:1923
 #, python-format
 msgid "for an order of"
 msgstr "untuk memperoleh perintah"
 
 #. module: point_of_sale
-#: code:addons/point_of_sale/models/pos_config.py:203
+#: code:addons/point_of_sale/models/pos_config.py:207
 #, python-format
 msgid "not used"
 msgstr "tidak digunakan"
 
 #. module: point_of_sale
 #. openerp-web
-#: code:addons/point_of_sale/static/src/xml/pos.xml:1172
+#: code:addons/point_of_sale/static/src/js/chrome.js:292
+#: code:addons/point_of_sale/static/src/xml/pos.xml:1175
 #, python-format
 msgid "paid orders"
 msgstr "Semua pesanan dibayar"
@@ -3991,7 +4048,7 @@ msgstr "Report.point_of_sale.report_invoice"
 #. module: point_of_sale
 #: model:ir.model,name:point_of_sale.model_report_point_of_sale_report_saledetails
 msgid "report.point_of_sale.report_saledetails"
-msgstr ""
+msgstr "report.point_of_sale.report_saledetails"
 
 #. module: point_of_sale
 #. openerp-web

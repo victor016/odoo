@@ -3,17 +3,24 @@
 # * project
 # 
 # Translators:
-# Jeffery CHEN <jeffery9@gmail.com>, 2016
-# 卓忆科技 <zhanghao@jointd.com>, 2016
+# Jeffery CHEN Fan <jeffery9@gmail.com>, 2016
 # liAnGjiA <liangjia@qq.com>, 2016
-# Bo Cao <cao.poobo@hotmail.com>, 2016
+# 卓忆科技 <zhanghao@jointd.com>, 2016
+# Bo Cao, 2016
+# Yaorong Li <55yaorong.li@gmail.com>, 2017
+# 苏州远鼎 <tiexinliu@126.com>, 2017
+# Maie <m@maie.name>, 2017
+# e2f <projects@e2f.com>, 2018
+# v2exerer <9010446@qq.com>, 2018
+# Martin Trigaux, 2018
+# 广州救火 <7017511@qq.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-10 08:42+0000\n"
-"PO-Revision-Date: 2016-10-10 08:42+0000\n"
-"Last-Translator: Bo Cao <cao.poobo@hotmail.com>, 2016\n"
+"POT-Creation-Date: 2017-06-23 13:26+0000\n"
+"PO-Revision-Date: 2017-06-23 13:26+0000\n"
+"Last-Translator: 广州救火 <7017511@qq.com>, 2018\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,11 +113,10 @@ msgid ""
 "                                <span style=\"font-style:italic;\">You’re not alone</span>\n"
 "                            </p>\n"
 "                            <p dir=\"ltr\" style=\"font-size:13px;margin-top:0pt;margin-bottom:8pt;\">\n"
-"                                <span>We would be delighted to assist you along the way. Contact us at \n"
-"                                <a href=\"mailto:help@odoo.com\"><span style=\"text-decoration:underline;\">\n"
-"                                help@odoo.com</span></a> if you have any question. You can also discover \n"
-"                                how to get the best out of Odoo Project with our </span>\n"
-"                                <a href=\"https://www.odoo.com/documentation/user/9.0/project.html\">\n"
+"                                <span>We would be delighted to assist you along the way. Contact us through our\n"
+"                                <a href=\"https://www.odoo.com/help\">support form</a> if you have any question.\n"
+"                                You can also discover how to get the best out of Odoo Project with our </span>\n"
+"                                <a href=\"https://www.odoo.com/documentation/user/10.0/project.html\">\n"
 "                                <span style=\"text-decoration:underline;\">User Documentation</span></a>\n"
 "                                </span><span> or with our </span>\n"
 "                                <a href=\"https://www.odoo.com/documentation\">\n"
@@ -127,6 +133,107 @@ msgid ""
 "            </div>\n"
 "        </div>"
 msgstr ""
+"\n"
+"            <div style=\"margin: 10px auto;\">\n"
+"            % set last_created_project = user.env['project.project'].search([('alias_id','!=',False)], order=\"create_date desc\")[0]\n"
+"            <table cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%;\">\n"
+"                <tbody>\n"
+"                    <tr>\n"
+"                        <td style=\"padding:2px;width:30%;\">\n"
+"                            <img src=\"web/static/src/img/logo.png\"/>\n"
+"                        </td>\n"
+"                        <td style=\"vertical-align: top; padding: 8px 10px;text-align: left;font-size: 14px;\">\n"
+"                            <a href=\"web/login\" style=\"float:right ;margin:15px auto;background: #875A7B;border-radius: 5px;color: #ffffff;font-size: 16px;padding: 10px 20px 10px 20px;text-decoration: none;\">自动登录</a>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </tbody>\n"
+"            </table>\n"
+"            <table style=\"width:100%;text-align:justify;margin:0 auto;border-collapse:collapse;border-top:1px solid lightgray\"\">\n"
+"                <tbody>\n"
+"                    <tr>\n"
+"                        <td style=\"padding:15px 10px;font-size:20px\">\n"
+"                            <p dir=\"ltr\" style=\"font-size:15px;margin-top:0pt;margin-bottom:0pt;\">\n"
+"                                <span>Odoo已自动启动并正在运行中</span></p><br>\n"
+"                            <p dir=\"ltr\" style=\"margin-top:0pt;margin-bottom:8pt;\">\n"
+"                                <span style=\"font-size:13px;font-weight:bold;\">下一步咧?</span></p>\n"
+"                            <ul style=\"margin-top:0pt;margin-bottom:0pt;font-size:13px;list-style-type:disc;\">\n"
+"                                % if last_created_project:\n"
+"                                    <li dir=\"ltr\">\n"
+"                                        <p dir=\"ltr\" style=\"margin-top:0pt;margin-bottom:0pt;\">\n"
+"                                            <span>试着发个电子邮件到 </span>\n"
+"                                            <a href=\"mailto:${last_created_project.alias_id.name_get()[0][1] if last_created_project.alias_id.alias_domain else user.company_id.email}\">\n"
+"                                                <span style=\"font-weight:bold; text-decoration:underline;\">${last_created_project.alias_id.name_get()[0][1] if last_created_project.alias_id.alias_domain else user.company_id.email}</span>\n"
+"                                            </a>\n"
+"                                        </p>\n"
+"                                    </li>\n"
+"                                % endif\n"
+"                                <li dir=\"ltr\">\n"
+"                                    <p dir=\"ltr\" style=\"margin-top:0pt;margin-bottom:8pt;\">\n"
+"                                        <span><a href=\"/web#view_type=list&model=res.users&action=base.action_res_users\">\n"
+"                                            <span style=\"font-weight:bold; text-decoration:underline;\">邀请新用户</span></a></span>\n"
+"                                        <span>合作</span>\n"
+"                                    </p>\n"
+"                                </li>\n"
+"                            </ul> <br>\n"
+"                            <p dir=\"ltr\" style=\"font-size:13px;margin-top:0pt;margin-bottom:8pt;\">\n"
+"                                <span style=\"font-weight:bold;\">发现 </span>\n"
+"                                <span><a href=\"/web#view_type=kanban&model=project.project&action=project.open_view_project_all\">\n"
+"                                    <span style=\"font-weight:bold; text-decoration:underline;\">项目策划人员</span></a></span>\n"
+"                                <span> 激活额外的功能</span>\n"
+"                                <span style=\"color:#875A7B;margin:0;font-weight:bold\">(${user.env['web.planner'].get_planner_progress('planner_project')}% done)</span>\n"
+"                            </p>\n"
+"                            <ul style=\"margin-top:0pt;margin-bottom:0pt;font-size:13px;list-style-type:disc;\">\n"
+"                                <li dir=\"ltr\">\n"
+"                                    <p dir=\"ltr\" style=\"margin-top:0pt;margin-bottom:0pt;\">\n"
+"                                        <span>用工时单跟踪小时数,</span>\n"
+"                                    </p>\n"
+"                                </li>\n"
+"                                <li dir=\"ltr\">\n"
+"                                    <p dir=\"ltr\" style=\"margin-top:0pt;margin-bottom:0pt;\">\n"
+"                                        <span>用预测计划任务和资源,</span>\n"
+"                                    </p>\n"
+"                                </li>\n"
+"                                <li dir=\"ltr\">\n"
+"                                    <p dir=\"ltr\" style=\"margin-top:0pt;margin-bottom:0pt;\">\n"
+"                                        <span>获取智能报告和准确的仪表盘,</span>\n"
+"                                    </p>\n"
+"                                </li>\n"
+"                                <li dir=\"ltr\">\n"
+"                                    <p dir=\"ltr\" style=\"margin-top:0pt;margin-bottom:0pt;\">\n"
+"                                        <span>按任务或问题计时开单,</span>\n"
+"                                    </p>\n"
+"                                </li>\n"
+"                                <li dir=\"ltr\">\n"
+"                                    <p dir=\"ltr\" style=\"margin-top:0pt;margin-bottom:8pt;\">\n"
+"                                        <span>以及更多...</span>\n"
+"                                    </p>\n"
+"                                </li>\n"
+"                            </ul>\n"
+"                            <br>\n"
+"                            <p dir=\"ltr\" style=\"font-size:13px;line-height:1.3;margin-top:0pt;margin-bottom:8pt;\">\n"
+"                                <span style=\"font-weight:bold;\">需要帮忙么？?</span>\n"
+"                                <span style=\"font-style:italic;\">你还有我</span>\n"
+"                            </p>\n"
+"                            <p dir=\"ltr\" style=\"font-size:13px;margin-top:0pt;margin-bottom:8pt;\">\n"
+"                                <span>我们很高兴能够在这一路上帮助您。如果您有任何疑问，随时可以通过\n"
+"                                <a href=\"https://www.odoo.com/help\">支援表</a> 和我们取得联络。\n"
+"                                您还可以使用我们的 </span>\n"
+"                                <a href=\"https://www.odoo.com/documentation/user/10.0/project.html\">\n"
+"                                <span style=\"text-decoration:underline;\">用户文档</span></a>\n"
+"                                </span><span> 或使用 </span>\n"
+"                                <a href=\"https://www.odoo.com/documentation\">\n"
+"                                <span style=\"text-decoration:underline;\">API 文档</span></a>\n"
+"                            </p>\n"
+"                            <br>\n"
+"                            <p dir=\"ltr\" style=\"font-size:13px;margin-top:0pt;margin-bottom:8pt;\"><span>尽情享受您的 Odoo 体验,</span></p>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </tbody>\n"
+"            </table>\n"
+"            <div dir=\"ltr\" style=\"font-size:13px;margin-top:0pt;margin-bottom:8pt;color:grey\">\n"
+"                <span><br/>-- <br/>来自 Odoo 官方团队<br/>PS: Odoo已经达到人见人爱车见车爆胎的令人发指的火红地步, 不信你看 </span><a href=\"https://twitter.com/odoo/favorites\"><span style=\"text-decoration:underline;\">大众评论。</span></a></span>\n"
+"            </div>\n"
+"        </div>"
 
 #. module: project
 #: model:mail.template,body_html:project.mail_template_data_project_task
@@ -137,6 +244,11 @@ msgid ""
 "<p>If you have any questions, please let us know.</p>\n"
 "<p>Best regards,</p>"
 msgstr ""
+"\n"
+"<p>尊敬的 ${object.partner_id.name or 'customer'}：</p>\n"
+"<p>感谢您的咨询。<br /></p>\n"
+"<p>如您有任何疑问，请随时与我们联系。</p>\n"
+"<p>此致，</p>"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_report_project_task_user_opening_days
@@ -146,15 +258,16 @@ msgstr "# 分配的天数"
 #. module: project
 #: model:ir.model.fields,field_description:project.field_report_project_task_user_closing_days
 msgid "# Days to Close"
-msgstr ""
+msgstr "# 到关闭的天数"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_report_project_task_user_delay_endings_days
 msgid "# Days to Deadline"
-msgstr ""
+msgstr "# 到截止天数"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_res_partner_task_count
+#: model:ir.model.fields,field_description:project.field_res_users_task_count
 msgid "# Tasks"
 msgstr "# 任务"
 
@@ -205,21 +318,21 @@ msgstr "2. 现在，我们花点时间来列出 <strong>你需要的项目:</str
 msgid ""
 "<b>Assign the task</b> to someone. <i>You can create and invite a new user "
 "on the fly.</i>"
-msgstr ""
+msgstr "<b>向某人分配任务</b>。<i>您可以随时创建并邀请新用户。</i>"
 
 #. module: project
 #. openerp-web
 #: code:addons/project/static/src/js/tour.js:83
 #, python-format
 msgid "<b>Click the save button</b> to apply your changes to the task."
-msgstr ""
+msgstr "<b>点击保存按钮 </b> 应用对任务的更改。"
 
 #. module: project
 #. openerp-web
 #: code:addons/project/static/src/js/tour.js:48
 #, python-format
 msgid "<b>Drag &amp; drop tasks</b> between columns as you work on them."
-msgstr ""
+msgstr "可以在列间<b>拖 &amp; 放</b> 任务。"
 
 #. module: project
 #. openerp-web
@@ -234,7 +347,7 @@ msgstr "<b>通过电子邮件</b>邀请同事。<br/> <i>每行发送一个电�
 #: code:addons/project/static/src/js/tour.js:54
 #, python-format
 msgid "<b>Star tasks</b> to mark team priorities."
-msgstr ""
+msgstr "<b>星标任务</b>用于标记团队优先级。"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -260,7 +373,7 @@ msgstr ""
 #: code:addons/project/models/project.py:150
 #, python-format
 msgid "<p class=\"oe_view_nocontent_create\">Click to create a new project.</p>"
-msgstr ""
+msgstr "<p class=\"oe_view_nocontent_create\">点击创建新项目。</p>"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.edit_project
@@ -696,6 +809,8 @@ msgid ""
 "<strong>Follow only what you need</strong><br/>\n"
 "                                    The simplest way to use notifications is to follow a whole project: you will receive notifications for all the new and existing tasks or issues of a project."
 msgstr ""
+"<strong>仅关注您所需内容</strong><br/>\n"
+"                                    使用通知最简单的方式是关注整个项目：您将收到有关项目中所有新增和现有任务的通知。"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -952,7 +1067,7 @@ msgstr "接收邮件来自"
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
 msgid "Account Preferences"
-msgstr "账号首选项"
+msgstr "账号个人设置"
 
 #. module: project
 #. openerp-web
@@ -980,6 +1095,11 @@ msgid "Active"
 msgstr "有效"
 
 #. module: project
+#: model:ir.ui.view,arch_db:project.project_planner
+msgid "Activities"
+msgstr "活动"
+
+#. module: project
 #: model:ir.ui.view,arch_db:project.task_type_edit
 msgid "Add a description..."
 msgstr "添加说明..."
@@ -991,12 +1111,12 @@ msgstr "添加说明..."
 msgid ""
 "Add columns to configure <b>stages for your tasks</b>.<br/><i>e.g. "
 "Specification &gt; Development &gt; Done</i>"
-msgstr ""
+msgstr "添加列以便配置 <b>任务阶段</b>.<br/><i>例如，规格 &gt; 开发 &gt; 完成</i>"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_project_kanban
 msgid "Add/remove from favorite"
-msgstr ""
+msgstr "点击从收藏夹添加/删除"
 
 #. module: project
 #. openerp-web
@@ -1092,7 +1212,7 @@ msgstr "应用"
 #: model:ir.ui.view,arch_db:project.view_project_project_filter
 #: model:ir.ui.view,arch_db:project.view_task_search_form
 msgid "Archived"
-msgstr "已存档"
+msgstr "归档"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_report_project_task_user_date_start
@@ -1133,6 +1253,9 @@ msgid ""
 "                                You can define here labels that will be displayed for the state instead\n"
 "                                of the default labels."
 msgstr ""
+"在每一个阶段，员工可以阻止或者让任务／议题准备进入下一阶段。\n"
+" 您可以在这里定义标签来替代 \n"
+" 默认的标签。"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -1270,7 +1393,7 @@ msgstr "选择这个框来通过这个项目管理内部活动"
 msgid ""
 "Choose a <b>project name</b>. (e.g. Website Launch, Product Development, "
 "Office Party, etc.)"
-msgstr ""
+msgstr "<b/>"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_project_view_form_simplified
@@ -1297,7 +1420,7 @@ msgstr "点击卡片查看任务详情。"
 #, python-format
 msgid ""
 "Click on the card to <b>go to your project</b> and start organizing tasks."
-msgstr ""
+msgstr "单击卡进入<b>到项目</b>中并开始组织任务。"
 
 #. module: project
 #. openerp-web
@@ -1499,7 +1622,7 @@ msgstr "创建日期"
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project_credit
 msgid "Credit"
-msgstr "Credit"
+msgstr "信用"
 
 #. module: project
 #: model:ir.filters,name:project.filter_task_report_cumulative_flow
@@ -1656,7 +1779,7 @@ msgstr "开发过程"
 #: model:ir.ui.view,arch_db:project.project_project_view_form_simplified
 #, python-format
 msgid "Discard"
-msgstr "丢弃"
+msgstr "取消"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_config_settings_display_name
@@ -1721,7 +1844,7 @@ msgstr "不要给你的每个客户都创建一个项目－它会使你的管理
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
 msgid "Don't hesitate to"
-msgstr "不要犹豫做"
+msgstr "不要犹豫"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -1876,7 +1999,7 @@ msgstr "最后的任务已经部署"
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task_type_fold
 msgid "Folded in Kanban"
-msgstr ""
+msgstr "在看板中折叠"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.edit_project
@@ -1908,8 +2031,8 @@ msgid ""
 "For the Odoo Team,<br/>\n"
 "                            Fabien Pinckaers, Founder"
 msgstr ""
-"关于Odoo团队,<br/>\n"
-"                            Fabien Pinckaers, 创始人F胖子：）"
+"对于Odoo团队,<br/>\n"
+"Fabien Pinckaers, 创始人"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -2027,6 +2150,12 @@ msgid ""
 "   if website is activated, portal users may see project, tasks or issues followed by\n"
 "   them or by someone of their company\n"
 msgstr ""
+"保持当前项目任务或问题的能见度：\n"
+"- 仅基于邀请：员工可能仅查看下列项目、任务或问题 \n"
+"- 所有员工可见的：员工可能查看的所有项目、任务或问题 \n"
+"- 以下客户可见的：员工可以查看每一件事；\n"
+" 如果网站已激活，门户用户可能查看项目、任务或问题，其次是 \n"
+" 他们或他们公司的某个人 \n"
 
 #. module: project
 #: code:addons/project/models/project.py:567
@@ -2087,7 +2216,7 @@ msgstr "定义议题和阻塞点更加容易"
 msgid ""
 "If set an email will be sent to the customer when the task or issue reaches "
 "this step."
-msgstr ""
+msgstr "当任务或问题到达这一步时，设置发送电子邮件给客户。"
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project_active
@@ -2159,7 +2288,7 @@ msgstr "入向"
 #. module: project
 #: model:ir.ui.view,arch_db:project.edit_project
 msgid "Incoming Emails create"
-msgstr "入向邮件创建"
+msgstr "入向电子邮件创建"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task_planned_hours
@@ -2530,7 +2659,7 @@ msgstr "通知"
 #: code:addons/project/static/src/js/tour.js:43
 #, python-format
 msgid "Now that the project is set up, <b>create a few tasks</b>."
-msgstr ""
+msgstr "现在项目设置完毕，<b>创建几个任务。</b>"
 
 #. module: project
 #: model:ir.model.fields,help:project.field_report_project_task_user_opening_days
@@ -2546,6 +2675,11 @@ msgstr "距关闭日期"
 #: model:ir.model.fields,field_description:project.field_project_project_doc_count
 msgid "Number of documents attached"
 msgstr "附件数量"
+
+#. module: project
+#: model:ir.ui.view,arch_db:project.project_planner
+msgid "Objectives"
+msgstr "目标"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -2591,7 +2725,7 @@ msgid ""
 "Optional ID of a thread (record) to which all incoming messages will be "
 "attached, even if they did not reply to it. If set, this will disable the "
 "creation of new records completely."
-msgstr "所有的进来的邮件都将附上一条线索（记录）选配的ID，即使它们不曾回复过它。如果设置了，这个将完全阻止新记录的创建。"
+msgstr "所有的进来的邮件都将附上一条线程（记录）选配的ID，即使它们不曾回复过它。如果设置了，这个将完全阻止新记录的创建。"
 
 #. module: project
 #: model:ir.actions.act_window,help:project.open_view_project_all
@@ -2829,6 +2963,7 @@ msgstr "项目任务"
 #: model:ir.model.fields,field_description:project.field_project_task_type_project_ids
 #: model:ir.ui.menu,name:project.menu_projects_config
 #: model:ir.ui.view,arch_db:project.analytic_account_inherited_form
+#: model:ir.ui.view,arch_db:project.project_planner
 #: model:ir.ui.view,arch_db:project.view_project
 msgid "Projects"
 msgstr "项目"
@@ -2895,12 +3030,12 @@ msgstr "准备已经被文档化过的取消"
 #. module: project
 #: model:mail.template,subject:project.mail_template_data_project_task
 msgid "Reception of ${object.name}"
-msgstr ""
+msgstr "${object.name}的招待会"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project_alias_force_thread_id
 msgid "Record Thread ID"
-msgstr "记录线索ID"
+msgstr "记录线程ID"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -2910,7 +3045,7 @@ msgstr "红色：任务受阻(有问题了)"
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_project_code
 msgid "Reference"
-msgstr "参考"
+msgstr "参照"
 
 #. module: project
 #. openerp-web
@@ -3277,6 +3412,7 @@ msgstr "任务可以到下一阶段了"
 #: model:ir.model.fields,field_description:project.field_project_project_task_ids
 #: model:ir.model.fields,field_description:project.field_project_project_task_needaction_count
 #: model:ir.model.fields,field_description:project.field_res_partner_task_ids
+#: model:ir.model.fields,field_description:project.field_res_users_task_ids
 #: model:ir.ui.menu,name:project.menu_action_view_task
 #: model:ir.ui.view,arch_db:project.edit_project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -3371,7 +3507,7 @@ msgid ""
 " email that does not reply to an existing record will cause the creation of "
 "a new record of this model (e.g. a Project Task)"
 msgstr ""
-"相应于这个别名对应的模型(Odoo单据种类)。任何一封不属于对某个已存在的记录的到来邮件，将导致此模块中新记录的创建(例如，一个新的项目任务)。"
+"相应于这个别名对应的模型(Odoo单据种类)。任何一封不属于对某个已存在的记录的到来邮件，将导致此模型中新记录的创建(例如，一个新的项目任务)。"
 
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project_alias_name
@@ -3457,6 +3593,8 @@ msgid ""
 "This will set the unit of measure used in projects and tasks.\n"
 "If you use the timesheet linked to projects, don't forget to setup the right unit of measure in your employees."
 msgstr ""
+"这设置了项目和任务所使用的度量单位。\n"
+" 如果您使用连接到项目上的工作表，请不要忘记在员工中设置正确的度量单位。"
 
 #. module: project
 #: model:res.groups,name:project.group_time_work_estimation_tasks
@@ -3585,7 +3723,7 @@ msgstr ""
 #: code:addons/project/static/src/js/tour.js:88
 #, python-format
 msgid "Use the breadcrumbs to <b>go back to your tasks pipeline</b>."
-msgstr ""
+msgstr "使用面包屑导航 <b>回到您的任务应用</b>."
 
 #. module: project
 #: model:project.task.type,legend_priority:project.project_stage_0
@@ -3668,7 +3806,7 @@ msgstr "Wait. Expert"
 #, python-format
 msgid ""
 "Want a better way to <b>manage your projects</b>? <i>It starts here.</i>"
-msgstr ""
+msgstr "想要以更好的方式 <b>管理您的项目</b>吗? <i>从这里开始.</i>"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -3741,7 +3879,7 @@ msgstr "一年下来工作小时数的平均数是多少？"
 #. module: project
 #: model:ir.model.fields,help:project.field_project_project_is_favorite
 msgid "Whether this project should be displayed on the dashboard or not"
-msgstr ""
+msgstr "不管这个项目是否显示在仪表板"
 
 #. module: project
 #. openerp-web
@@ -3809,7 +3947,7 @@ msgstr "你可以从你自己的邮件系统对一个消息进行回复；你回
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
 msgid "You can save your reports to easily reuse it later"
-msgstr ""
+msgstr "您可以将报表保存便于以后重复使用"
 
 #. module: project
 #: code:addons/project/models/project.py:70
@@ -3833,7 +3971,7 @@ msgstr "你的目标"
 #. module: project
 #: model:mail.template,subject:project.mail_template_data_module_install_project
 msgid "Your Odoo Project application is up and running"
-msgstr ""
+msgstr "Odoo 项目应用程序已启动并开始运行"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -3858,7 +3996,7 @@ msgstr "和有效的"
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_project_view_form_simplified
 msgid "e.g. Office Party"
-msgstr ""
+msgstr "例如，办公场所"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -3904,7 +4042,7 @@ msgstr "去描述<br/> 你的经验，以及改进建议 !"
 #. module: project
 #: model:ir.actions.act_window,help:project.open_view_project_all
 msgid "to play with."
-msgstr ""
+msgstr "同。"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner

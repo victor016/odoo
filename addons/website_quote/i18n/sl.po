@@ -3,17 +3,18 @@
 # * website_quote
 # 
 # Translators:
-# Martin Trigaux <mat@odoo.com>, 2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
-# Borut Jures <inactive+borut@transifex.com>, 2016
+# Borut Jures, 2016
 # Vida Potočnik <vida.potocnik@mentis.si>, 2016
+# Martin Trigaux, 2017
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-10 08:44+0000\n"
-"PO-Revision-Date: 2016-10-10 08:44+0000\n"
-"Last-Translator: Vida Potočnik <vida.potocnik@mentis.si>, 2016\n"
+"POT-Creation-Date: 2017-06-23 13:28+0000\n"
+"PO-Revision-Date: 2016-09-07 09:33+0000\n"
+"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>, 2019\n"
 "Language-Team: Slovenian (https://www.transifex.com/odoo/teams/41243/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,6 +74,54 @@ msgid ""
 "    </table>\n"
 "</div>"
 msgstr ""
+"\n"
+"<div summary=\"o_mail_template\" style=\"padding:0px; width:600px; margin:0 auto; background: #FFFFFF repeat top /100%;color:#777777\">\n"
+"    <table cellspacing=\"0\" cellpadding=\"0\" style=\"width:600px; border-collapse:collapse; background:inherit; color:inherit\">\n"
+"        <tbody><tr>\n"
+"            <td valign=\"center\" width=\"200\" style=\"padding:0px 10px 5px 5px;font-size: 12px\">\n"
+"                <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${user.company_id.name}\">\n"
+"            </td>\n"
+"        </tr></tbody>\n"
+"    </table>\n"
+"    <table cellspacing=\"0\" cellpadding=\"0\" style=\"width:600px; border-collapse:collapse; background:inherit; color:inherit\">\n"
+"        <tbody><tr>\n"
+"            <td valign=\"top\" style=\"width:600px; padding:0px 10px 5px 5px;\">\n"
+"                <div>\n"
+"                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin:15px auto;padding:0\">\n"
+"                </div>\n"
+"            </td>\n"
+"        </tr></tbody>\n"
+"    </table>\n"
+"</div>\n"
+"<div style=\"padding:0px; width:600px; max-width:600px; margin:0 auto; background: #FFFFFF repeat top /100%;color:#777777\">\n"
+"    <table cellspacing=\"0\" cellpadding=\"0\" style=\"width:600px ;text-align:justify; margin:0 auto; border-collapse:collapse; background:inherit; color:inherit\">\n"
+"        <tbody><tr>\n"
+"            <td style=\"padding:0px 10px 5px 5px;font-size: 14px;\">\n"
+"                <p>Spoštovani ${object.partner_id.name},</p><br/>\n"
+"                <p>Vaše naročilo <a href=\"/quote/${object.id}/${object.access_token}\">${object.name}</a> je potrjeno!</p><br/>\n"
+"                \n"
+"                % if object.partner_id.user_ids\n"
+"                <p>Do svojih predračunov, naročil in računov lahko dostopate preko <a style=\"text-decoration:none; color: #875A7B;\" href=\"/my/home\">našega portala</a>.</p><br/>\n"
+"                % endif\n"
+"\n"
+"                <p>V primeru kateregakoli vprašanja smo vam na voljo.</p><br/>\n"
+"                <p>Hvala, ker poslujete z ${object.company_id.name or \"nami\"}!</p>\n"
+"            </td>\n"
+"        </tr><tr>\n"
+"            <td style=\"padding:0px 10px 5px 5px;font-size: 14px;\">\n"
+"                % if user.signature\n"
+"                <p style=\"font-size: 14px;\">${user.signature | safe}\n"
+"                </p>\n"
+"                % endif\n"
+"                <p style=\"font-size: 11px;\"><strong>Pošiljatelj\n"
+"                <a href=\"${user.company_id.website}\" style=\"text-decoration:none; color: #875A7B;\">\n"
+"                    <strong>${user.company_id.name}</strong>\n"
+"                </a> preko <a href=\"www.odoo.com\" style=\"text-decoration:none; color: #875A7B;\"><strong>Odoo</strong></a>\n"
+"                </strong></p>\n"
+"            </td>\n"
+"        </tr></tbody>\n"
+"    </table>\n"
+"</div>"
 
 #. module: website_quote
 #: model:ir.ui.view,arch_db:website_quote.so_quotation
@@ -92,6 +141,9 @@ msgid "&amp;bull;"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "&amp;nbsp;"
 msgstr ""
@@ -147,7 +199,7 @@ msgstr ""
 #. module: website_quote
 #: model:ir.ui.view,arch_db:website_quote.chatter
 msgid "<i class=\"fa fa-comment\"/> Feedback"
-msgstr ""
+msgstr "<i class=\"fa fa-comment\"/> Povratne informacije"
 
 #. module: website_quote
 #: model:ir.ui.view,arch_db:website_quote.so_quotation
@@ -155,12 +207,18 @@ msgid "<i class=\"fa fa-times\"/> Reject"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid ""
 "<i>You will be able to create dynamic page interacting with the ORM.</i>"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid ""
 "<i>You will be able to develop a full application with backend and user "
@@ -168,6 +226,9 @@ msgid ""
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid ""
 "<i>You will be able to develop simple dynamic compenents in HTML pages.</i>"
@@ -188,6 +249,9 @@ msgid ""
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid ""
 "<span style=\"text-align: -webkit-center; \">This course is dedicated to "
@@ -257,6 +321,9 @@ msgid ""
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid ""
 "<strong>Having attended this course, participants should be able "
@@ -264,16 +331,25 @@ msgid ""
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "<strong>Objectives:</strong>"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "<strong>Our prices include:</strong>"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "<strong>Requirements:</strong>"
 msgstr ""
@@ -292,6 +368,9 @@ msgid ""
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_1
+#: model:product.template,quote_description:website_quote.product_product_quote_1_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_1
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_1
 msgid "<strong>There are three components to the training</strong>"
 msgstr ""
@@ -336,6 +415,16 @@ msgid "A Valuable Product"
 msgstr ""
 
 #. module: website_quote
+#: model:ir.model.fields,help:website_quote.field_delivery_carrier_website_description
+msgid ""
+"A description of the Product that you want to communicate to your customers."
+" This description will be copied to every Sale Order, Delivery Order and "
+"Customer Invoice/Refund"
+msgstr ""
+"Opis proizvoda, kakršnega se posreduje kupcem. Ta opis bo kopiran na vsak "
+"prodajni nalog, dostavni nalog ali izdani račun/dobropis"
+
+#. module: website_quote
 #: model:sale.quote.template,website_description:website_quote.website_quote_template_default
 msgid "About us"
 msgstr "O nas"
@@ -360,6 +449,9 @@ msgid "Advanced CRM Functional"
 msgstr "Napredni CRM funkcionalni"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Advanced JQuery"
 msgstr ""
@@ -377,6 +469,9 @@ msgid ""
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Arrays"
 msgstr ""
@@ -422,6 +517,9 @@ msgid ""
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_1
+#: model:product.template,quote_description:website_quote.product_product_quote_1_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_1
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_1
 msgid "Better comfort to facilitate your learning process"
 msgstr ""
@@ -432,22 +530,34 @@ msgid "Bill To:"
 msgstr "Zaračunaj:"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Bootstrap CSS"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 #: model:sale.quote.option,website_description:website_quote.website_sale_option_line_1
 msgid "Bring your own laptop."
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Building a Full Application"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Calling the ORM"
 msgstr ""
@@ -495,6 +605,9 @@ msgid "Contact us"
 msgstr "Kontakt"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Controllers and Views"
 msgstr ""
@@ -505,6 +618,9 @@ msgid "Convert Lead to Opportunity &amp; Customer management"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Course Summary"
 msgstr ""
@@ -533,7 +649,7 @@ msgstr "Kupec:"
 #. module: website_quote
 #: model:sale.quote.option,website_description:website_quote.website_sale_option_line_1
 msgid "Customers/Vendors"
-msgstr ""
+msgstr "Kupci/Dobavitelji"
 
 #. module: website_quote
 #: model:sale.quote.option,website_description:website_quote.website_sale_option_line_1
@@ -541,18 +657,27 @@ msgid "Database management"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 #: model:sale.quote.option,website_description:website_quote.website_sale_option_line_1
 msgid "Day 1"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 #: model:sale.quote.option,website_description:website_quote.website_sale_option_line_1
 msgid "Day 2"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 #: model:sale.quote.option,website_description:website_quote.website_sale_option_line_1
 msgid "Day 3"
@@ -578,16 +703,27 @@ msgid "Description"
 msgstr "Opis"
 
 #. module: website_quote
+#: model:ir.model.fields,field_description:website_quote.field_delivery_carrier_website_description
+msgid "Description for Online Quotations"
+msgstr "Opis za spletne predračune"
+
+#. module: website_quote
+#: model:ir.model.fields,field_description:website_quote.field_delivery_carrier_quote_description
+#: model:ir.model.fields,field_description:website_quote.field_product_product_quote_description
 #: model:ir.model.fields,field_description:website_quote.field_product_template_quote_description
 msgid "Description for the quote"
 msgstr "Opis za predračune"
 
 #. module: website_quote
+#: model:ir.model.fields,field_description:website_quote.field_product_product_website_description
 #: model:ir.model.fields,field_description:website_quote.field_product_template_website_description
 msgid "Description for the website"
 msgstr "Opis za spletno stran"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Develop a new module for a particular application."
 msgstr ""
@@ -613,6 +749,9 @@ msgid "Display Name"
 msgstr "Prikazni naziv"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Dive into Strings"
 msgstr ""
@@ -690,6 +829,9 @@ msgid "Functional Training"
 msgstr "Funkcionalno izobraževanje"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Functions"
 msgstr ""
@@ -733,11 +875,17 @@ msgid ""
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_1
+#: model:product.template,quote_description:website_quote.product_product_quote_1_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_1
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_1
 msgid "Hands-on exercises and their solutions"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Hello World"
 msgstr ""
@@ -753,6 +901,9 @@ msgid "History"
 msgstr "Zgodovina"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "How to Debug"
 msgstr ""
@@ -806,6 +957,9 @@ msgid "Install and administer Odoo."
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Install and administer your own server;"
 msgstr ""
@@ -816,6 +970,9 @@ msgid "Installation and Configuration"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Integrated Help"
 msgstr ""
@@ -827,16 +984,25 @@ msgid "Introduction"
 msgstr "Uvodna predstavitev"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Introduction to JQuery"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Introduction to Javascript"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Introduction to QWeb"
 msgstr ""
@@ -921,21 +1087,33 @@ msgid "Lines"
 msgstr "Vrstice"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_1
+#: model:product.template,quote_description:website_quote.product_product_quote_1_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_1
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_1
 msgid "Live Q&amp;A sessions with a trainer"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Loops"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_1
+#: model:product.template,quote_description:website_quote.product_product_quote_1_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_1
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_1
 msgid "Lower training budget for the same quality courses"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_1
+#: model:product.template,quote_description:website_quote.product_product_quote_1_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_1
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_1
 msgid "Modular approach applied to the learning method"
 msgstr ""
@@ -946,6 +1124,9 @@ msgid "Module Installation"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Modules"
 msgstr "Moduli"
@@ -966,6 +1147,9 @@ msgid "Negotiation and Quotation Revisions"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_1
+#: model:product.template,quote_description:website_quote.product_product_quote_1_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_1
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_1
 msgid "New interactive learning experience"
 msgstr ""
@@ -987,12 +1171,18 @@ msgid "Objectives"
 msgstr "Cilji"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 #: model:sale.quote.option,website_description:website_quote.website_sale_option_line_1
 msgid "Odoo Official Website"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Odoo Web Client"
 msgstr ""
@@ -1014,6 +1204,9 @@ msgid "Official certified partner"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_1
+#: model:product.template,quote_description:website_quote.product_product_quote_1_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_1
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_1
 msgid "Online Training"
 msgstr "Spletno izobraževanje"
@@ -1105,6 +1298,9 @@ msgid "Partial and Full Shipment / Delivery"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 #: model:sale.quote.option,website_description:website_quote.website_sale_option_line_1
 msgid ""
@@ -1113,6 +1309,9 @@ msgid ""
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 #: model:sale.quote.option,website_description:website_quote.website_sale_option_line_1
 msgid ""
@@ -1213,6 +1412,9 @@ msgid "Purchase Requisition and Purchase Order Management"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Python Objects"
 msgstr ""
@@ -1292,6 +1494,9 @@ msgid "Reject This Quote"
 msgstr "Zavrni predračun"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Report Engine"
 msgstr ""
@@ -1305,6 +1510,9 @@ msgid ""
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 #: model:sale.quote.option,website_description:website_quote.website_sale_option_line_1
 msgid "Requirements"
@@ -1341,7 +1549,7 @@ msgstr "Postavka prodajnega naloga"
 #: model:ir.ui.view,arch_db:website_quote.sale_order_form_quote
 #: model:ir.ui.view,arch_db:website_quote.view_sale_quote_template_form
 msgid "Sales Quotation Template Lines"
-msgstr ""
+msgstr "Postavke predloge predračuna"
 
 #. module: website_quote
 #: model:sale.quote.template,website_description:website_quote.website_quote_template_1
@@ -1393,6 +1601,9 @@ msgid "Sign &amp; Confirm"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_1
+#: model:product.template,quote_description:website_quote.product_product_quote_1_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_1
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_1
 msgid "Structure of the Training"
 msgstr ""
@@ -1416,8 +1627,11 @@ msgstr "Davki:"
 
 #. module: website_quote
 #: model:product.product,name:website_quote.product_product_quote_2
+#: model:product.product,quote_description:website_quote.product_product_quote_2
 #: model:product.template,name:website_quote.product_product_quote_2_product_template
 #: model:product.template,name:website_quote.product_template_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,name:website_quote.website_sale_order_line_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Technical Training"
@@ -1449,6 +1663,9 @@ msgid "Test developments automatically"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_1
+#: model:product.template,quote_description:website_quote.product_product_quote_1_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_1
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_1
 msgid ""
 "These courses feature the same high quality course content found in our "
@@ -1501,6 +1718,9 @@ msgid ""
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 #: model:sale.quote.option,website_description:website_quote.website_sale_option_line_1
 msgid "To get more information, visit the"
@@ -1512,16 +1732,25 @@ msgid "Total Price"
 msgstr "Skupna cena"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Training Center Module"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Underscore"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Understand the development concepts and architecture;"
 msgstr ""
@@ -1561,11 +1790,17 @@ msgid "Validate Order"
 msgstr "Overi naročilo"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Variables &amp; Operators"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_1
+#: model:product.template,quote_description:website_quote.product_product_quote_1_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_1
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_1
 msgid "Videos with detailed demos"
 msgstr ""
@@ -1605,12 +1840,18 @@ msgid "Website Description"
 msgstr "Opis spletne strani"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 #: model:sale.quote.option,website_description:website_quote.website_sale_option_line_1
 msgid "What you will learn?"
 msgstr ""
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "Workflows"
 msgstr "Delovni toki"
@@ -1662,6 +1903,9 @@ msgid "Your advantage:"
 msgstr "Vaše prednosti:"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_1
+#: model:product.template,quote_description:website_quote.product_product_quote_1_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_1
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_1
 msgid "Your advantages"
 msgstr ""
@@ -1713,6 +1957,9 @@ msgid "days"
 msgstr "dan;dni"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "drinks and lunch;"
 msgstr ""
@@ -1753,6 +2000,9 @@ msgid "or"
 msgstr "ali"
 
 #. module: website_quote
+#: model:product.product,quote_description:website_quote.product_product_quote_2
+#: model:product.template,quote_description:website_quote.product_product_quote_2_product_template
+#: model:product.template,quote_description:website_quote.product_template_quote_2
 #: model:sale.quote.line,website_description:website_quote.website_sale_order_line_2
 msgid "training material."
 msgstr ""

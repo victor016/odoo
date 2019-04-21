@@ -50,6 +50,7 @@ def _get_wkhtmltopdf_bin():
 # Check the presence of Wkhtmltopdf and return its version at Odoo start-up
 #--------------------------------------------------------------------------
 wkhtmltopdf_state = 'install'
+wkhtmltopdf_dpi_zoom_ratio = False
 try:
     process = subprocess.Popen(
         [_get_wkhtmltopdf_bin(), '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE
@@ -67,6 +68,8 @@ else:
             wkhtmltopdf_state = 'upgrade'
         else:
             wkhtmltopdf_state = 'ok'
+        if LooseVersion(version) >= LooseVersion('0.12.2'):
+            wkhtmltopdf_dpi_zoom_ratio = True
 
         if config['workers'] == 1:
             _logger.info('You need to start Odoo with at least two workers to print a pdf version of the reports.')
@@ -282,7 +285,7 @@ class Report(models.Model):
                 active_ids = docids
             context = dict(self.env.context, active_ids=active_ids)
 
-        report = self.env['ir.actions.report.xml'].with_context(context).search([('report_name', '=', report_name)])
+        report = self.env['ir.actions.report.xml'].with_context(context).search([('report_name', '=', report_name)], limit=1)
         if not report:
             raise UserError(_("Bad Report Reference") + _("This report is not loaded into the database: %s.") % report_name)
 
@@ -446,8 +449,11 @@ class Report(models.Model):
                 out, err = process.communicate()
 
                 if process.returncode not in [0, 1]:
-                    raise UserError(_('Wkhtmltopdf failed (error code: %s). '
-                                      'Message: %s') % (str(process.returncode), err))
+                    if process.returncode == -11:
+                        message = _('Wkhtmltopdf failed (error code: %s). Memory limit too low or maximum file number of subprocess reached. Message : %s')
+                    else:
+                        message = _('Wkhtmltopdf failed (error code: %s). Message: %s')
+                    raise UserError(message  % (str(process.returncode), err[-1000:]))
 
                 # Save the pdf in attachment if marked
                 if reporthtml[0] is not False and save_in_attachment.get(reporthtml[0]):
@@ -508,7 +514,7 @@ class Report(models.Model):
         :specific_paperformat_args: a dict containing prioritized wkhtmltopdf arguments
         :returns: list of string representing the wkhtmltopdf arguments
         """
-        command_args = []
+        command_args = ['--disable-local-file-access']
         if paperformat.format and paperformat.format != 'custom':
             command_args.extend(['--page-size', paperformat.format])
 
@@ -521,14 +527,19 @@ class Report(models.Model):
         else:
             command_args.extend(['--margin-top', str(paperformat.margin_top)])
 
+        dpi = None
         if specific_paperformat_args and specific_paperformat_args.get('data-report-dpi'):
-            command_args.extend(['--dpi', str(specific_paperformat_args['data-report-dpi'])])
+            dpi = int(specific_paperformat_args['data-report-dpi'])
         elif paperformat.dpi:
             if os.name == 'nt' and int(paperformat.dpi) <= 95:
                 _logger.info("Generating PDF on Windows platform require DPI >= 96. Using 96 instead.")
-                command_args.extend(['--dpi', '96'])
+                dpi = 96
             else:
-                command_args.extend(['--dpi', str(paperformat.dpi)])
+                dpi = paperformat.dpi
+        if dpi:
+            command_args.extend(['--dpi', str(dpi)])
+            if wkhtmltopdf_dpi_zoom_ratio:
+                command_args.extend(['--zoom', str(96.0 / dpi)])
 
         if specific_paperformat_args and specific_paperformat_args.get('data-report-header-spacing'):
             command_args.extend(['--header-spacing', str(specific_paperformat_args['data-report-header-spacing'])])
@@ -553,19 +564,23 @@ class Report(models.Model):
         """
         writer = PdfFileWriter()
         streams = []  # We have to close the streams *after* PdfFilWriter's call to write()
-        for document in documents:
-            pdfreport = file(document, 'rb')
-            streams.append(pdfreport)
-            reader = PdfFileReader(pdfreport)
-            for page in range(0, reader.getNumPages()):
-                writer.addPage(reader.getPage(page))
+        try:
+            for document in documents:
+                pdfreport = file(document, 'rb')
+                streams.append(pdfreport)
+                reader = PdfFileReader(pdfreport)
+                for page in range(0, reader.getNumPages()):
+                    writer.addPage(reader.getPage(page))
 
-        merged_file_fd, merged_file_path = tempfile.mkstemp(suffix='.html', prefix='report.merged.tmp.')
-        with closing(os.fdopen(merged_file_fd, 'w')) as merged_file:
-            writer.write(merged_file)
-
-        for stream in streams:
-            stream.close()
+            merged_file_fd, merged_file_path = tempfile.mkstemp(suffix='.pdf', prefix='report.merged.tmp.')
+            with closing(os.fdopen(merged_file_fd, 'w')) as merged_file:
+                writer.write(merged_file)
+        finally:
+            for stream in streams:
+                try:
+                    stream.close()
+                except Exception:
+                    pass
 
         return merged_file_path
 

@@ -3,20 +3,21 @@
 # * mail
 # 
 # Translators:
-# Martin Trigaux <mat@odoo.com>, 2016
-# Erwin van der Ploeg <erwin@odooexperts.nl>, 2016
-# Yenthe Van Ginneken <yenthespam@gmail.com>, 2016
-# Volluta <volluta@tutanota.com>, 2016
 # Eric Geens <ericgeens@yahoo.com>, 2016
-# Cas Vissers <casvissers@brahoo.nl>, 2016
 # Stephan Van Dyck <stephan.vandyck@vanroey.be>, 2016
+# Volluta <volluta@tutanota.com>, 2016
+# Martin Trigaux, 2016
+# Yenthe Van Ginneken <yenthespam@gmail.com>, 2016
+# Cas Vissers <casvissers@brahoo.nl>, 2016
+# Erwin van der Ploeg <erwin@odooexperts.nl>, 2018
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-14 15:53+0000\n"
-"PO-Revision-Date: 2016-11-14 15:53+0000\n"
-"Last-Translator: Stephan Van Dyck <stephan.vandyck@vanroey.be>, 2016\n"
+"PO-Revision-Date: 2016-09-07 09:22+0000\n"
+"Last-Translator: Erwin van der Ploeg <erwin@odooexperts.nl>, 2018\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -279,6 +280,18 @@ msgstr ""
 "U kunt een standaard antwoord in uw bericht toevoegen door te typen <b>:shortcut</b>.<br>"
 
 #. module: mail
+#: code:addons/mail/models/mail_channel.py:475
+#, python-format
+msgid ""
+"<div class=\"o_mail_notification\">%(author)s invited %(new_partner)s to <a "
+"href=\"#\" class=\"o_channel_redirect\" data-oe-"
+"id=\"%(channel_id)s\">#%(channel_name)s</a></div>"
+msgstr ""
+"<div class=\"o_mail_notification\">%(author)s uitgenodigd %(new_partner)s "
+"voor <a href=\"#\" class=\"o_channel_redirect\" data-oe-"
+"id=\"%(channel_id)s\">#%(channel_name)s</a></div>"
+
+#. module: mail
 #: code:addons/mail/models/mail_channel.py:550
 #, python-format
 msgid ""
@@ -296,7 +309,7 @@ msgid ""
 "<div class=\"o_mail_notification\">joined <a href=\"#\" "
 "class=\"o_channel_redirect\" data-oe-id=\"%s\">#%s</a></div>"
 msgstr ""
-"<div class=\"o_mail_notification\">deelgenomen <a href=\"#\" "
+"<div class=\"o_mail_notification\">Toegevoegd <a href=\"#\" "
 "class=\"o_channel_redirect\" data-oe-id=\"%s\">#%s</a></div>"
 
 #. module: mail
@@ -315,8 +328,8 @@ msgstr ""
 msgid ""
 "<div><p>Hello,</p><p>%s invited you to follow %s document: %s.</p></div>"
 msgstr ""
-"<div><p>Hallo,</p><p>%s heeft u uitgenodigd om het %s document te volgen: "
-"%s.</p></div>"
+"<div><p>Hallo,</p><p>%s heeft u uitgenodigd om het volgende document %s te "
+"volgen: %s.</p></div>"
 
 #. module: mail
 #: code:addons/mail/wizard/invite.py:26
@@ -714,7 +727,7 @@ msgid ""
 "Attachments are linked to a document through model / res_id and to the "
 "message through this field."
 msgstr ""
-"Bijlages zijn gelinkt aan het document via het model / res_id en aan het "
+"Bijlages zijn gekoppeld aan het document via het model / res_id en aan het "
 "bericht via dit veld."
 
 #. module: mail
@@ -913,7 +926,7 @@ msgstr "Kanalen"
 #: model:ir.actions.act_window,name:mail.mail_channel_partner_action
 #: model:ir.ui.menu,name:mail.mail_channel_partner_menu
 msgid "Channels/Partner"
-msgstr "Kanalen/Partners"
+msgstr "Kanalen/Relaties"
 
 #. module: mail
 #. openerp-web
@@ -1210,7 +1223,7 @@ msgstr "Datum"
 #: model:ir.model.fields,help:mail.field_stock_production_lot_message_last_post
 #: model:ir.model.fields,help:mail.field_survey_survey_message_last_post
 msgid "Date of the last message posted on the record."
-msgstr "Datum van het laatste bericht verstuurt op deze regel."
+msgstr "Datum van het laatste bericht dat is verstuurd op deze regel."
 
 #. module: mail
 #: model:ir.ui.view,arch_db:mail.message_user_assigned
@@ -1371,7 +1384,7 @@ msgstr "Document volgers"
 #. module: mail
 #: model:ir.ui.view,arch_db:mail.email_template_form
 msgid "Dynamic Placeholder Generator"
-msgstr "Dynamische bladwijze generator"
+msgstr "Dynamische bladwijzer generator"
 
 #. module: mail
 #. openerp-web
@@ -1829,7 +1842,7 @@ msgstr "Volgers (Kanalen)"
 #: model:ir.model.fields,field_description:mail.field_stock_production_lot_message_partner_ids
 #: model:ir.model.fields,field_description:mail.field_survey_survey_message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Volgers (Partners)"
+msgstr "Volgers (Relaties)"
 
 #. module: mail
 #: model:ir.ui.view,arch_db:mail.view_mail_subscription_form
@@ -2015,7 +2028,7 @@ msgstr "Inactief"
 #: model:ir.model.fields,help:mail.field_stock_production_lot_message_unread
 #: model:ir.model.fields,help:mail.field_survey_survey_message_unread
 msgid "If checked new messages require your attention."
-msgstr "Indien aangevinkt zullen nieuwe berichten uw aandacht vragen."
+msgstr "Indien aangevinkt vragen nieuwe berichten uw aandacht."
 
 #. module: mail
 #: model:ir.model.fields,help:mail.field_account_analytic_account_message_needaction
@@ -2237,7 +2250,7 @@ msgstr "Mensen uitnodigen"
 #: code:addons/mail/static/src/js/client_action.js:649
 #, python-format
 msgid "Invite people to #%s"
-msgstr "Nodig mensen uit io #%s"
+msgstr "Nodig mensen uit voor #%s"
 
 #. module: mail
 #: model:ir.model,name:mail.model_mail_wizard_invite
@@ -3430,7 +3443,7 @@ msgid ""
 msgstr ""
 "Optionele vertaling (ISO code) welke u kunt selecteren bij het versturen van"
 " een e-mail. Indien niet ingesteld, wordt de Engelse versie gebruikt. "
-"Normaliter is dit een bladwijzen welke de juiste taal aangeeft. Bijv.: "
+"Normaliter is dit een bladwijzer welke de juiste taal aangeeft. Bijv.: "
 "${object.partner_id.lang}."
 
 #. module: mail
@@ -3554,7 +3567,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mail.field_mail_message_needaction_partner_ids
 #: model:ir.model.fields,field_description:mail.field_survey_mail_compose_message_needaction_partner_ids
 msgid "Partners with Need Action"
-msgstr "Relaties met Nodige Actie"
+msgstr "Relaties met benodigde actie"
 
 #. module: mail
 #: model:ir.model.fields,help:mail.field_email_template_preview_auto_delete

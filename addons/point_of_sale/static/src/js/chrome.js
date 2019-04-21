@@ -11,6 +11,7 @@ var CrashManager = require('web.CrashManager');
 
 
 var _t = core._t;
+var _lt = core._lt;
 var QWeb = core.qweb;
 
 /* -------- The Order Selector -------- */
@@ -629,7 +630,7 @@ var Chrome = PosBaseWidget.extend({
         if(err.message === 'XmlHttpRequestError '){
             title = 'Network Failure (XmlHttpRequestError)';
             body  = 'The Point of Sale could not be loaded due to a network problem.\n Please check your internet connection.';
-        }else if(err.message === 'OpenERP Server Error'){
+        }else if(err.code === 200){
             title = err.data.message;
             body  = err.data.debug;
         }
@@ -704,7 +705,7 @@ var Chrome = PosBaseWidget.extend({
             'widget': HeaderButtonWidget,
             'append':  '.pos-rightheader',
             'args': {
-                label: _t('Close'),
+                label: _lt('Close'),
                 action: function(){ 
                     var self = this;
                     if (!this.confirmed) {

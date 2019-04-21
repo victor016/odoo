@@ -62,7 +62,18 @@ class MailMail(models.Model):
             values['notification'] = True
         if not values.get('mail_message_id'):
             self = self.with_context(message_create_from_mail_mail=True)
-        return super(MailMail, self).create(values)
+        new_mail = super(MailMail, self).create(values)
+        if values.get('attachment_ids'):
+            new_mail.attachment_ids.check(mode='read')
+        return new_mail
+
+    @api.multi
+    def write(self, vals):
+        res = super(MailMail, self).write(vals)
+        if vals.get('attachment_ids'):
+            for mail in self:
+                mail.attachment_ids.check(mode='read')
+        return res
 
     @api.multi
     def unlink(self):
@@ -208,8 +219,9 @@ class MailMail(models.Model):
         """
         IrMailServer = self.env['ir.mail_server']
 
-        for mail in self:
+        for mail_id in self.ids:
             try:
+                mail = self.browse(mail_id)
                 # TDE note: remove me when model_id field is present on mail.message - done here to avoid doing it multiple times in the sub method
                 if mail.model:
                     model = self.env['ir.model'].sudo().search([('model', '=', mail.model)])[0]

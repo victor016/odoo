@@ -292,7 +292,7 @@ class MassMailing(models.Model):
     create_date = fields.Datetime(string='Creation Date')
     sent_date = fields.Datetime(string='Sent Date', oldname='date', copy=False)
     schedule_date = fields.Datetime(string='Schedule in the Future')
-    body_html = fields.Html(string='Body', translate=html_translate, sanitize_attributes=False)
+    body_html = fields.Html(string='Body', sanitize_attributes=False)
     attachment_ids = fields.Many2many('ir.attachment', 'mass_mailing_ir_attachments_rel',
         'mass_mailing_id', 'attachment_id', string='Attachments')
     keep_archives = fields.Boolean(string='Keep Archives')
@@ -464,7 +464,7 @@ class MassMailing(models.Model):
             return super(MassMailing, self).read_group(domain, fields, groupby, offset=offset, limit=limit, orderby=orderby)
 
     def update_opt_out(self, email, res_ids, value):
-        model = self.env[self.mailing_model]
+        model = self.env[self.mailing_model].with_context(active_test=False)
         if 'opt_out' in model._fields:
             email_fname = 'email_from'
             if 'email' in model._fields:
@@ -517,7 +517,7 @@ class MassMailing(models.Model):
     def retry_failed_mail(self):
         failed_mails = self.env['mail.mail'].search([('mailing_id', 'in', self.ids), ('state', '=', 'exception')])
         failed_mails.mapped('statistics_ids').unlink()
-        failed_mails.unlink()
+        failed_mails.sudo().unlink()
         self.write({'state': 'in_queue'})
 
     #------------------------------------------------------
@@ -577,6 +577,7 @@ class MassMailing(models.Model):
                 'mass_mailing_id': mailing.id,
                 'mailing_list_ids': [(4, l.id) for l in mailing.contact_list_ids],
                 'no_auto_thread': mailing.reply_to_mode != 'thread',
+                'template_id': None,
             }
             if mailing.reply_to_mode == 'email':
                 composer_values['reply_to'] = mailing.reply_to
@@ -611,6 +612,8 @@ class MassMailing(models.Model):
     def _process_mass_mailing_queue(self):
         mass_mailings = self.search([('state', 'in', ('in_queue', 'sending')), '|', ('schedule_date', '<', fields.Datetime.now()), ('schedule_date', '=', False)])
         for mass_mailing in mass_mailings:
+            user = mass_mailing.write_uid or self.env.user
+            mass_mailing = mass_mailing.with_context(**user.sudo(user=user).context_get())
             if len(mass_mailing.get_remaining_recipients()) > 0:
                 mass_mailing.state = 'sending'
                 mass_mailing.send_mail()

@@ -53,7 +53,7 @@ class MrpProduction(models.Model):
         domain=[('type', 'in', ['product', 'consu'])],
         readonly=True, required=True,
         states={'confirmed': [('readonly', False)]})
-    product_tmpl_id = fields.Many2one('product.template', 'Product Template', related='product_id.product_tmpl_id')
+    product_tmpl_id = fields.Many2one('product.template', 'Product Template', related='product_id.product_tmpl_id', readonly=True)
     product_qty = fields.Float(
         'Quantity To Produce',
         default=1.0, digits=dp.get_precision('Product Unit of Measure'),
@@ -126,6 +126,9 @@ class MrpProduction(models.Model):
         ('none', 'None')], string='Availability',
         compute='_compute_availability', store=True)
 
+    unreserve_visible = fields.Boolean(
+        'Inventory Unreserve Visible', compute='_compute_unreserve_visible',
+        help='Technical field to check when we can unreserve')
     post_visible = fields.Boolean(
         'Inventory Post Visible', compute='_compute_post_visible',
         help='Technical field to check when we can post')
@@ -193,6 +196,14 @@ class MrpProduction(models.Model):
                 assigned_list = [x.state in ('assigned', 'done', 'cancel') for x in order.move_raw_ids]
                 order.availability = (all(assigned_list) and 'assigned') or (any(partial_list) and 'partially_available') or 'waiting'
 
+    @api.depends('state', 'move_raw_ids.reserved_quant_ids')
+    def _compute_unreserve_visible(self):
+        for order in self:
+            if order.state in ['done', 'cancel'] or not order.move_raw_ids.mapped('reserved_quant_ids'):
+                order.unreserve_visible = False
+            else:
+                order.unreserve_visible = True
+
     @api.multi
     @api.depends('move_raw_ids.quantity_done', 'move_finished_ids.quantity_done')
     def _compute_post_visible(self):
@@ -252,10 +263,24 @@ class MrpProduction(models.Model):
         self.location_src_id = self.picking_type_id.default_location_src_id.id or location.id
         self.location_dest_id = self.picking_type_id.default_location_dest_id.id or location.id
 
+    @api.multi
+    def write (self, vals):
+        res = super(MrpProduction, self).write(vals)
+        if 'date_planned_start' in vals:
+            moves = (self.mapped('move_raw_ids') + self.mapped('move_finished_ids')).filtered(
+                lambda r: r.state not in ['done', 'cancel'])
+            moves.write({
+                'date_expected': vals['date_planned_start'],
+            })
+        return res
+
     @api.model
     def create(self, values):
         if not values.get('name', False) or values['name'] == _('New'):
-            values['name'] = self.env['ir.sequence'].next_by_code('mrp.production') or _('New')
+            if values.get('picking_type_id'):
+                values['name'] = self.env['stock.picking.type'].browse(values['picking_type_id']).sequence_id.next_by_id()
+            else:
+                values['name'] = self.env['ir.sequence'].next_by_code('mrp.production') or _('New')
         if not values.get('procurement_group_id'):
             values['procurement_group_id'] = self.env["procurement.group"].create({'name': values['name']}).id
         production = super(MrpProduction, self).create(values)
@@ -296,6 +321,7 @@ class MrpProduction(models.Model):
             'production_id': self.id,
             'origin': self.name,
             'group_id': self.procurement_group_id.id,
+            'propagate': self.propagate,
         })
         move.action_confirm()
         return move
@@ -315,12 +341,17 @@ class MrpProduction(models.Model):
             return self.env['stock.move']
         if bom_line.product_id.type not in ['product', 'consu']:
             return self.env['stock.move']
-        if self.bom_id.routing_id and self.bom_id.routing_id.location_id:
-            source_location = self.bom_id.routing_id.location_id
+        if self.routing_id:
+            routing = self.routing_id
+        else:
+            routing = self.bom_id.routing_id
+        if routing and routing.location_id:
+            source_location = routing.location_id
         else:
             source_location = self.location_src_id
-        original_quantity = self.product_qty - self.qty_produced
+        original_quantity = (self.product_qty - self.qty_produced) or 1.0
         data = {
+            'sequence': bom_line.sequence,
             'name': self.name,
             'date': self.date_planned_start,
             'date_expected': self.date_planned_start,
@@ -399,15 +430,21 @@ class MrpProduction(models.Model):
             quantity = order.product_uom_id._compute_quantity(order.product_qty, order.bom_id.product_uom_id) / order.bom_id.product_qty
             boms, lines = order.bom_id.explode(order.product_id, quantity, picking_type=order.bom_id.picking_type_id)
             order._generate_workorders(boms)
-        orders_to_plan.write({'state': 'planned'})
+        return orders_to_plan.write({'state': 'planned'})
 
     @api.multi
     def _generate_workorders(self, exploded_boms):
         workorders = self.env['mrp.workorder']
+        original_one = False
         for bom, bom_data in exploded_boms:
             # If the routing of the parent BoM and phantom BoM are the same, don't recreate work orders, but use one master routing
             if bom.routing_id.id and (not bom_data['parent_line'] or bom_data['parent_line'].bom_id.routing_id.id != bom.routing_id.id):
-                workorders += self._workorders_create(bom, bom_data)
+                temp_workorders = self._workorders_create(bom, bom_data)
+                workorders += temp_workorders
+                if temp_workorders: # In order to avoid two "ending work orders"
+                    if original_one:
+                        temp_workorders[-1].next_work_order_id = original_one
+                    original_one = temp_workorders[0]
         return workorders
 
     def _workorders_create(self, bom, bom_data):
@@ -487,11 +524,14 @@ class MrpProduction(models.Model):
     @api.multi
     def post_inventory(self):
         for order in self:
+            moves_not_to_do = order.move_raw_ids.filtered(lambda x: x.state == 'done')
             moves_to_do = order.move_raw_ids.filtered(lambda x: x.state not in ('done', 'cancel'))
             moves_to_do.action_done()
+            moves_to_do = order.move_raw_ids.filtered(lambda x: x.state == 'done') - moves_not_to_do
             order._cal_price(moves_to_do)
             moves_to_finish = order.move_finished_ids.filtered(lambda x: x.state not in ('done','cancel'))
             moves_to_finish.action_done()
+            
             for move in moves_to_finish:
                 #Group quants by lots
                 lot_quants = {}
@@ -528,17 +568,19 @@ class MrpProduction(models.Model):
         moves_to_cancel.action_cancel()
         self.write({'state': 'done', 'date_finished': fields.Datetime.now()})
         self.env["procurement.order"].search([('production_id', 'in', self.ids)]).check()
-        self.write({'state': 'done'})
+        return self.write({'state': 'done'})
 
     @api.multi
     def do_unreserve(self):
         for production in self:
             production.move_raw_ids.filtered(lambda x: x.state not in ('done', 'cancel')).do_unreserve()
+        return True
 
     @api.multi
     def button_unreserve(self):
         self.ensure_one()
         self.do_unreserve()
+        return True
 
     @api.multi
     def button_scrap(self):

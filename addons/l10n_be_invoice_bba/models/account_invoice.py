@@ -34,7 +34,7 @@ class AccountInvoice(models.Model):
     def _check_communication(self):
         for inv in self:
             if inv.reference_type == 'bba' and not self.check_bbacomm(inv.reference):
-                raise ValidationError('Invalid BBA Structured Communication !')
+                raise ValidationError(_('Invalid BBA Structured Communication !'))
 
     def check_bbacomm(self, val):
         supported_chars = '0-9+*/ '
@@ -182,4 +182,6 @@ class AccountInvoice(models.Model):
             default['reference_type'] = reference_type
             if reference_type == 'bba':
                 default['reference'] = self.generate_bbacomm(self.type, reference_type, self.partner_id.id, '')['value']['reference']
+        elif self.reference_type == 'bba':
+            default['reference_type'] = 'none'
         return super(AccountInvoice, self).copy(default)
