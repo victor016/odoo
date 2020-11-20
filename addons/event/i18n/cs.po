@@ -9,7 +9,8 @@
 # Martin Trigaux, 2016
 # Martin N <nedbalm@gmail.com>, 2017
 # Michal Veselý <michal@veselyberanek.net>, 2018
-# trendspotter <j.podhorecky@volny.cz>, 2019
+# trendspotter <j.podhorecky@volny.cz>, 2020
+# Rastislav Brencic <rastislav.brencic@azet.sk>, 2020
 # 
 msgid ""
 msgstr ""
@@ -17,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-10 08:43+0000\n"
 "PO-Revision-Date: 2016-09-07 09:18+0000\n"
-"Last-Translator: trendspotter <j.podhorecky@volny.cz>, 2019\n"
+"Last-Translator: Rastislav Brencic <rastislav.brencic@azet.sk>, 2020\n"
 "Language-Team: Czech (https://www.transifex.com/odoo/teams/41243/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -312,7 +313,7 @@ msgstr ""
 #: model:event.event,description:event.event_1
 #: model:event.event,description:event.event_3
 msgid "5 Intensive Days"
-msgstr ""
+msgstr "5 Intenzivních dnů"
 
 #. module: event
 #: model:event.event,description:event.event_2
@@ -375,12 +376,14 @@ msgstr ""
 msgid ""
 "<i>You will be able to develop simple dynamic components in HTML pages.</i>"
 msgstr ""
+"<i>Na HTML stranách budete moci vyvinout jednoduché dynamické "
+"komponenty.</i>"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.event_event_report_template_badge
 #: model:ir.ui.view,arch_db:event.event_registration_report_template_badge
 msgid "<i>to</i>"
-msgstr ""
+msgstr "<i>komu</i>"
 
 #. module: event
 #: model:event.event,description:event.event_0
@@ -407,6 +410,10 @@ msgid ""
 "development </strong>process. This course is for new developers or for IT "
 "professionals eager to learn more about technical aspects.</span>"
 msgstr ""
+"<span style=\"text-align: -webkit-center; \">Tento kurz je věnován "
+"vývojářům, kteří potřebují pochopit znalosti procesu <strong>vývoje "
+"podnikových aplikací</strong>. Tento kurz je určen novým vývojářům nebo IT "
+"odborníkům, kteří se chtějí dozvědět více o technických aspektech.</span>"
 
 #. module: event
 #: model:event.event,description:event.event_2
@@ -421,6 +428,7 @@ msgid ""
 "<strong>Having attended this course, participants should be able "
 "to:</strong>"
 msgstr ""
+"<strong>Po absolvování tohoto kurzu by účastníci měli být schopni:</strong>"
 
 #. module: event
 #: model:event.event,description:event.event_0
@@ -428,7 +436,7 @@ msgstr ""
 #: model:event.event,description:event.event_2
 #: model:event.event,description:event.event_3
 msgid "<strong>Objectives:</strong>"
-msgstr ""
+msgstr "<strong>Cíle:</strong>"
 
 #. module: event
 #: model:event.event,description:event.event_0
@@ -447,7 +455,7 @@ msgstr "<strong>Program:</strong>"
 #: model:event.event,description:event.event_1
 #: model:event.event,description:event.event_3
 msgid "<strong>Requirements:</strong>"
-msgstr ""
+msgstr "<strong>Požadavky:</strong>"
 
 #. module: event
 #: model:event.event,description:event.event_2
@@ -469,12 +477,12 @@ msgstr "Pokročilý JQuery"
 #. module: event
 #: selection:event.mail,interval_type:0
 msgid "After each registration"
-msgstr ""
+msgstr "Po každé registraci"
 
 #. module: event
 #: selection:event.mail,interval_type:0
 msgid "After the event"
-msgstr ""
+msgstr "Po události"
 
 #. module: event
 #: selection:event.config.settings,module_event_sale:0
@@ -511,24 +519,24 @@ msgstr "Archivováno"
 #: model:event.event,description:event.event_1
 #: model:event.event,description:event.event_3
 msgid "Arrays"
-msgstr ""
+msgstr "Pole"
 
 #. module: event
 #: selection:event.registration,state:0
 #: model:ir.ui.view,arch_db:event.view_event_registration_form
 #: selection:report.event.registration,registration_state:0
 msgid "Attended"
-msgstr ""
+msgstr "Navštívil"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_registration_date_closed
 msgid "Attended Date"
-msgstr ""
+msgstr "Datum docházky"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_registration_tree
 msgid "Attended the Event"
-msgstr ""
+msgstr "zúčastnil se akce"
 
 #. module: event
 #: model:ir.model,name:event.model_event_registration
@@ -546,7 +554,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:event.field_event_registration_name
 #: model:ir.ui.view,arch_db:event.event_event_report_template_badge
 msgid "Attendee Name"
-msgstr ""
+msgstr "Jméno účastníka"
 
 #. module: event
 #: model:ir.actions.act_window,name:event.act_event_registration_from_event
@@ -565,37 +573,37 @@ msgstr ""
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_seats_available
 msgid "Available Seats"
-msgstr ""
+msgstr "dostupná místa"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_badge_back
 msgid "Badge Back"
-msgstr ""
+msgstr "Zadní strana odznaku"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_badge_front
 msgid "Badge Front"
-msgstr ""
+msgstr "Přední strana odznaku"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_badge_innerleft
 msgid "Badge Inner Left"
-msgstr ""
+msgstr "Vnitřní levá strana odznaku"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_badge_innerright
 msgid "Badge Inner Right"
-msgstr ""
+msgstr "Vnitřní pravá strana odznaku"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_configuration
 msgid "Barcode Interface"
-msgstr ""
+msgstr "Rozhraní čárového kódu"
 
 #. module: event
 #: selection:event.mail,interval_type:0
 msgid "Before the event"
-msgstr ""
+msgstr "Před událostí"
 
 #. module: event
 #: model:event.event,description:event.event_2
@@ -607,7 +615,7 @@ msgstr "S pozdravem,"
 #: model:event.event,description:event.event_1
 #: model:event.event,description:event.event_3
 msgid "Bootstrap CSS"
-msgstr ""
+msgstr "Bootstrap CSS"
 
 #. module: event
 #: model:event.event,description:event.event_0
@@ -692,7 +700,7 @@ msgstr "Napsat e-mail"
 #. module: event
 #: model:event.type,name:event.event_type_2
 msgid "Conference"
-msgstr ""
+msgstr "Konference"
 
 #. module: event
 #: model:event.event,name:event.event_2
@@ -746,7 +754,7 @@ msgstr "Potvrzeno"
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_kanban
 msgid "Confirmed attendees"
-msgstr ""
+msgstr "Potvrzení účastníci"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_search
@@ -828,14 +836,14 @@ msgstr "Den 1."
 #: model:event.event,description:event.event_1
 #: model:event.event,description:event.event_3
 msgid "Day 2"
-msgstr ""
+msgstr "Den 2"
 
 #. module: event
 #: model:event.event,description:event.event_0
 #: model:event.event,description:event.event_1
 #: model:event.event,description:event.event_3
 msgid "Day 3"
-msgstr ""
+msgstr "Den 3"
 
 #. module: event
 #: selection:event.mail,interval_unit:0
@@ -867,7 +875,7 @@ msgstr "Popis"
 #: model:event.event,description:event.event_1
 #: model:event.event,description:event.event_3
 msgid "Develop a new module for a particular application."
-msgstr ""
+msgstr "Vyvinout nový modul pro konkrétní aplikaci."
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_config_settings_display_name
@@ -884,7 +892,7 @@ msgstr "Zobrazovaný název"
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_mail_sequence
 msgid "Display order"
-msgstr ""
+msgstr "Zobrazit pořadí"
 
 #. module: event
 #: model:event.event,description:event.event_0
@@ -920,7 +928,7 @@ msgstr "Email"
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_form
 msgid "Email Schedule"
-msgstr ""
+msgstr "Plánování e-mailů"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_mail_template_id
@@ -935,7 +943,7 @@ msgstr "Datum ukončení"
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_date_end_located
 msgid "End Date Located"
-msgstr ""
+msgstr "Datum ukončení se nachází"
 
 #. module: event
 #: model:ir.model,name:event.model_event_event
@@ -950,7 +958,7 @@ msgstr "Událost"
 #. module: event
 #: model:ir.actions.report.xml,name:event.report_event_event_badge
 msgid "Event Badge"
-msgstr ""
+msgstr "Odznak události"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_report_event_registration_search
@@ -960,7 +968,7 @@ msgstr ""
 #. module: event
 #: model:ir.ui.menu,name:event.menu_event_type
 msgid "Event Categories"
-msgstr ""
+msgstr "Kategorie událostí"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_search
@@ -991,12 +999,12 @@ msgstr ""
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_event_logo
 msgid "Event Logo"
-msgstr ""
+msgstr "Logo Události"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_mail_form
 msgid "Event Mail Scheduler"
-msgstr ""
+msgstr "Plánovač rozesílaé pošty událostí"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_mail_tree
@@ -1089,7 +1097,7 @@ msgstr ""
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_search
 msgid "Events in New state"
-msgstr ""
+msgstr "Události v novém stavu"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_report_event_registration_search
@@ -1104,7 +1112,7 @@ msgstr ""
 #. module: event
 #: model:event.type,name:event.event_type_1
 msgid "Exhibition"
-msgstr ""
+msgstr "Výstava"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_registration_search
@@ -1114,7 +1122,7 @@ msgstr "Očekávaný"
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_kanban
 msgid "Expected attendees"
-msgstr ""
+msgstr "Očekávaní účastníci"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_report_event_registration_search
@@ -1124,7 +1132,7 @@ msgstr "Rozšířené filtry…"
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_form
 msgid "Finish Event"
-msgstr ""
+msgstr "Dokončit událost"
 
 #. module: event
 #: model:event.event,description:event.event_2
@@ -1137,6 +1145,8 @@ msgid ""
 "For each event you can define a maximum registration of seats(number of "
 "attendees), above this numbers the registrations are not accepted."
 msgstr ""
+"Pro každou akci můžete definovat maximální registraci míst (počet "
+"účastníků), nad těmito čísly se registrace nepřijímá."
 
 #. module: event
 #: model:ir.model.fields,help:event.field_event_event_seats_min
@@ -1145,6 +1155,9 @@ msgid ""
 "attendees), if it does not reach the mentioned registrations the event can "
 "not be confirmed (keep 0 to ignore this rule)"
 msgstr ""
+"Pro každou událost můžete definovat minimální rezervovaná místa (počet "
+"účastníků), pokud nedosáhne uvedených registrací, událost nemůže být "
+"potvrzena (ponechte 0 pro ignorování tohoto pravidla)"
 
 #. module: event
 #: model:event.event,name:event.event_1
@@ -1291,7 +1304,7 @@ msgstr "Úvod do Javascriptu"
 #: model:event.event,description:event.event_1
 #: model:event.event,description:event.event_3
 msgid "Introduction to QWeb"
-msgstr ""
+msgstr "Úvod do QWeb"
 
 #. module: event
 #: model:event.event,description:event.event_2
@@ -1301,12 +1314,12 @@ msgstr "Úvod, CRM, řízení prodeje"
 #. module: event
 #: model:ir.model.fields,help:event.field_event_type_default_registration_max
 msgid "It will select this default maximum value when you choose this event"
-msgstr ""
+msgstr "Při výběru této události vybere tuto výchozí maximální hodnotu"
 
 #. module: event
 #: model:ir.model.fields,help:event.field_event_type_default_registration_min
 msgid "It will select this default minimum value when you choose this event"
-msgstr ""
+msgstr "Když vyberete tuto událost, vybere tuto výchozí minimální hodnotu"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_color
@@ -1350,7 +1363,7 @@ msgstr "Naposled upraveno"
 #. module: event
 #: selection:event.event,seats_availability:0
 msgid "Limited"
-msgstr ""
+msgstr "Omezeno"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_address_id
@@ -1372,27 +1385,27 @@ msgstr ""
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_event_mail_ids
 msgid "Mail Schedule"
-msgstr ""
+msgstr "Plánování pošty"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_mail_registration_scheduler_id
 msgid "Mail Scheduler"
-msgstr ""
+msgstr "Plánovač pošty"
 
 #. module: event
 #: model:ir.ui.menu,name:event.menu_event_mail_schedulers
 msgid "Mail Schedulers"
-msgstr ""
+msgstr "Plánovače mailingu"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_mail_registration_mail_sent
 msgid "Mail Sent"
-msgstr ""
+msgstr "Email odeslán"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_mail_mail_sent
 msgid "Mail Sent on Event"
-msgstr ""
+msgstr "Mail odeslaný na akci"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_mail_mail_registration_ids
@@ -1417,17 +1430,17 @@ msgstr ""
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_seats_availability
 msgid "Maximum Attendees"
-msgstr ""
+msgstr "Maximum účastníků"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_seats_max
 msgid "Maximum Attendees Number"
-msgstr ""
+msgstr "Maximální počet účastníků"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_seats_min
 msgid "Minimum Attendees"
-msgstr ""
+msgstr "Minimum účastníků"
 
 #. module: event
 #: model:event.event,description:event.event_0
@@ -1471,13 +1484,13 @@ msgstr ""
 #: code:addons/event/models/event.py:214
 #, python-format
 msgid "No more available seats."
-msgstr ""
+msgstr "Už nejsou k dispozici žádná sedadla."
 
 #. module: event
 #: code:addons/event/models/event.py:314
 #, python-format
 msgid "No more seats available for this event."
-msgstr ""
+msgstr "Pro tuto akci již nejsou k dispozici žádná další místa."
 
 #. module: event
 #: selection:event.config.settings,auto_confirmation:0
@@ -1509,7 +1522,7 @@ msgstr ""
 #: model:event.event,description:event.event_1
 #: model:event.event,description:event.event_3
 msgid "Odoo Official Website"
-msgstr ""
+msgstr "Oficiální webová strana Odoo"
 
 #. module: event
 #: model:event.event,description:event.event_0
@@ -1613,7 +1626,7 @@ msgstr ""
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_form
 msgid "Register with this event"
-msgstr ""
+msgstr "Zaregistrujte se u této události"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_registration_form
@@ -1626,7 +1639,7 @@ msgstr "Registrace"
 #. module: event
 #: model:ir.actions.report.xml,name:event.report_event_registration_badge
 msgid "Registration Badge"
-msgstr ""
+msgstr "Registrační odznak"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_registration_date_open
@@ -1641,7 +1654,7 @@ msgstr ""
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_registration_search
 msgid "Registration ID"
-msgstr ""
+msgstr "ID registrace"
 
 #. module: event
 #: model:ir.model,name:event.model_event_mail_registration
@@ -1651,7 +1664,7 @@ msgstr ""
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_mail_form
 msgid "Registration Mails"
-msgstr ""
+msgstr "Registrační e-maily"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_registration_search
@@ -1676,7 +1689,7 @@ msgstr ""
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_mail_form
 msgid "Registration mail"
-msgstr ""
+msgstr "Registrační e-mail"
 
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_form
@@ -1691,7 +1704,7 @@ msgstr ""
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_type_default_reply_to
 msgid "Reply To"
-msgstr ""
+msgstr "Odpovědět"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_reply_to
@@ -1720,7 +1733,7 @@ msgstr "Požadavky"
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_seats_reserved
 msgid "Reserved Seats"
-msgstr ""
+msgstr "Rezervovaná místa"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_user_id
@@ -1731,12 +1744,12 @@ msgstr "Odpovědný"
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_config_settings_module_event_barcode
 msgid "Scan badges to confirm attendances"
-msgstr ""
+msgstr "Skenování odznaků pro potvrzení účasti"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_mail_scheduled_date
 msgid "Scheduled Sent Mail"
-msgstr ""
+msgstr "Naplánovaná odeslaná pošta"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_mail_registration_scheduled_date
@@ -1766,7 +1779,7 @@ msgstr "Nastavit na koncept"
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_registration_form
 msgid "Set To Unconfirmed"
-msgstr ""
+msgstr "Nastaveno na Nepotvrzeno"
 
 #. module: event
 #: model:ir.ui.menu,name:event.menu_event_global_settings
@@ -1776,7 +1789,7 @@ msgstr "Nastavení"
 #. module: event
 #: model:event.type,name:event.event_type_3
 msgid "Show"
-msgstr ""
+msgstr "Šou"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_registration_origin
@@ -1840,7 +1853,7 @@ msgstr ""
 #: model:ir.model.fields,help:event.field_event_mail_template_id
 msgid ""
 "This field contains the template of the mail that will be automatically sent"
-msgstr ""
+msgstr "Toto pole obsahuje šablonu e-mailu, který bude automaticky odeslán"
 
 #. module: event
 #: code:addons/event/models/event.py:440
@@ -1852,12 +1865,12 @@ msgstr "Tento měsíc"
 #: code:addons/event/models/event.py:438
 #, python-format
 msgid "This week"
-msgstr ""
+msgstr "Tento týden"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_config_settings_module_event_sale
 msgid "Tickets"
-msgstr ""
+msgstr "Vstupenky"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_date_tz
@@ -1869,7 +1882,7 @@ msgstr "Časová zóna"
 #: model:event.event,description:event.event_1
 #: model:event.event,description:event.event_3
 msgid "To get more information, visit the"
-msgstr ""
+msgstr "Pro více informací, navštivte "
 
 #. module: event
 #: code:addons/event/models/event.py:434
@@ -1886,7 +1899,7 @@ msgstr "Zítra"
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_config_settings_module_website_event_track
 msgid "Tracks and Agenda"
-msgstr ""
+msgstr "Itinerář a agenda"
 
 #. module: event
 #: model:event.type,name:event.event_type_4
@@ -1916,7 +1929,7 @@ msgstr "Nepotvrzené rezervace místa"
 #: model:event.event,description:event.event_1
 #: model:event.event,description:event.event_3
 msgid "Underscore"
-msgstr ""
+msgstr "Podtržítko"
 
 #. module: event
 #: model:event.event,description:event.event_0
@@ -1960,7 +1973,7 @@ msgstr ""
 #. module: event
 #: model:ir.ui.view,arch_db:event.view_event_search
 msgid "Upcoming events from today"
-msgstr ""
+msgstr "Nadcházející události od dnes"
 
 #. module: event
 #: model:res.groups,name:event.group_event_user
@@ -2005,7 +2018,7 @@ msgstr "Co říkají lidé o tomto kurzu?"
 #: model:event.event,description:event.event_1
 #: model:event.event,description:event.event_3
 msgid "What you will learn?"
-msgstr ""
+msgstr "Co se naučíte?"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_mail_interval_type
@@ -2041,12 +2054,12 @@ msgstr ""
 #. module: event
 #: model:mail.template,subject:event.event_subscription
 msgid "Your registration at ${object.event_id.name}"
-msgstr ""
+msgstr "Vaše registrace na ${object.event_id.name}"
 
 #. module: event
 #: model:mail.template,report_name:event.event_registration_mail_template_badge
 msgid "badge_of_${(object.event_id.name or '').replace('/','_')}"
-msgstr ""
+msgstr "badge_of_${(object.event_id.name or '').replace('/','_')}"
 
 #. module: event
 #: model:event.event,description:event.event_0

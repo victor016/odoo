@@ -3,40 +3,43 @@
 # * stock
 # 
 # Translators:
+# Andreas Stauder <andreas.stauder@brain-tec.ch>, 2016
+# David Lehov <KHottend@gmx.de>, 2016
 # aNj <anj2j@yahoo.de>, 2016
-# Anja Funk <anja.funk@afimage.de>, 2016
-# Martin Trigaux, 2016
-# Wolfgang Taferner, 2016
-# Bülent Tiknas <btiknas@googlemail.com>, 2016
+# Ralf Hilgenstock <rh@dialoge.info>, 2016
+# Silvan Wyden <silvan.wyden@braintec-group.com>, 2016
+# Mathias Neef <mn@copado.de>, 2016
 # Tina Rittmüller <tr@ife.de>, 2016
+# Anja Funk <anja.funk@afimage.de>, 2016
+# JackTheHunter <Maximilian.N98@gmail.com>, 2016
+# Henry Mineehen <info@mineehen.de>, 2016
 # darenkster <inactive+darenkster@transifex.com>, 2016
 # Thorsten Vocks <thorsten.vocks@openbig.org>, 2016
-# Ralf Hilgenstock <rh@dialoge.info>, 2016
 # Renzo Meister, 2016
-# Ermin Trevisan <trevi@twanda.com>, 2016
-# Henry Mineehen <info@mineehen.de>, 2016
-# JackTheHunter <Maximilian.N98@gmail.com>, 2016
-# Andreas Stauder <andreas.stauder@brain-tec.ch>, 2016
-# Mathias Neef <mn@copado.de>, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
-# Uwe Zapp <uwe-zapp@u3z.de>, 2016
-# David Lehov <KHottend@gmx.de>, 2016
-# Silvan Wyden <silvan.wyden@braintec-group.com>, 2016
-# Alexander Klockhaus <a.klockhaus@gmail.com>, 2016
-# Philipp Hug <philipp@hug.cx>, 2016
 # Niki Waibel, 2016
-# key six <mobile.umts@gmail.com>, 2016
 # Torsten Wichmann <t.wichmann@intero-technologies.de>, 2016
+# key six <mobile.umts@gmail.com>, 2016
 # Akim Juillerat <akim.juillerat@camptocamp.com>, 2016
-# Malte Jansen <work@maltejansen.de>, 2017
-# e2f <projects@e2f.com>, 2018
+# Philipp Hug <philipp@hug.cx>, 2016
+# Uwe Zapp <uwe-zapp@u3z.de>, 2016
+# Alexander Klockhaus <a.klockhaus@gmail.com>, 2016
+# Bülent Tiknas <btiknas@googlemail.com>, 2017
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
+# Martin Trigaux, 2017
+# brokemeister <work@maltejansen.de>, 2017
+# Ermin Trevisan <trevi@twanda.com>, 2018
+# Wolfgang Taferner, 2018
+# Leon Grill <leg@odoo.com>, 2019
+# e2f <projects@e2f.com>, 2019
+# Chris Egal <sodaswed@web.de>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-23 13:26+0000\n"
-"PO-Revision-Date: 2017-06-23 13:26+0000\n"
-"Last-Translator: e2f <projects@e2f.com>, 2018\n"
+"PO-Revision-Date: 2016-09-07 09:29+0000\n"
+"Last-Translator: Chris Egal <sodaswed@web.de>, 2019\n"
 "Language-Team: German (https://www.transifex.com/odoo/teams/41243/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4919,7 +4922,7 @@ msgstr "Bitte spezifizieren Sie wenigstens eine Menge ungleich 0"
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_pack_operation_lot_plus_visible
 msgid "Plus visible"
-msgstr ""
+msgstr "Plus sichtbar"
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.quant_search_view
@@ -5604,7 +5607,7 @@ msgstr "Berichte"
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_make_procurement_res_model
 msgid "Res Model"
-msgstr ""
+msgstr "Res Model"
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.view_picking_form
@@ -5858,7 +5861,7 @@ msgstr "Suche Inventur"
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.stock_inventory_line_search
 msgid "Search Inventory Lines"
-msgstr ""
+msgstr "Bestandszeilen durchsuchen"
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.stock_scrap_search_view
@@ -6272,7 +6275,7 @@ msgstr "Verarbeitete Lagerbuchungen"
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_product_product_stock_quant_ids
 msgid "Stock quant ids"
-msgstr ""
+msgstr "Bestandsquant-ID`s"
 
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.report_stock_lines_date_search
@@ -6549,7 +6552,7 @@ msgstr ""
 #: code:addons/stock/models/stock_picking.py:795
 #, python-format
 msgid "The pick is already validated"
-msgstr ""
+msgstr "Die Kommisionierung ist bereits bestätigt"
 
 #. module: stock
 #: model:ir.model,name:stock.model_stock_picking_type
@@ -6598,6 +6601,8 @@ msgstr ""
 #: model:ir.ui.view,arch_db:stock.inventory_planner
 msgid "The quotation becomes a Sale Order and a Transfer Order is created"
 msgstr ""
+"Das Angebot wird zu einem Verkaufsauftrag und ein Transportauftrag wird "
+"erstellt"
 
 #. module: stock
 #: code:addons/stock/models/stock_move.py:166
@@ -6632,7 +6637,7 @@ msgstr "Die ausgewählten Inventuroptionen passen nicht zueinander."
 #: code:addons/stock/models/stock_quant.py:222
 #, python-format
 msgid "The serial number %s is already in stock."
-msgstr ""
+msgstr "Die Seriennummer  %s ist bereits auf Lager."
 
 #. module: stock
 #: code:addons/stock/models/stock_picking.py:515
@@ -6800,6 +6805,8 @@ msgstr ""
 #: model:ir.model.fields,help:stock.field_stock_config_settings_module_quality
 msgid "This module allows you to generate quality alerts and quality check"
 msgstr ""
+"Mit diesem Modul können Sie Qualitätswarnungen und Qualitätsprüfungen "
+"generieren"
 
 #. module: stock
 #: model:ir.model.fields,help:stock.field_stock_config_settings_group_stock_adv_location
@@ -7630,6 +7637,7 @@ msgstr ""
 #, python-format
 msgid "You can not delete pack operations of a done picking"
 msgstr ""
+"Sie können keine Packvorgänge einer erledigten Kommissionierung löschen"
 
 #. module: stock
 #: code:addons/stock/models/stock_quant.py:143
@@ -7666,7 +7674,7 @@ msgstr "Sie können keinen Ausschuss löschen, der bearbeitet wird."
 #: code:addons/stock/models/stock_inventory.py:103
 #, python-format
 msgid "You cannot delete a validated inventory adjustement."
-msgstr ""
+msgstr "Sie können eine validierte Bestandskorrektur nicht löschen."
 
 #. module: stock
 #: code:addons/stock/models/stock_inventory.py:374
@@ -7733,16 +7741,18 @@ msgid ""
 "You have a difference between the quantity on the operation and the "
 "quantities specified for the lots. "
 msgstr ""
+"SieSie haben eine Differenz zwischen der Menge auf dem Vorgang und den "
+"Mengen, die für die Lose angegeben wurden."
 
 #. module: stock
 #: sql_constraint:stock.pack.operation.lot:0
 msgid "You have already mentioned this lot in another line"
-msgstr ""
+msgstr "Sie haben dieses Los bereits in einer anderen Zeile erwähnt"
 
 #. module: stock
 #: sql_constraint:stock.pack.operation.lot:0
 msgid "You have already mentioned this lot name in another line"
-msgstr ""
+msgstr "Sie haben diesen Losnamen bereits in einer anderen Zeile erwähnt"
 
 #. module: stock
 #: code:addons/stock/wizard/stock_picking_return.py:114
@@ -7803,13 +7813,13 @@ msgstr "Sie müssen ein Lager für das Unternehmen festlegen: %s."
 #: code:addons/stock/models/stock_pack_operation.py:234
 #, python-format
 msgid "You need to provide a Lot/Serial Number for product %s"
-msgstr ""
+msgstr "Sie müssen eine Los- / Seriennummer für das Produkt angeben %s"
 
 #. module: stock
 #: code:addons/stock/models/stock_quant.py:260
 #, python-format
 msgid "You should only receive by the piece with the same serial number"
-msgstr ""
+msgstr "Sie sollten nur das Stück mit der gleichen Seriennummer bekommen "
 
 #. module: stock
 #: code:addons/stock/models/stock_pack_operation.py:238
@@ -7999,7 +8009,7 @@ msgstr "<i/>"
 #. module: stock
 #: model:ir.ui.view,arch_db:stock.inventory_planner
 msgid "on the sale order form to see Transfer Order"
-msgstr ""
+msgstr "auf dem Verkaufsauftragsauftrag um den Überweisungsauftrag zu sehen"
 
 #. module: stock
 #: model:ir.model,name:stock.model_report_stock_forecast

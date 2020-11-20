@@ -5,10 +5,11 @@
 # Translators:
 # Saba Khmaladze <skhmaladze@uglt.org>, 2018
 # Giorgi Melitauri <gmelitauri@live.com>, 2018
-# Martin Trigaux, 2018
 # Temur, 2018
-# Gizo Kobakhidze <040168@gmail.com>, 2018
 # David Machakhelidze <david.machakhelidze@gmail.com>, 2018
+# Martin Trigaux, 2019
+# Gvantsa Gvinianidze <gvantsa@live.com>, 2019
+# Gizo Kobakhidze <040168@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
@@ -16,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-23 16:30+0000\n"
 "PO-Revision-Date: 2016-09-07 09:14+0000\n"
-"Last-Translator: David Machakhelidze <david.machakhelidze@gmail.com>, 2018\n"
+"Last-Translator: Gizo Kobakhidze <040168@gmail.com>, 2019\n"
 "Language-Team: Georgian (https://www.transifex.com/odoo/teams/41243/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4604,6 +4605,14 @@ msgid ""
 msgstr ""
 
 #. module: base
+#: code:addons/model.py:153
+#, python-format
+msgid ""
+" another model requires the record being deleted. If possible, archive it "
+"instead."
+msgstr ""
+
+#. module: base
 #: model:ir.ui.view,arch_db:base.res_lang_form
 msgid "%A - Full weekday name."
 msgstr "%A - კვირის დღის სრული სახელი."
@@ -4758,6 +4767,14 @@ msgid ""
 msgstr ""
 "- ქმედება: მოცემული მოდელისთვის ერთ სლოტზე მიბმული ქმედება\n"
 "- ნაგულისხმევი: მოცემული ველისთვის ნაგილისხმევი მნიშვნელობა"
+
+#. module: base
+#: code:addons/model.py:141
+#, python-format
+msgid ""
+"- Create/update: a mandatory field is not set.\n"
+"- Delete: another model requires the record being deleted. If possible, archive it instead."
+msgstr ""
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.report_irmodeloverview
@@ -5217,7 +5234,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_partner_bank_partner_id
 msgid "Account Holder"
-msgstr ""
+msgstr "ანგარიშის მფლობელი"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_portal
@@ -5247,7 +5264,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_account_taxcloud
 msgid "Account TaxCloud"
-msgstr ""
+msgstr "ანგარიში TaxCloud"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_sale_account_taxcloud
@@ -5949,7 +5966,7 @@ msgstr "არქიტექტურა"
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_res_partner_filter
 msgid "Archived"
-msgstr ""
+msgstr "დაარქივებული"
 
 #. module: base
 #: model:res.country,name:base.ar
@@ -6233,7 +6250,7 @@ msgstr "ბარბადოსი"
 #: model:ir.model.fields,field_description:base.field_res_partner_barcode
 #: model:ir.model.fields,field_description:base.field_res_users_barcode
 msgid "Barcode"
-msgstr ""
+msgstr "ბარკოდი"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_hw_scanner
@@ -6994,7 +7011,7 @@ msgstr ""
 #: selection:ir.logging,type:0
 #: model:ir.ui.view,arch_db:base.view_server_action_form
 msgid "Client"
-msgstr ""
+msgstr "მომხმარებელი"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_act_server_action_id
@@ -7235,7 +7252,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_model_fields_compute
 msgid "Compute"
-msgstr ""
+msgstr "გამოთვალე"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_sale_taxcloud_delivery
@@ -7359,6 +7376,12 @@ msgstr "შეზღუდვა"
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_model_constraint_type
 msgid "Constraint Type"
+msgstr ""
+
+#. module: base
+#: code:addons/model.py:158
+#, python-format
+msgid "Constraint:"
 msgstr ""
 
 #. module: base
@@ -7889,7 +7912,7 @@ msgstr "ვალუტის კოდი (ISO 4217)"
 #: model:ir.model,name:base.model_res_currency_rate
 #: model:ir.ui.view,arch_db:base.view_currency_rate_form
 msgid "Currency Rate"
-msgstr ""
+msgstr "ვალუტის კურსი"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.act_view_currency_rates
@@ -8264,6 +8287,11 @@ msgstr ""
 #: model:ir.module.category,name:base.module_category_hidden_dependency
 msgid "Dependency"
 msgstr "დამოკიდებულობა"
+
+#. module: base
+#: model:ir.module.module,description:base.module_test_pylint
+msgid "Deprecated empty module in favor of test-lint."
+msgstr ""
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_attachment_description
@@ -8888,7 +8916,7 @@ msgstr "მაგალითები"
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_server_action_form
 msgid "Execute several actions"
-msgstr ""
+msgstr "განახორციელეთ რამოდენიმე მოქმედება"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.ir_cron_view_search
@@ -9208,6 +9236,12 @@ msgid "Field names must be unique per model."
 msgstr ""
 
 #. module: base
+#: code:addons/model.py:148
+#, python-format
+msgid "Field:"
+msgstr "ველი:"
+
+#. module: base
 #: model:ir.actions.act_window,name:base.action_model_fields
 #: model:ir.model,name:base.model_ir_model_fields
 #: model:ir.model.fields,field_description:base.field_ir_model_field_id
@@ -9308,7 +9342,7 @@ msgstr "ფილტრები"
 #. module: base
 #: model:ir.ui.view,arch_db:base.ir_filters_view_search
 msgid "Filters created by myself"
-msgstr ""
+msgstr "ჩემს მიერ შექმნილი ფილტრები"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.ir_filters_view_search
@@ -9470,7 +9504,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_partner_email_formatted
 #: model:ir.model.fields,field_description:base.field_res_users_email_formatted
 msgid "Formatted Email"
-msgstr ""
+msgstr "დაფორმატებული ელ-ფოსტა"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_forum
@@ -9569,7 +9603,7 @@ msgstr ""
 #: selection:ir.actions.act_window,target:0
 #: selection:ir.actions.client,target:0
 msgid "Full Screen"
-msgstr ""
+msgstr "ხედვა სრულ ეკრანზე"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_logging_func
@@ -10055,7 +10089,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.category,description:base.module_category_hr_expense
 msgid "Helps you manage your expenses."
-msgstr ""
+msgstr "გეხმარებათ ხარჯების უკეთ მართვაში."
 
 #. module: base
 #: model:ir.module.category,description:base.module_category_hr_holidays
@@ -10816,7 +10850,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_partner_form
 msgid "Internal Notes"
-msgstr ""
+msgstr "შიდა ჩანაწერები"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_partner_ref
@@ -12338,6 +12372,12 @@ msgid ""
 msgstr ""
 
 #. module: base
+#: code:addons/model.py:147 code:addons/model.py:157
+#, python-format
+msgid "Model:"
+msgstr ""
+
+#. module: base
 #: model:ir.actions.act_window,name:base.action_model_model
 #: model:ir.model,name:base.model_ir_model
 #: model:ir.ui.menu,name:base.ir_model_model_menu
@@ -12627,7 +12667,7 @@ msgstr ""
 #. module: base
 #: model:ir.model.fields,field_description:base.field_change_password_user_new_passwd
 msgid "New Password"
-msgstr ""
+msgstr "ახალი პაროლი"
 
 #. module: base
 #: selection:ir.actions.act_url,target:0
@@ -13261,7 +13301,7 @@ msgstr ""
 #. module: base
 #: model:res.country,name:base.py
 msgid "Paraguay"
-msgstr ""
+msgstr "პარაგვაი"
 
 #. module: base
 #: model:ir.ui.menu,name:base.menu_ir_property
@@ -13600,7 +13640,7 @@ msgstr ""
 #: model:ir.module.category,name:base.module_category_point_of_sale
 #: model:ir.module.module,shortdesc:base.module_point_of_sale
 msgid "Point of Sale"
-msgstr ""
+msgstr "გაყიდვების წერტილი - POS"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_pos_data_drinks
@@ -14710,7 +14750,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,summary:base.module_sales_team
 msgid "Sales Team"
-msgstr ""
+msgstr "გაყიდვების გუნდი"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_sales_team
@@ -14742,7 +14782,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base.field_res_users_user_id
 #: model:ir.ui.view,arch_db:base.view_res_partner_filter
 msgid "Salesperson"
-msgstr ""
+msgstr "გამყიდველი"
 
 #. module: base
 #: model:res.country,name:base.ws
@@ -15138,7 +15178,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_currency_search
 msgid "Show active currencies"
-msgstr ""
+msgstr "გამოაჩინეთ აქტიური ვალუტები"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_currency_search
@@ -15779,7 +15819,7 @@ msgstr ""
 #. module: base
 #: selection:ir.mail_server,smtp_encryption:0
 msgid "TLS (STARTTLS)"
-msgstr ""
+msgstr "TLS (STARTTLS)"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_res_partner_filter
@@ -16331,6 +16371,14 @@ msgid "The selected modules have been updated / installed !"
 msgstr ""
 
 #. module: base
+#: code:addons/base/module/module.py:489
+#, python-format
+msgid ""
+"The server is busy right now, module operations are not possible at this "
+"time, please try again later."
+msgstr ""
+
+#. module: base
 #: model:ir.model.fields,help:base.field_res_country_state_code
 msgid "The state code."
 msgstr ""
@@ -16725,7 +16773,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_translation_form
 msgid "Translation"
-msgstr ""
+msgstr "თარგმნა"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_translation_value
@@ -17008,7 +17056,9 @@ msgid "United States Postal Service (USPS) Shipping"
 msgstr ""
 
 #. module: base
+#: code:addons/model.py:148 code:addons/model.py:157 code:addons/model.py:158
 #: selection:ir.module.module.dependency,state:0
+#, python-format
 msgid "Unknown"
 msgstr "უცნობია"
 
@@ -17366,7 +17416,7 @@ msgstr ""
 #. module: base
 #: model:res.country,name:base.vu
 msgid "Vanuatu"
-msgstr ""
+msgstr "ვანუატუ"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_server_action_form
@@ -17383,13 +17433,13 @@ msgstr ""
 #. module: base
 #: model:res.partner.category,name:base.res_partner_category_1
 msgid "Vendor"
-msgstr ""
+msgstr "მომწოდებელი"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.action_partner_supplier_form
 #: model:ir.ui.view,arch_db:base.view_res_partner_filter
 msgid "Vendors"
-msgstr ""
+msgstr "მომწოდებლები"
 
 #. module: base
 #: model:res.country,name:base.ve
@@ -18354,7 +18404,7 @@ msgstr ""
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_server_action_form
 msgid "e.g. Update order quantity"
-msgstr ""
+msgstr "მაგ. განაახლეთ შეკვეთის ოდენობა"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_base_import_language
@@ -18828,6 +18878,11 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_test_limits
 msgid "test-limits"
+msgstr ""
+
+#. module: base
+#: model:ir.module.module,shortdesc:base.module_test_lint
+msgid "test-lint"
 msgstr ""
 
 #. module: base

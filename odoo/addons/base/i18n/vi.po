@@ -12,14 +12,15 @@
 # son dang <son.dang@doda100.com>, 2016
 # W360S CORP <contact@w360s.com>, 2016
 # Su Pham Nghiep Vu <nghiepvusupham58@gmail.com>, 2017
-# Thang Duong Bao <nothingctrl@gmail.com>, 2017
 # fanha99 <fanha99@hotmail.com>, 2017
 # Duc Dao <blakice12@gmail.com>, 2017
 # Dang Hanh <hanh.dtm@komit-consulting.com>, 2017
 # Martin Trigaux, 2018
 # Minh Nguyen <ndminh210994@gmail.com>, 2018
-# Duy BQ <duybq86@gmail.com>, 2019
-# Nancy Momoland <thanhnguyen.icsc@gmail.com>, 2019
+# Thang Duong Bao <nothingctrl@gmail.com>, 2019
+# Trinh Tran Thi Phuong <trinhttp@trobz.com>, 2019
+# Duy BQ <duybq86@gmail.com>, 2020
+# Nancy Momoland <thanhnguyen.icsc@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -27,7 +28,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-23 16:30+0000\n"
 "PO-Revision-Date: 2016-09-07 09:14+0000\n"
-"Last-Translator: Nancy Momoland <thanhnguyen.icsc@gmail.com>, 2019\n"
+"Last-Translator: Nancy Momoland <thanhnguyen.icsc@gmail.com>, 2020\n"
 "Language-Team: Vietnamese (https://www.transifex.com/odoo/teams/41243/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -859,6 +860,12 @@ msgid ""
 "    * The new lock date for advisors must be set after the previous lock date.\n"
 "    "
 msgstr ""
+"\n"
+"      Làm cho ngày khóa không thể đảo ngược:\n"
+"\n"
+"      * Bạn không thể xác định các điều kiện chặt chẽ hơn trên các cố vấn so với người dùng. Sau đó, ngày khóa trên trình tư vấn phải được đặt trước ngày khóa cho người dùng.\n"
+"     * Bạn không thể khóa một khoảng thời gian chưa kết thúc. Sau đó, ngày khóa cho cố vấn phải được đặt trước ngày cuối cùng của tháng trước.\n"
+"     * Ngày khóa mới cho cố vấn phải được đặt sau ngày khóa trước."
 
 #. module: base
 #: model:ir.module.module,description:base.module_hr_timesheet_attendance
@@ -1345,6 +1352,9 @@ msgid ""
 "Adds the possibility to specify the origin country of goods and the partner VAT in the Intrastat XML report.\n"
 "    "
 msgstr ""
+"\n"
+"Thêm khả năng chỉ định quốc gia xuất xứ của hàng hóa và VAT đối tác trong báo cáo Intrastat XML.\n"
+"    "
 
 #. module: base
 #: model:ir.module.module,description:base.module_pos_mercury
@@ -3392,6 +3402,21 @@ msgid ""
 "of recall defined. You can define different policies for different companies. \n"
 "\n"
 msgstr ""
+"\n"
+"Mô-đun để tự động hóa các chữ cái cho hóa đơn chưa thanh toán, với thu hồi đa cấp.\n"
+"================================================== =======================\n"
+"\n"
+"Bạn có thể xác định nhiều mức thu hồi của mình thông qua menu:\n"
+"-------------------------------------------------- -------------\n"
+"     Cấu hình / Theo dõi / Theo dõi cấp độ\n"
+"    \n"
+"Sau khi được xác định, bạn có thể tự động in thu hồi mỗi ngày chỉ bằng cách nhấp vào menu:\n"
+"-------------------------------------------------- -------------------------------------------------- -\n"
+"     Theo dõi thanh toán / Gửi email và thư\n"
+"\n"
+"Nó sẽ tạo PDF / gửi email / thiết lập các hành động thủ công theo các cấp độ khác nhau\n"
+"thu hồi được xác định. Bạn có thể xác định các chính sách khác nhau cho các công ty khác nhau.\n"
+"\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_account_bank_statement_import_camt
@@ -6156,6 +6181,13 @@ msgid ""
 "from purchase order.\n"
 "    "
 msgstr ""
+"\n"
+"Mô-đun này cung cấp cơ sở cho người dùng để cài đặt mrp và mua mô-đun tại một thời điểm.\n"
+"================================================== ======================================\n"
+"\n"
+"Nó cơ bản được sử dụng khi chúng tôi muốn theo dõi các đơn đặt hàng sản xuất được tạo ra\n"
+"từ đơn đặt hàng.\n"
+"    "
 
 #. module: base
 #: model:ir.module.module,description:base.module_sale_mrp
@@ -6721,6 +6753,16 @@ msgid ""
 msgstr ""
 
 #. module: base
+#: code:addons/model.py:153
+#, python-format
+msgid ""
+" another model requires the record being deleted. If possible, archive it "
+"instead."
+msgstr ""
+" một đối tượng khác đang yêu cầu truy cập dữ liệu đã bị xóa. Nếu được, hãy "
+"lưu trữ thay vì xóa."
+
+#. module: base
 #: model:ir.ui.view,arch_db:base.res_lang_form
 msgid "%A - Full weekday name."
 msgstr "%A - Tên đầy đủ ngày trong tuần."
@@ -6874,6 +6916,16 @@ msgid ""
 msgstr ""
 "- Action: an action attached to one slot of the given model\n"
 "- Default: a default value for a model field"
+
+#. module: base
+#: code:addons/model.py:141
+#, python-format
+msgid ""
+"- Create/update: a mandatory field is not set.\n"
+"- Delete: another model requires the record being deleted. If possible, archive it instead."
+msgstr ""
+"- Tạo/cập nhật: có một trường bắt buộc nhưng chưa có dữ liệu.\n"
+"- Xóa: có dữ liệu khác đang liên kết với dữ liệu bạn đang xóa. Nếu được, hãy lưu trữ dữ liệu này thay vì xóa."
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.report_irmodeloverview
@@ -9616,6 +9668,12 @@ msgid "Constraint Type"
 msgstr "Kiểu ràng buộc"
 
 #. module: base
+#: code:addons/model.py:158
+#, python-format
+msgid "Constraint:"
+msgstr "Ràng buộc:"
+
+#. module: base
 #: sql_constraint:ir.model.constraint:0
 msgid "Constraints with the same name are unique per module."
 msgstr "Constraints with the same name are unique per module."
@@ -10528,6 +10586,11 @@ msgstr ""
 #: model:ir.module.category,name:base.module_category_hidden_dependency
 msgid "Dependency"
 msgstr "Phụ thuộc"
+
+#. module: base
+#: model:ir.module.module,description:base.module_test_pylint
+msgid "Deprecated empty module in favor of test-lint."
+msgstr ""
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_attachment_description
@@ -11542,6 +11605,12 @@ msgstr ""
 #, python-format
 msgid "Field names must be unique per model."
 msgstr "Tên trường phải là duy nhất cho mỗi đối tượng."
+
+#. module: base
+#: code:addons/model.py:148
+#, python-format
+msgid "Field:"
+msgstr "Trường:"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.action_model_fields
@@ -13439,7 +13508,7 @@ msgstr "Ireland"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_account_lock
 msgid "Irreversible Lock Date"
-msgstr ""
+msgstr "Ngày khóa không thể đảo ngược"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_partner_is_company
@@ -13622,7 +13691,7 @@ msgstr "Kontni načrt za gospodarske družbe"
 #. module: base
 #: model:res.country,name:base.xk
 msgid "Kosovo"
-msgstr ""
+msgstr "Kosovo"
 
 #. module: base
 #: model:res.country,name:base.kw
@@ -14800,6 +14869,12 @@ msgid ""
 msgstr ""
 "Model to which this entry applies - helper field for setting a model, will "
 "automatically set the correct model name"
+
+#. module: base
+#: code:addons/model.py:147 code:addons/model.py:157
+#, python-format
+msgid "Model:"
+msgstr "Model:"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.action_model_model
@@ -16086,7 +16161,7 @@ msgstr ""
 #: code:addons/base/ir/ir_model.py:405
 #, python-format
 msgid "Please specify a valid model for the object relation"
-msgstr ""
+msgstr "Vui lòng chỉ định một model hợp lệ cho đối tượng liên quan"
 
 #. module: base
 #: code:addons/base/ir/ir_actions.py:799
@@ -18400,7 +18475,7 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_sale_taxcloud_delivery
 msgid "TaxCloud and Delivery - Ecommerce"
-msgstr ""
+msgstr "TaxCloud và giao hàng - Thương mại điện tử"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_account_taxcloud
@@ -18945,6 +19020,16 @@ msgid "The selected modules have been updated / installed !"
 msgstr "Mô đun được lựa chọn đã được cập nhật / cài đặt !"
 
 #. module: base
+#: code:addons/base/module/module.py:489
+#, python-format
+msgid ""
+"The server is busy right now, module operations are not possible at this "
+"time, please try again later."
+msgstr ""
+"Máy chủ hiện đang bận, hoạt động mô-đun không thể thực hiện được tại thời "
+"điểm này, vui lòng thử lại sau."
+
+#. module: base
 #: model:ir.model.fields,help:base.field_res_country_state_code
 msgid "The state code."
 msgstr "Mã tiểu bang."
@@ -19092,6 +19177,9 @@ msgid ""
 "This module ensures that when delivery price is computed online, and taxes are computed with TaxCloud, the tax computation is done correctly on both the order and delivery.\n"
 "    "
 msgstr ""
+"Mô-đun này đảm bảo rằng khi giá giao hàng được tính trực tuyến và các loại "
+"thuế được tính bằng TaxCloud, toán thuế được thực hiện đúng trên cả hai đơn "
+"đặt hàng và giao hàng."
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_base_module_upgrade
@@ -19663,7 +19751,9 @@ msgid "United States Postal Service (USPS) Shipping"
 msgstr "United States Postal Service (USPS) Shipping"
 
 #. module: base
+#: code:addons/model.py:148 code:addons/model.py:157 code:addons/model.py:158
 #: selection:ir.module.module.dependency,state:0
+#, python-format
 msgid "Unknown"
 msgstr "Không xác định"
 
@@ -21152,7 +21242,7 @@ msgstr "lấy"
 #. module: base
 #: model:ir.ui.view,arch_db:base.action_view_company_form_link_2_currencies
 msgid "here"
-msgstr ""
+msgstr "ở đây"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_hr_timesheet_sheet_timesheet_grid
@@ -21554,6 +21644,11 @@ msgstr "test-inherits"
 #: model:ir.module.module,shortdesc:base.module_test_limits
 msgid "test-limits"
 msgstr "test-limits"
+
+#. module: base
+#: model:ir.module.module,shortdesc:base.module_test_lint
+msgid "test-lint"
+msgstr "test-lint"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_test_uninstall

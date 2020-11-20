@@ -10,6 +10,9 @@
 # Simon Gorše <simon@gorse.org>, 2016
 # matjaz k <matjaz@mentis.si>, 2018
 # Matjaz Mozetic <m.mozetic@matmoz.si>, 2019
+# Boris Kodelja <boris@hbs.si>, 2019
+# Jasmina Macur <jasmina@hbs.si>, 2019
+# Tadej Lupšina <tadej@hbs.si>, 2019
 # 
 msgid ""
 msgstr ""
@@ -17,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-23 13:27+0000\n"
 "PO-Revision-Date: 2016-09-07 09:26+0000\n"
-"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>, 2019\n"
+"Last-Translator: Tadej Lupšina <tadej@hbs.si>, 2019\n"
 "Language-Team: Slovenian (https://www.transifex.com/odoo/teams/41243/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -188,7 +191,7 @@ msgstr ""
 #: code:addons/product/models/product.py:167 sql_constraint:product.product:0
 #, python-format
 msgid "A barcode can only be assigned to one product !"
-msgstr ""
+msgstr "Črtna koda je lahko dodeljena samo enemu izdelku!"
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_category_type
@@ -333,7 +336,7 @@ msgstr "Uporabljivo pri"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item_applied_on
 msgid "Apply On"
-msgstr ""
+msgstr "Uporabi na"
 
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_pricelist_view_search
@@ -562,7 +565,7 @@ msgstr ""
 #: code:addons/product/models/product_pricelist.py:427
 #, python-format
 msgid "Category: %s"
-msgstr ""
+msgstr "Kategorija: %s"
 
 #. module: product
 #: model:product.product,website_description:product.product_product_5b
@@ -666,7 +669,7 @@ msgstr "Družba"
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid "Compute Price"
-msgstr ""
+msgstr "Izračunaj ceno"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item_compute_price
@@ -1080,7 +1083,7 @@ msgstr ""
 #. module: product
 #: selection:product.pricelist.item,compute_price:0
 msgid "Fix Price"
-msgstr ""
+msgstr "Fiksna cena"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item_fixed_price
@@ -1508,7 +1511,7 @@ msgstr "Več enot mere"
 #. module: product
 #: model:res.groups,name:product.group_pricelist_item
 msgid "Manage Pricelist Items"
-msgstr ""
+msgstr "Upravljaj s postavkami cenikov"
 
 #. module: product
 #: model:res.groups,name:product.group_stock_packaging
@@ -1518,7 +1521,7 @@ msgstr "Pakiranje izdelkov"
 #. module: product
 #: model:res.groups,name:product.group_product_variant
 msgid "Manage Product Variants"
-msgstr ""
+msgstr "Upravljaj z različicami izdelkov"
 
 #. module: product
 #: model:res.groups,name:product.group_mrp_properties
@@ -1692,7 +1695,7 @@ msgstr "Partner"
 #. module: product
 #: selection:product.pricelist.item,compute_price:0
 msgid "Percentage (discount)"
-msgstr ""
+msgstr "Odstotek (popust)"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item_percent_price
@@ -1824,7 +1827,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:product.product_pricelist_view
 #: model:ir.ui.view,arch_db:product.product_template_form_view
 msgid "Pricelist Items"
-msgstr ""
+msgstr "Ceniki izdelkov"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_name
@@ -1850,7 +1853,7 @@ msgstr "Ceniki"
 #. module: product
 #: model:res.groups,name:product.group_product_pricelist
 msgid "Pricelists On Product"
-msgstr ""
+msgstr "Ceniki na izdelkih"
 
 #. module: product
 #: model:ir.ui.view,arch_db:product.view_partner_property_form
@@ -2248,7 +2251,7 @@ msgstr ""
 #. module: product
 #: model:ir.model.fields,field_description:product.field_base_config_settings_company_share_product
 msgid "Share product to all companies"
-msgstr ""
+msgstr "Souporaba izdelkov z vsemi družbami"
 
 #. module: product
 #: model:ir.model.fields,help:product.field_base_config_settings_company_share_product
@@ -2257,6 +2260,9 @@ msgid ""
 " * Checked : Product are visible for every company, even if a company is defined on the partner.\n"
 " * Unchecked : Each company can see only its product (product where company is defined). Product not related to a company are visible for all companies."
 msgstr ""
+"Souporaba izdelkov z vsemi družbami določenimi v instanci.\n"
+" * Označeno : izdelki so vidni vsem družbam, čeprav je družba določena med partnerji.\n"
+" * Neoznačeno : vsaka družba vidi le svoje izdelke (izdelki, kjer je določena družba). Izdelki, ki niso povezani z določeno družbo, so vidni vsem družbam."
 
 #. module: product
 #: model:product.product,name:product.membership_1
@@ -2802,7 +2808,7 @@ msgstr ""
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_supplierinfo_form_view
 msgid "Validity"
-msgstr ""
+msgstr "Velja do"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute_value_name
@@ -3083,7 +3089,7 @@ msgstr ""
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_pricelist_view
 msgid "e.g. USD Retailers"
-msgstr ""
+msgstr "npr. Trgovci na drobno"
 
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_uom_form_view

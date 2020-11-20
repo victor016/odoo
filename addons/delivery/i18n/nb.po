@@ -3,26 +3,28 @@
 # * delivery
 # 
 # Translators:
-# Martin Trigaux, 2016
-# Aleksander, 2016
-# Mari Løken <inactive+mari123@transifex.com>, 2016
 # Joachim Flottorp (Joachim flottorp) <joachimflottorp@gmail.com>, 2016
 # Henrik Norlin <henrik@appstogrow.net>, 2016
+# c21b6a13d68b58cd46df1f0c60d157fa_0eac24f <ebcc7c4c5322361be308a32a8952aa57_340590>, 2016
+# Aleksander, 2016
+# Martin Trigaux, 2016
 # Roy Edvard Ellingsen <roy@royedvard.com>, 2016
 # Torvald Baade Bringsvor <bringsvor@bringsvor.com>, 2017
 # Eirik Halvorsen <eirik386@gmail.com>, 2017
 # Hugo Fossen <hf@optice.no>, 2017
 # Andy Schønhaug <odoo@cypodgroup.com>, 2017
 # Viktor Basso <viktor@voit.no>, 2017
-# Jorunn D. Newth, 2017
+# Jorunn D. Newth, 2018
 # Jan Pedro Tumusok <jpt@eyenetworks.no>, 2018
+# Marius Stedjan <marius@stedjan.com>, 2020
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2016-09-07 08:56+0000\n"
-"Last-Translator: Jan Pedro Tumusok <jpt@eyenetworks.no>, 2018\n"
+"PO-Revision-Date: 2016-09-07 09:18+0000\n"
+"Last-Translator: Marius Stedjan <marius@stedjan.com>, 2020\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/odoo/teams/41243/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -721,7 +723,7 @@ msgstr "Hvis det er merket nye meldinger så krever dette din oppmerksomhet."
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier_message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Hvis huket av, vil nye meldinger kreve din oppmerksomhet."
 
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier_property_valuation
@@ -1153,7 +1155,7 @@ msgstr "Prisliste"
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_item_ids
 msgid "Pricelist Items"
-msgstr ""
+msgstr "Prislistelinje"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_pricelist_item_ids
@@ -1390,6 +1392,9 @@ msgid ""
 "Selecting \"Blocking Message\" will throw an exception with the message and "
 "block the flow. The Message has to be written in the next field."
 msgstr ""
+"Ved å huke av \"Advarsel\"-valget, vil brukeren bli vist meldingen. Ved å "
+"huke av \"Blokkerende melding\" vil brukeren bli blokkert fra å fortsette. "
+"Meldingen må angis i neste felt."
 
 #. module: delivery
 #: model:ir.ui.view,arch_db:delivery.view_picking_withcarrier_out_form
@@ -1656,7 +1661,7 @@ msgstr ""
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_to_weight
 msgid "To Weigh With Scale"
-msgstr ""
+msgstr "For veiing med vekt"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier_total_cost

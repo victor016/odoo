@@ -3,20 +3,22 @@
 # * note
 # 
 # Translators:
-# Martin Trigaux, 2016
 # xlu <xlu@seznam.cz>, 2016
+# Martin Trigaux, 2016
 # Jaroslav Helemik Nemec <nemec@helemik.cz>, 2016
 # Chris <krystof.reklamy13@gmail.com>, 2017
 # Jan Horzinka <jan.horzinka@centrum.cz>, 2018
-# trendspotter, 2018
 # Michal Veselý <michal@veselyberanek.net>, 2018
+# trendspotter <j.podhorecky@volny.cz>, 2019
+# Rastislav Brencic <rastislav.brencic@azet.sk>, 2020
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-07 08:56+0000\n"
-"PO-Revision-Date: 2016-09-07 08:56+0000\n"
-"Last-Translator: Michal Veselý <michal@veselyberanek.net>, 2018\n"
+"PO-Revision-Date: 2016-09-07 09:23+0000\n"
+"Last-Translator: Rastislav Brencic <rastislav.brencic@azet.sk>, 2020\n"
 "Language-Team: Czech (https://www.transifex.com/odoo/teams/41243/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -225,12 +227,12 @@ msgstr "Fáze"
 #. module: note
 #: model:ir.ui.view,arch_db:note.view_note_stage_tree
 msgid "Stages of Notes"
-msgstr ""
+msgstr "Fáze poznámek"
 
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_note_stage_ids
 msgid "Stages of Users"
-msgstr ""
+msgstr "Fáze uživatelů"
 
 #. module: note
 #: model:ir.model.fields,field_description:note.field_note_tag_name
@@ -240,7 +242,7 @@ msgstr "Název značky"
 #. module: note
 #: sql_constraint:note.tag:0
 msgid "Tag name already exists !"
-msgstr ""
+msgstr "Název značky již existuje!"
 
 #. module: note
 #: model:ir.actions.act_window,name:note.note_tag_action

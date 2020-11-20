@@ -3,22 +3,26 @@
 # * website_sale
 # 
 # Translators:
-# Martin Trigaux, 2017
-# Rivo Zängov <eraser@eraser.ee>, 2017
 # Wanradt Koell <wanradt@gmail.com>, 2017
 # Arma Gedonsky <armagedonsky@hot.ee>, 2017
+# Martin Trigaux, 2017
 # Gert Valdek <gert@airobot.ee>, 2017
-# Egon Raamat <egon@avalah.ee>, 2017
-# Eneli Õigus <enelioigus@gmail.com>, 2017
 # Marek Pontus, 2018
-# Martin Aavastik <martin@avalah.ee>, 2018
+# Egon Raamat <egon@avalah.ee>, 2018
+# Rivo Zängov <eraser@eraser.ee>, 2018
+# Maidu Targama <m.targama@gmail.com>, 2019
+# Martin Aavastik <martin@avalah.ee>, 2019
+# Indrek Linnas <indrek@estpos.ee>, 2019
+# Eneli Õigus <enelioigus@gmail.com>, 2020
+# Triine Aavik <triine@avalah.ee>, 2020
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-30 14:34+0000\n"
-"PO-Revision-Date: 2017-11-30 14:34+0000\n"
-"Last-Translator: Martin Aavastik <martin@avalah.ee>, 2018\n"
+"PO-Revision-Date: 2016-09-07 09:34+0000\n"
+"Last-Translator: Triine Aavik <triine@avalah.ee>, 2020\n"
 "Language-Team: Estonian (https://www.transifex.com/odoo/teams/41243/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +94,7 @@ msgstr ""
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.confirmation
 msgid "<i class=\"fa fa-print\"/> Print"
-msgstr ""
+msgstr "<i class=\"fa fa-print\"/> Trüki"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.header
@@ -948,7 +952,7 @@ msgstr "Värv"
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_planner
 msgid "Community &amp; Enterprise users:"
-msgstr ""
+msgstr "Community &amp; Enterprise users:"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.address
@@ -1574,7 +1578,7 @@ msgstr ""
 #: code:addons/website_sale/static/src/js/website_sale.js:15
 #, python-format
 msgid "My Cart"
-msgstr ""
+msgstr "Minu ostukorv"
 
 #. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_product_image_name
@@ -1650,7 +1654,7 @@ msgstr ""
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.website_planner
 msgid "Online users: we do it for you!"
-msgstr ""
+msgstr "Online users: we do it for you!"
 
 #. module: website_sale
 #: model:ir.model.fields,field_description:website_sale.field_sale_order_only_services
@@ -1972,7 +1976,7 @@ msgstr ""
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.cart_popover
 msgid "Qty:"
-msgstr ""
+msgstr "Kogus:"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.cart_lines
@@ -1994,7 +1998,7 @@ msgstr "Kiire ja lihtne seadistada"
 #. module: website_sale
 #: selection:product.attribute,type:0
 msgid "Radio"
-msgstr ""
+msgstr "Ringidega valikud"
 
 #. module: website_sale
 #: model:ir.model,name:website_sale.model_rating_rating

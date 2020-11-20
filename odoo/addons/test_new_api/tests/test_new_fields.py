@@ -209,11 +209,12 @@ class TestFields(common.TransactionCase):
         self.assertEqual(c.display_name, 'B / C')
         self.assertEqual(d.display_name, 'B / C / D')
 
-        b.name = 'X'
+        # rename several records to trigger several recomputations at once
+        (d + c + b).write({'name': 'X'})
         self.assertEqual(a.display_name, 'A')
         self.assertEqual(b.display_name, 'X')
-        self.assertEqual(c.display_name, 'X / C')
-        self.assertEqual(d.display_name, 'X / C / D')
+        self.assertEqual(c.display_name, 'X / X')
+        self.assertEqual(d.display_name, 'X / X / X')
 
     def test_12_cascade(self):
         """ test computed field depending on computed field """
@@ -221,6 +222,11 @@ class TestFields(common.TransactionCase):
         message.invalidate_cache()
         double_size = message.double_size
         self.assertEqual(double_size, message.size)
+
+        record = self.env['test_new_api.cascade'].create({'foo': "Hi"})
+        self.assertEqual(record.baz, "<[Hi]>")
+        record.foo = "Ho"
+        self.assertEqual(record.baz, "<[Ho]>")
 
     def test_13_inverse(self):
         """ test inverse computation of fields """

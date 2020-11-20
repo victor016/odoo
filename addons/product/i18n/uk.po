@@ -8,7 +8,7 @@
 # Zoriana Zaiats, 2016
 # Yaroslav Molochko <onorua@gmail.com>, 2016
 # Bohdan Lisnenko, 2016
-# Alina Lisnenko <alinasemeniuk1@gmail.com>, 2018
+# Alina Lisnenko <alinasemeniuk1@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-23 13:27+0000\n"
 "PO-Revision-Date: 2016-09-07 09:26+0000\n"
-"Last-Translator: Alina Lisnenko <alinasemeniuk1@gmail.com>, 2018\n"
+"Last-Translator: Alina Lisnenko <alinasemeniuk1@gmail.com>, 2019\n"
 "Language-Team: Ukrainian (https://www.transifex.com/odoo/teams/41243/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1588,7 +1588,7 @@ msgstr ""
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_category_parent_left
 msgid "Left Parent"
-msgstr "Залишений батько "
+msgstr "Лівий батьківський елемент"
 
 #. module: product
 #: model:product.uom.categ,name:product.uom_categ_length
@@ -1645,7 +1645,7 @@ msgstr "Управляйте властивостями товару"
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid "Max. Margin"
-msgstr "Макс. межа"
+msgstr "Макс. маржа"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item_price_max_margin
@@ -1678,7 +1678,7 @@ msgstr "Пам'ять"
 #. module: product
 #: model:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid "Min. Margin"
-msgstr "Мін. межа"
+msgstr "Мін. маржа"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item_price_min_margin
@@ -2223,7 +2223,7 @@ msgstr "Пульт дистанційного керування для поту
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_category_parent_right
 msgid "Right Parent"
-msgstr "Правий батько"
+msgstr "Правий батьківський елемент"
 
 #. module: product
 #: model:product.product,website_description:product.product_product_6
@@ -2971,7 +2971,7 @@ msgstr "Категорії одиниць виміру"
 #. module: product
 #: model:product.uom,name:product.product_uom_unit
 msgid "Unit(s)"
-msgstr "шт"
+msgstr "Одиниця(і)"
 
 #. module: product
 #: model:ir.actions.act_window,name:product.product_uom_form_action

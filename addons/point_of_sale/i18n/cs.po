@@ -87,11 +87,13 @@ msgid ""
 "<span class=\"o_stat_text\">Put</span>\n"
 "                                <span class=\"o_stat_text\">Money In</span>"
 msgstr ""
+"<span class=\"o_stat_text\">Vložit</span>\n"
+"                                <span class=\"o_stat_text\">Peníze</span>"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_session_form
 msgid "<span class=\"o_stat_text\">Set Closing Balance</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Nastavení závěrečného zůstatku</span>"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_session_form
@@ -104,16 +106,18 @@ msgid ""
 "<span class=\"o_stat_text\">Take</span>\n"
 "                                <span class=\"o_stat_text\">Money Out</span>"
 msgstr ""
+"<span class=\"o_stat_text\">Vybrat</span>\n"
+"                                <span class=\"o_stat_text\">Peníze</span>"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_config_kanban
 msgid "<span>Cash Balance</span>"
-msgstr ""
+msgstr "<span>Hotovostní zůstatek</span>"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_config_kanban
 msgid "<span>Last Closing Date</span>"
-msgstr ""
+msgstr "<span>Datum poslední uzávěrky</span>"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_config_kanban
@@ -133,7 +137,7 @@ msgstr "<strong>Společnost</strong>:<br/>"
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.report_statement
 msgid "<strong>Ending Balance</strong>:<br/>"
-msgstr ""
+msgstr "<strong>Konečný zůstatek</strong>:<br/>"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.report_statement
@@ -148,12 +152,12 @@ msgstr ""
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.report_statement
 msgid "<strong>Starting Balance</strong>:<br/>"
-msgstr ""
+msgstr "<strong>Počáteční zůstatek</strong>:<br/>"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.report_statement
 msgid "<strong>Statement Name</strong>:<br/>"
-msgstr ""
+msgstr "<strong>Název příkazu</strong>:<br/>"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.report_statement
@@ -454,7 +458,7 @@ msgstr "Čárový kód"
 #. module: point_of_sale
 #: model:ir.ui.menu,name:point_of_sale.menu_pos_barcode_nomenclature_all
 msgid "Barcode Nomenclatures"
-msgstr ""
+msgstr "Nomenklatury čárových kódů"
 
 #. module: point_of_sale
 #. openerp-web
@@ -503,7 +507,7 @@ msgstr ""
 #: code:addons/point_of_sale/static/src/xml/pos.xml:806
 #, python-format
 msgid "CHANGE"
-msgstr ""
+msgstr "ZMĚNA"
 
 #. module: point_of_sale
 #. openerp-web
@@ -607,21 +611,21 @@ msgstr "Změnit"
 #: code:addons/point_of_sale/static/src/js/chrome.js:102
 #, python-format
 msgid "Change Cashier"
-msgstr ""
+msgstr "Změnit pokladníka"
 
 #. module: point_of_sale
 #. openerp-web
 #: code:addons/point_of_sale/static/src/js/screens.js:1143
 #, python-format
 msgid "Change Customer"
-msgstr ""
+msgstr "Změnit zákazníka"
 
 #. module: point_of_sale
 #. openerp-web
 #: code:addons/point_of_sale/static/src/js/screens.js:1753
 #, python-format
 msgid "Change Tip"
-msgstr ""
+msgstr "Změnit spropitné"
 
 #. module: point_of_sale
 #. openerp-web
@@ -649,6 +653,7 @@ msgstr ""
 #: model:ir.model.fields,help:point_of_sale.field_pos_config_cash_control
 msgid "Check the amount of the cashbox at opening and closing."
 msgstr ""
+"Při otevírání a zavírání pokladny zkontrolujte množství peněz v pokladně."
 
 #. module: point_of_sale
 #: model:ir.model.fields,help:point_of_sale.field_account_journal_journal_user
@@ -929,7 +934,7 @@ msgstr "Výchozí debetní účet"
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_default_fiscal_position_id
 msgid "Default Fiscal Position"
-msgstr ""
+msgstr "Výchozí fiskální pozice"
 
 #. module: point_of_sale
 #: model:ir.model.fields,help:point_of_sale.field_pos_config_barcode_nomenclature_id
@@ -1051,7 +1056,7 @@ msgstr "Slevy"
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_iface_display_categ_images
 msgid "Display Category Pictures"
-msgstr ""
+msgstr "Zobrazit obrázky kategorií"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_category_display_name
@@ -1235,14 +1240,14 @@ msgstr ""
 #: code:addons/point_of_sale/static/src/xml/pos.xml:1310
 #, python-format
 msgid "Export Paid Orders"
-msgstr ""
+msgstr "Export placených objednávek"
 
 #. module: point_of_sale
 #. openerp-web
 #: code:addons/point_of_sale/static/src/xml/pos.xml:1311
 #, python-format
 msgid "Export Unpaid Orders"
-msgstr ""
+msgstr "Export nezaplacených objednávek"
 
 #. module: point_of_sale
 #: model:product.product,name:point_of_sale.chicon_flandria_extra
@@ -1331,6 +1336,13 @@ msgstr "Seskupit podle"
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_group_by
 msgid "Group Journal Items"
 msgstr "Seskupit položky deníku"
+
+#. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/js/models.js:135
+#, python-format
+msgid "HTTPS connection to IoT Box failed"
+msgstr "Připojení HTTPS k IoT Boxu se nezdařilo"
 
 #. module: point_of_sale
 #. openerp-web
@@ -1661,6 +1673,15 @@ msgstr "Věrnostní program"
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_payment
 msgid "Make Payment"
 msgstr "Zaplatit"
+
+#. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/js/models.js:137
+#, python-format
+msgid ""
+"Make sure you are using IoT Box v18.12 or higher. Navigate to %s to accept "
+"the certificate of your IoT Box."
+msgstr ""
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_sale_config_settings_form_pos
@@ -2032,7 +2053,7 @@ msgstr "Analýza objednávek"
 #: code:addons/point_of_sale/models/pos_config.py:212
 #, python-format
 msgid "POS Order %s"
-msgstr ""
+msgstr "POS Objednávka %s"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_order_line_form
@@ -2682,7 +2703,7 @@ msgstr "Obchodník"
 #: code:addons/point_of_sale/static/src/js/chrome.js:385
 #, python-format
 msgid "Scale"
-msgstr ""
+msgstr "Měřítko"
 
 #. module: point_of_sale
 #. openerp-web
@@ -2789,14 +2810,14 @@ msgstr "Seriové číslo / šarže"
 #: code:addons/point_of_sale/static/src/xml/pos.xml:727
 #, python-format
 msgid "Served by"
-msgstr ""
+msgstr "Obsluhováno od"
 
 #. module: point_of_sale
 #. openerp-web
 #: code:addons/point_of_sale/static/src/js/screens.js:1945
 #, python-format
 msgid "Server Error"
-msgstr ""
+msgstr "Chyba serveru"
 
 #. module: point_of_sale
 #: code:addons/point_of_sale/models/pos_config.py:270
@@ -2887,7 +2908,7 @@ msgstr ""
 #: code:addons/point_of_sale/static/src/js/gui.js:322
 #, python-format
 msgid "Some orders could not be submitted to"
-msgstr ""
+msgstr "Některé objednávky nemohly být odeslány"
 
 #. module: point_of_sale
 #: model:ir.model,name:point_of_sale.model_pos_pack_operation_lot
@@ -3154,7 +3175,7 @@ msgstr ""
 #: code:addons/point_of_sale/static/src/js/screens.js:1951
 #, python-format
 msgid "The order could not be sent to the server due to an unknown error"
-msgstr ""
+msgstr "Objednávka nemohla být odeslána na server z důvodu neznámé chyby"
 
 #. module: point_of_sale
 #. openerp-web
@@ -3419,7 +3440,7 @@ msgstr ""
 #: code:addons/point_of_sale/static/src/xml/pos.xml:649
 #, python-format
 msgid "Tip"
-msgstr ""
+msgstr "Tip"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_tip_product_id
@@ -3529,7 +3550,7 @@ msgstr "Jednotková cena"
 #: code:addons/point_of_sale/static/src/xml/pos.xml:992
 #, python-format
 msgid "Unknown Barcode"
-msgstr ""
+msgstr "Neznámý čárový kód"
 
 #. module: point_of_sale
 #. openerp-web
@@ -3609,7 +3630,7 @@ msgstr ""
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_iface_vkeyboard
 msgid "Virtual KeyBoard"
-msgstr ""
+msgstr "Virtuální klávesnice"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_report_pos_order_stock_location_id
@@ -3627,7 +3648,7 @@ msgstr ""
 #: code:addons/point_of_sale/models/barcode_rule.py:12
 #, python-format
 msgid "Weighted Product"
-msgstr ""
+msgstr "Vážený produkt"
 
 #. module: point_of_sale
 #. openerp-web
@@ -3791,7 +3812,7 @@ msgstr ""
 #: code:addons/point_of_sale/static/src/js/screens.js:1215
 #, python-format
 msgid "Your Internet connection is probably down."
-msgstr ""
+msgstr "Vaše internetové připojení je pravděpodobně přerušeno."
 
 #. module: point_of_sale
 #: code:addons/point_of_sale/models/pos_session.py:241
@@ -3899,7 +3920,7 @@ msgstr "chyba"
 #: code:addons/point_of_sale/static/src/js/screens.js:1923
 #, python-format
 msgid "for an order of"
-msgstr ""
+msgstr "pro objednávku z"
 
 #. module: point_of_sale
 #: code:addons/point_of_sale/models/pos_config.py:207
@@ -3981,11 +4002,11 @@ msgstr ""
 #: code:addons/point_of_sale/static/src/xml/pos.xml:1175
 #, python-format
 msgid "unpaid orders could not be imported"
-msgstr ""
+msgstr "nezaplacené objednávky nelze importovat"
 
 #. module: point_of_sale
 #. openerp-web
 #: code:addons/point_of_sale/static/src/xml/pos.xml:1177
 #, python-format
 msgid "were duplicates of existing orders"
-msgstr ""
+msgstr "byly duplikáty existujících objednávek"

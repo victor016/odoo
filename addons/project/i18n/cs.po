@@ -12,7 +12,7 @@
 # Jan Horzinka <jan.horzinka@centrum.cz>, 2018
 # Martin Trigaux, 2018
 # Michal Veselý <michal@veselyberanek.net>, 2018
-# trendspotter <j.podhorecky@volny.cz>, 2018
+# trendspotter <j.podhorecky@volny.cz>, 2019
 # 
 msgid ""
 msgstr ""
@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-23 13:26+0000\n"
 "PO-Revision-Date: 2016-09-07 09:27+0000\n"
-"Last-Translator: trendspotter <j.podhorecky@volny.cz>, 2018\n"
+"Last-Translator: trendspotter <j.podhorecky@volny.cz>, 2019\n"
 "Language-Team: Czech (https://www.transifex.com/odoo/teams/41243/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -215,13 +215,15 @@ msgid ""
 "<b>Assign the task</b> to someone. <i>You can create and invite a new user "
 "on the fly.</i>"
 msgstr ""
+"<b>Přiřadit úkol</b> někomu. <i>Můžete vytvořit a pozvat nového uživatele za"
+" chodu.</i>"
 
 #. module: project
 #. openerp-web
 #: code:addons/project/static/src/js/tour.js:83
 #, python-format
 msgid "<b>Click the save button</b> to apply your changes to the task."
-msgstr ""
+msgstr "<b>Klepnutím na tlačítko Uložit</b> provedete změny v úkolu."
 
 #. module: project
 #. openerp-web
@@ -1052,6 +1054,9 @@ msgid ""
 "                                You can define here labels that will be displayed for the state instead\n"
 "                                of the default labels."
 msgstr ""
+"V každé fázi mohou zaměstnanci zablokovat nebo připravit úkol / problém na další fázi.\n"
+"Zde můžete definovat štítky, které se místo toho zobrazí pro daný stav\n"
+"namísto výchozích štítků."
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -1192,6 +1197,8 @@ msgid ""
 "Choose a <b>project name</b>. (e.g. Website Launch, Product Development, "
 "Office Party, etc.)"
 msgstr ""
+"Vyberte <b>název projektu.</b> (např. spuštění webových stránek, vývoj "
+"produktů, kancelářská párty atd.)"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_project_view_form_simplified
@@ -1803,7 +1810,7 @@ msgstr ""
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task_type_fold
 msgid "Folded in Kanban"
-msgstr ""
+msgstr "Složený v Kanbanu"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.edit_project
@@ -2211,13 +2218,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:project.field_project_task_legend_blocked
 #: model:ir.model.fields,field_description:project.field_project_task_type_legend_blocked
 msgid "Kanban Blocked Explanation"
-msgstr ""
+msgstr "Blokované vysvětlení Kanban"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task_legend_normal
 #: model:ir.model.fields,field_description:project.field_project_task_type_legend_normal
 msgid "Kanban Ongoing Explanation"
-msgstr ""
+msgstr "Kanban Pokračující vysvětlení"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -2239,7 +2246,7 @@ msgstr "Stav kanban"
 #: model:ir.model.fields,field_description:project.field_project_task_legend_done
 #: model:ir.model.fields,field_description:project.field_project_task_type_legend_done
 msgid "Kanban Valid Explanation"
-msgstr ""
+msgstr "Kanban Platné vysvětlení"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner
@@ -2399,7 +2406,7 @@ msgstr "Efektivnější komunikace mezi zaměstnanci"
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_project_project_filter
 msgid "My Favorites"
-msgstr ""
+msgstr "Moje oblíbené"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_task_search_form
@@ -3091,7 +3098,7 @@ msgstr "Změna fáze"
 #. module: project
 #: model:ir.ui.view,arch_db:project.task_type_edit
 msgid "Stage Description and Tooltips"
-msgstr ""
+msgstr "Popis fáze a popisky"
 
 #. module: project
 #: model:ir.model.fields,field_description:project.field_project_task_type_name
@@ -3127,7 +3134,7 @@ msgstr "Počáteční datum"
 #. module: project
 #: sql_constraint:project.tags:0
 msgid "Tag name already exists !"
-msgstr ""
+msgstr "Název značky již existuje!"
 
 #. module: project
 #: model:ir.actions.act_window,name:project.project_tags_action
@@ -3177,7 +3184,7 @@ msgstr "Sada úkolů"
 #: model:mail.message.subtype,name:project.mt_project_task_ready
 #: model:mail.message.subtype,name:project.mt_task_ready
 msgid "Task Ready"
-msgstr ""
+msgstr "Úkol připraven"
 
 #. module: project
 #: model:ir.model,name:project.model_project_task_type
@@ -3200,7 +3207,7 @@ msgstr ""
 #. module: project
 #: model:ir.ui.view,arch_db:project.view_task_form2
 msgid "Task Title..."
-msgstr ""
+msgstr "Název úkolu ..."
 
 #. module: project
 #: model:mail.message.subtype,description:project.mt_task_blocked
@@ -3586,6 +3593,7 @@ msgstr ""
 #, python-format
 msgid "Use the breadcrumbs to <b>go back to your tasks pipeline</b>."
 msgstr ""
+"Použijte drobečkovou navigaci, <b>abyste se vrátili ke svému úkolu</b>."
 
 #. module: project
 #: model:project.task.type,legend_priority:project.project_stage_0
@@ -3633,14 +3641,14 @@ msgstr ""
 #: selection:project.project,privacy_visibility:0
 #, python-format
 msgid "Visible by all employees"
-msgstr ""
+msgstr "Viditelné všemi zaměstnanci"
 
 #. module: project
 #: code:addons/project/models/project.py:205
 #: selection:project.project,privacy_visibility:0
 #, python-format
 msgid "Visible by following customers"
-msgstr ""
+msgstr "Viditelné pro následující zákazníky"
 
 #. module: project
 #. openerp-web
@@ -3875,7 +3883,7 @@ msgstr ""
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_project_view_form_simplified
 msgid "e.g. Office Party"
-msgstr ""
+msgstr "např. Firemní večírek"
 
 #. module: project
 #: model:ir.ui.view,arch_db:project.project_planner

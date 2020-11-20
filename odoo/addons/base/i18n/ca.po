@@ -7,13 +7,17 @@
 # Bàrbara Partegàs <barbararof@gmail.com>, 2016
 # Eric Antones <eantones@users.noreply.github.com>, 2016
 # Josep Sànchez <papapep@gmx.com>, 2016
-# Carles Antoli <carlesantoli@hotmail.com>, 2016
 # Joan Macaya <j.mac.solanes@gmail.com>, 2016
 # RGB Consulting <odoo@rgbconsulting.com>, 2017
-# Martin Trigaux, 2017
 # Quim - eccit <quim@eccit.com>, 2017
+# Martin Trigaux, 2018
 # Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2018
-# Manel Fernandez <manelfera@outlook.com>, 2018
+# Manel Fernandez Ramirez <manelfera@outlook.com>, 2019
+# M Palau <mpalau@tda.ad>, 2019
+# Arnau Ros, 2019
+# Carles Antoli <carlesantoli@hotmail.com>, 2020
+# Eugeni Chafert <eugeni@chafer.cat>, 2020
+# jabelchi <jabelchi@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -21,7 +25,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-23 16:30+0000\n"
 "PO-Revision-Date: 2016-09-07 09:14+0000\n"
-"Last-Translator: Manel Fernandez <manelfera@outlook.com>, 2018\n"
+"Last-Translator: jabelchi <jabelchi@gmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/odoo/teams/41243/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5403,6 +5407,14 @@ msgid ""
 msgstr ""
 
 #. module: base
+#: code:addons/model.py:153
+#, python-format
+msgid ""
+" another model requires the record being deleted. If possible, archive it "
+"instead."
+msgstr ""
+
+#. module: base
 #: model:ir.ui.view,arch_db:base.res_lang_form
 msgid "%A - Full weekday name."
 msgstr "%A - Nombre complet del dia de la setmana."
@@ -5559,6 +5571,14 @@ msgid ""
 msgstr ""
 "- Acció: una acció adjunta al model donat\n"
 "- Per defecte: un valor per defecte pel camp del model"
+
+#. module: base
+#: code:addons/model.py:141
+#, python-format
+msgid ""
+"- Create/update: a mandatory field is not set.\n"
+"- Delete: another model requires the record being deleted. If possible, archive it instead."
+msgstr ""
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.report_irmodeloverview
@@ -8237,7 +8257,7 @@ msgstr "Assistents de configuració"
 #. module: base
 #: model:ir.module.module,summary:base.module_timesheet_grid_sale
 msgid "Configure timesheet invoicing"
-msgstr ""
+msgstr "Configurar facturació de fulls d'hores"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_base_module_upgrade
@@ -8295,6 +8315,12 @@ msgstr "Restricció"
 #: model:ir.model.fields,field_description:base.field_ir_model_constraint_type
 msgid "Constraint Type"
 msgstr "Tipus de Restricció "
+
+#. module: base
+#: code:addons/model.py:158
+#, python-format
+msgid "Constraint:"
+msgstr ""
 
 #. module: base
 #: sql_constraint:ir.model.constraint:0
@@ -8842,7 +8868,7 @@ msgstr "Fraccions de moneda, que seran utilitzades quan imprimim quantitats."
 #. module: base
 #: model:ir.ui.view,arch_db:base.view_users_form
 msgid "Current Company"
-msgstr "Moneda de l'Empresa"
+msgstr "Empresa actual"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_res_currency_rate
@@ -9213,6 +9239,11 @@ msgstr ""
 #: model:ir.module.category,name:base.module_category_hidden_dependency
 msgid "Dependency"
 msgstr "Dependència "
+
+#. module: base
+#: model:ir.module.module,description:base.module_test_pylint
+msgid "Deprecated empty module in favor of test-lint."
+msgstr ""
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_attachment_description
@@ -10231,6 +10262,12 @@ msgid "Field names must be unique per model."
 msgstr "El nom del camp ha de ser únic per model."
 
 #. module: base
+#: code:addons/model.py:148
+#, python-format
+msgid "Field:"
+msgstr "Camp:"
+
+#. module: base
 #: model:ir.actions.act_window,name:base.action_model_fields
 #: model:ir.model,name:base.model_ir_model_fields
 #: model:ir.model.fields,field_description:base.field_ir_model_field_id
@@ -10836,7 +10873,7 @@ msgstr "Quadrícula"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_grid
 msgid "Grid View"
-msgstr ""
+msgstr "Vista de quadrícula"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_timesheet_grid
@@ -13497,6 +13534,12 @@ msgstr ""
 "model, que serà automàticament establer al nom del model correcte"
 
 #. module: base
+#: code:addons/model.py:147 code:addons/model.py:157
+#, python-format
+msgid "Model:"
+msgstr ""
+
+#. module: base
 #: model:ir.actions.act_window,name:base.action_model_model
 #: model:ir.model,name:base.model_ir_model
 #: model:ir.ui.menu,name:base.ir_model_model_menu
@@ -13566,6 +13609,8 @@ msgid ""
 "Module loading %s failed: file %s could not be processed:\n"
 " %s"
 msgstr ""
+"L'execució del mòdul %s ha fallat: el fitxer %s no s'ha pogut processar:\n"
+" %s"
 
 #. module: base
 #: model:ir.model.fields,help:base.field_ir_translation_module
@@ -14992,7 +15037,7 @@ msgstr "Prioritat"
 #. module: base
 #: selection:res.partner,type:0
 msgid "Private Address"
-msgstr ""
+msgstr "Adreça privada"
 
 #. module: base
 #: model:ir.ui.view,arch_db:base.res_partner_view_form_private
@@ -16792,7 +16837,7 @@ msgstr "Comprador de pago de franges"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_web_studio
 msgid "Studio"
-msgstr ""
+msgstr "Studio"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_act_server_sub_model_object_field
@@ -17636,6 +17681,14 @@ msgid "The selected modules have been updated / installed !"
 msgstr "Els mòduls seleccionats s'han actualitzat / instal·lat!"
 
 #. module: base
+#: code:addons/base/module/module.py:489
+#, python-format
+msgid ""
+"The server is busy right now, module operations are not possible at this "
+"time, please try again later."
+msgstr ""
+
+#. module: base
 #: model:ir.model.fields,help:base.field_res_country_state_code
 msgid "The state code."
 msgstr "L'estat del codi."
@@ -18363,7 +18416,9 @@ msgid "United States Postal Service (USPS) Shipping"
 msgstr "Enviament per United States Postal Service (USPS) "
 
 #. module: base
+#: code:addons/model.py:148 code:addons/model.py:157 code:addons/model.py:158
 #: selection:ir.module.module.dependency,state:0
+#, python-format
 msgid "Unknown"
 msgstr "Desconegut"
 
@@ -20275,6 +20330,11 @@ msgstr "prova-herències"
 #: model:ir.module.module,shortdesc:base.module_test_limits
 msgid "test-limits"
 msgstr "prova-límits"
+
+#. module: base
+#: model:ir.module.module,shortdesc:base.module_test_lint
+msgid "test-lint"
+msgstr ""
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_test_uninstall
